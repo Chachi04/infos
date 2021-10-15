@@ -1,0 +1,12 @@
+Log created: 2021-10-11T10:13:11.631493000Z
+Process ID:  18250 (0x474a)
+Parent PID:  1 (0x1)
+Executable:  /usr/lib/virtualbox/VBoxHeadless
+Arg[0]: /usr/lib/virtualbox/VBoxHeadless
+Arg[1]: --comment
+Arg[2]: csharp_csharp_1633115875100_87094
+Arg[3]: --startvm
+Arg[4]: b219b2b4-206f-4fc5-be6c-8512a56b2b6e
+Arg[5]: --vrde
+Arg[6]: config
+AddRef: illegal refcnt=3221225469 state=2
