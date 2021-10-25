@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace car2
+namespace car2._1
 {
     public class Car
     {
@@ -29,6 +29,20 @@ namespace car2
             set { this.yearProd = value; }
             get { return this.yearProd; }
         }
+
+        public double annualTax => 0.2 * this.EngineVolume +
+        (
+            this.YearProd <= 2000 ? 70 :
+            this.YearProd <= 2010 ? 60 : 50
+        );
+
+        public void print()
+        {
+            Console.WriteLine($"Данък на {this.Brand}, {this.Model}");
+            Console.WriteLine($"с обем на двигателя {this.EngineVolume}");
+            Console.WriteLine($"произведена през {this.YearProd} година");
+            Console.WriteLine($"е {Math.Round(this.annualTax)} година");
+        }
     }
     class Program
     {
@@ -48,16 +62,7 @@ namespace car2
             Console.Write("Въведете година на производство: ");
             myCar.YearProd = int.Parse(Console.ReadLine());
 
-            double annualTax = 0.2 * myCar.EngineVolume +
-            (
-                myCar.YearProd <= 2000 ? 70 :
-                myCar.YearProd <= 2010 ? 60 : 50
-            );
-
-            Console.WriteLine($"Данък на {myCar.Brand}, {myCar.Model}");
-            Console.WriteLine($"с обем на двигателя {myCar.EngineVolume}");
-            Console.WriteLine($"произведена през {myCar.YearProd} година");
-            Console.WriteLine($"е {Math.Round(annualTax)} година");
+            myCar.print();
         }
     }
 }
