@@ -10,10 +10,10 @@ namespace increment_primer3
         }
         static void Main(string[] args)
         {
-            int number = int.Parse(Console.ReadLine());
-            Console.WriteLine("number = " + number);
+            int number = 1;
+            Console.WriteLine(number);
             increment(ref number);
-            Console.WriteLine("increment(number) = " + number);
+            Console.WriteLine(number);
         }
     }
 }
