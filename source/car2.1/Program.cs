@@ -36,6 +36,12 @@ namespace car2._1
             this.YearProd <= 2010 ? 60 : 50
         );
 
+        public void setEngineVolume(int volume)
+        {
+            this.engineVolume = volume;
+            volume = 0;
+        }
+
         public void print()
         {
             Console.WriteLine($"Данък на {this.Brand}, {this.Model}");
