@@ -1,3 +1,4 @@
 **/bin
 .vagrant/
 **/Debug
+*-VBoxHeadless-*.log

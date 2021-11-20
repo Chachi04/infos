@@ -13,7 +13,7 @@ Vagrant.configure("2") do |config|
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
   config.vm.box = "ubuntu/focal64"
-  config.vm.define "csharp"
+  # config.vm.define "csharp"
   config.vm.hostname = "csharp"
 
   # Disable automatic box update checking. If you disable this, then
@@ -73,7 +73,6 @@ Vagrant.configure("2") do |config|
     rm packages-microsoft-prod.deb
     apt-get install -y apt-transport-https
     apt-get install -y dotnet-sdk-5.0
-    apt-get install -y apt-transport-https
     apt-get install -y aspnetcore-runtime-5.0
     apt-get install -y zsh
   SHELL

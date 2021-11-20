@@ -83,7 +83,26 @@ namespace rational
         public static bool operator <=(Rational r1, Rational r2)
             => r1._num * r2._den <= r2._num * r1._den;
 
-        public override string ToString() => _num != 0 ? $"{_num} / {_den}" : "0";
+        private void Simp()
+        {
+            int gcd = GCD(this._num, this._den);
+            this._num /= gcd;
+            this._den /= gcd;
+        }
+
+        private int GCD(int a, int b)
+        {
+            if (b != 0)
+                return this.GCD(b, a % b);
+            return a;
+        }
+
+        public override string ToString()
+        {
+            this.Simp();
+            return $"{_num} / {_den}";
+            // return _num == 0 || _num == 1 ? $"{_num}" : $"{_num} / {_den}";
+        }
 
         public override bool Equals(object o) => true;
 
@@ -97,18 +116,18 @@ namespace rational
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(Rational.TryParse("2 / 5", out Rational r1));
+            Console.WriteLine(Rational.TryParse(Console.ReadLine(), out Rational r1));
             Console.WriteLine(r1);
-            Console.WriteLine(Rational.TryParse("25", out Rational r2));
+            Console.WriteLine(Rational.TryParse(Console.ReadLine(), out Rational r2));
             Console.WriteLine(r2);
 
 
-            Rational r3 = new Rational(2, 5);
-            Rational r4 = new Rational(3, 4);
-            Console.WriteLine((r1 + r2).ToDouble());
-            Console.WriteLine((r1 - r2).ToDouble());
-            Console.WriteLine((r1 * r2).ToDouble());
-            Console.WriteLine((r1 / r2).ToDouble());
+            // Rational r3 = new Rational(2, 5);
+            // Rational r4 = new Rational(3, 4);
+            Console.WriteLine((r1 + r2));
+            Console.WriteLine((r1 - r2));
+            Console.WriteLine((r1 * r2));
+            Console.WriteLine((r1 / r2));
         }
     }
 }

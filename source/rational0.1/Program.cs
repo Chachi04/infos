@@ -19,7 +19,6 @@ namespace rational0._1
             this.den = den;
         }
 
-
         public Rational(Rational r)
         {
             this.num = r.num;
@@ -54,7 +53,6 @@ namespace rational0._1
             this.Simp();
         }
 
-
         public int Compare(Rational r)
         {
             if (this.num * r.den > r.num * this.den) return 1;
@@ -82,12 +80,7 @@ namespace rational0._1
             this.den /= d;
         }
 
-        private int GCD(int a, int b)
-        {
-            if (b != 0)
-                return GCD(b, a % b);
-            return a;
-        }
+        private int GCD(int a, int b) => b != 0 ? GCD(b, a % b) : a;
     }
 
     class Program

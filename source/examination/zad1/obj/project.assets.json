@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/vagrant/source/rational/rational.csproj",
-      "projectName": "rational",
-      "projectPath": "/home/vagrant/source/rational/rational.csproj",
+      "projectUniqueName": "/home/vagrant/source/examination/zad1/zad1.csproj",
+      "projectName": "zad1",
+      "projectPath": "/home/vagrant/source/examination/zad1/zad1.csproj",
       "packagesPath": "/home/vagrant/.nuget/packages/",
-      "outputPath": "/home/vagrant/source/rational/obj/",
+      "outputPath": "/home/vagrant/source/examination/zad1/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/vagrant/.nuget/NuGet/NuGet.Config"
