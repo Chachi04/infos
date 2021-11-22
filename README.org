@@ -610,3 +610,24 @@ StreamReader r = new StreamReader("text.txt", Encoding.GetUncoding("Unicode"));
 string line = r.ReadLine(); // Четене на един ред
 string rest = r.ReadToEnd(); // Четене на цял файл
 #+end_src
+*** затваряне на файла
+#+begin_src csharp
+r.Close();
+#+end_src
+* Класът string
+- масиви от символи
+** Свойства
+*** Length
+- определя броя символи в низа.
+** Методи на класът string
+*** ToLower()
+*** ToUpper()
+*** IndexOf(searchString, startIndex)
+- Връща индекса на първия символ от низа за проверка ако го намери, в противен случай - -1;
+*** LastIndexOf(searchString, startIndex)
+- Връща индекса на последния символ от низа за проверка ако го намери, в противен случай - -1;
+*** SubString(startIndex, numOfChars)
+*** Replace(s1, s2)
+** Компонент комбинирана текстова кутия / ComboBox
+- текстова кутия, съдъжанието на която се избира от списък с няколко възможни стойности
+- стойностите за избор се задават в свойство Items
