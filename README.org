@@ -103,6 +103,8 @@
   - [[#физически-файл][Физически файл]]
   - [[#логически-файл][Логически файл]]
   - [[#записване-в-такстов-файл][Записване в такстов файл]]
+  - [[#компонент-многоредова-текстова-кутия--richtextbox][Компонент многоредова текстова кутия / RichTextBox]]
+  - [[#четене-от-текстов-файл][Четене от текстов файл]]
 
 * Преговор
 ** Архитектура на съвременния компютър - стр 4 фигура 1
@@ -584,7 +586,7 @@ for(int i = 0; i < x.Length; i++){
 - Write(), WriteLine()
 *** създаване на логическит файл и свързване с физическия
 #+begin_src csharp
-StreamWriter <lfile> = new StreamWriter("<phfile>", doAppend, encoding);
+StreamWriter <lofile> = new StreamWriter("<phfile>", doAppend, encoding);
 StreamWriter sw = new StreamWriter("test.txt", true, Encoding.GetEncoding("Unicode"));
 #+end_src
 *** записване на данни във файла
@@ -594,4 +596,17 @@ sw.WriteLine("Some witty remark.");
 *** затваряне на файла
 #+begin_src csharp
 sw.Close();
+#+end_src
+** Компонент многоредова текстова кутия / RichTextBox
+- В този елемент можем да извеждаме текст на повече от един ред
+** Четене от текстов файл
+*** създаване на логически файл, който свързваме с физическия
+#+begin_src csharp
+StreamReader <lofile> = new StreamReader("<phfile>", <encoding>);
+StreamReader r = new StreamReader("text.txt", Encoding.GetUncoding("Unicode"));
+#+end_src
+*** четене
+#+begin_src csharp
+string line = r.ReadLine(); // Четене на един ред
+string rest = r.ReadToEnd(); // Четене на цял файл
 #+end_src
