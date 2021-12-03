@@ -641,7 +641,7 @@ r.Close();
 
 * Документиране на клас
 ** Сериализация
-XML - extened markup language
+XML - extended markup language
 ** Автоматизирано докуметиране на клас
 + <name></name>
 + /// - коментар
