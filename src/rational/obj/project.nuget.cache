@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Y8Y0fD1LqGv8DNYD2Qy3hqNG7PMBdkvwnUY4f5rbv7YSviITQoP6sp547M2nm8QFyTof41QgXLrnO/HhiHnQOA==",
+  "dgSpecHash": "t+ogh4jSG9aETCFNN1qk5KKalBPk9vXxf8XQWGRqIs2Xwcg7xbgW4NkrJiJYkhVJ0W1OdEeH32lFf33lJlsgoA==",
   "success": true,
-  "projectFilePath": "/home/vagrant/source/rational/rational.csproj",
+  "projectFilePath": "/home/vagrant/src/rational/rational.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/vagrant/src/rational/rational.csproj": {}
+    "/home/vagrant/src/repr/repr.csproj": {}
   },
   "projects": {
-    "/home/vagrant/src/rational/rational.csproj": {
+    "/home/vagrant/src/repr/repr.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/vagrant/src/rational/rational.csproj",
-        "projectName": "rational",
-        "projectPath": "/home/vagrant/src/rational/rational.csproj",
+        "projectUniqueName": "/home/vagrant/src/repr/repr.csproj",
+        "projectName": "repr",
+        "projectPath": "/home/vagrant/src/repr/repr.csproj",
         "packagesPath": "/home/vagrant/.nuget/packages/",
-        "outputPath": "/home/vagrant/src/rational/obj/",
+        "outputPath": "/home/vagrant/src/repr/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/vagrant/.nuget/NuGet/NuGet.Config"

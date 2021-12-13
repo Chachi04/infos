@@ -158,6 +158,13 @@ namespace rational
         public static bool operator <=(Rational r1, Rational r2)
             => r1._num * r2._den <= r2._num * r1._den;
 
+
+        public static bool operator >(Rational r1, Rational r2)
+            => r1._num * r2._den > r2._num * r1._den;
+
+        public static bool operator <(Rational r1, Rational r2)
+            => r1._num * r2._den < r2._num * r1._den;
+
         /// <summary>
         /// Subtracts two rational numbers
         /// </summary>
@@ -215,18 +222,13 @@ namespace rational
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(Rational.TryParse(Console.ReadLine(), out Rational r1));
-            Console.WriteLine(r1);
-            Console.WriteLine(Rational.TryParse(Console.ReadLine(), out Rational r2));
-            Console.WriteLine(r2);
+            Rational.TryParse(Console.ReadLine(), out Rational r1);
+            Rational.TryParse(Console.ReadLine(), out Rational r2);
 
-
-            // Rational r3 = new Rational(2, 5);
-            // Rational r4 = new Rational(3, 4);
-            Console.WriteLine((r1 + r2));
-            Console.WriteLine((r1 - r2));
-            Console.WriteLine((r1 * r2));
-            Console.WriteLine((r1 / r2));
+            Console.WriteLine("Sum: " + (r1 + r2));
+            Console.WriteLine("Dif: " + (r1 - r2));
+            Console.WriteLine("Mult: " + (r1 * r2));
+            Console.WriteLine("Div: " + (r1 / r2));
         }
     }
 }

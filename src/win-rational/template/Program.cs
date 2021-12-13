@@ -101,18 +101,13 @@ namespace template
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(Rational.TryParse("2 / 5", out Rational r1));
-            Console.WriteLine(r1);
-            Console.WriteLine(Rational.TryParse("25", out Rational r2));
-            Console.WriteLine(r2);
+            Rational.TryParse("2 / 5", out Rational r1);
+            Rational.TryParse("25", out Rational r2);
 
-
-            Rational r3 = new Rational(2, 5);
-            Rational r4 = new Rational(3, 4);
-            Console.WriteLine((r1 + r2).ToDouble());
-            Console.WriteLine((r1 - r2).ToDouble());
-            Console.WriteLine((r1 * r2).ToDouble());
-            Console.WriteLine((r1 / r2).ToDouble());
+            Console.WriteLine("Sum: " + (r1 + r2));
+            Console.WriteLine("Dif: " + (r1 - r2));
+            Console.WriteLine("Mult: " + (r1 * r2));
+            Console.WriteLine("Div: " + (r1 / r2));
         }
     }
 }
