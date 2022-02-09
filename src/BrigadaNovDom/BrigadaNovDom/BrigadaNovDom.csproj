@@ -95,5 +95,20 @@
   <ItemGroup>
     <None Include="bin\Debug\Merbau 525 190.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\African oak ExquisitTrend 523 813.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\African oak Tundra 524 446.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\ASH Trend 524 642.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Buche_gedaempft_Universal_Interieur_534 590-1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Merbau 525 190.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -119,18 +119,18 @@
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="African_oak_ExquisitTrend_523_813" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\African oak ExquisitTrend 523 813.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>African oak ExquisitTrend 523 813.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="African_oak_Tundra_524_446" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\African oak Tundra 524 446.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>African oak Tundra 524 446.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ASH_Trend_524_642" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\ASH Trend 524 642.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>ASH Trend 524 642.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Buche_gedaempft_Universal_Interieur_534_590_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\Buche_gedaempft_Universal_Interieur_534 590-1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>Buche_gedaempft_Universal_Interieur_534 590-1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Merbau_525_190" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\Merbau 525 190.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>Merbau 525 190.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
