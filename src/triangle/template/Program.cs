@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace template
 {
@@ -23,26 +20,23 @@ namespace template
         {
             this.a = a;
             this.b = b;
-            this.alpha = alpha;
+            this.alpha = alpha*Math.PI/180;
             this.c = Math.Sqrt(Math.Pow(this.a, 2) + Math.Pow(this.b, 2) - 2 * a * b * Math.Cos(this.alpha));
         }
 
-        public double Perimeter()
-        {
+        public double Perimeter() => this.a + this.b + this.c;
+        
 
-            return this.a + this.b + this.c;
-        }
-
-        public double Area()
-        {
-            return a * b * Math.Sin(alpha) / 2;
-        }
+        public double Area() => a * b * Math.Sin(alpha) / 2;
+        
     }
     class Program
     {
         static void Main(string[] args)
         {
-
+            Triangle tr = new Triangle(3, 4, 90);
+            Console.WriteLine(tr.Perimeter());
+            Console.WriteLine(tr.Area());
         }
     }
 }
