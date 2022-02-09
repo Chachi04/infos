@@ -30,22 +30,12 @@ namespace recursion_ex1
         }
 
         static double a(int x, int n)
-        {
-            if (n == 0) return 1;
-            return Math.Pow(x, n) + a(x, n - 1);
-        }
+            => n == 0 ? 1 : Math.Pow(x, n) + a(x, n - 1);
 
         static double b(int x, int n)
-        {
-            if (n == 0) return 1;
-            return b(x, n - 1) + (1 / Math.Pow(x, n));
-        }
+            => n == 0 ? 1 : b(x, n - 1) + (1 / Math.Pow(x, n));
 
         static double c(int n)
-        {
-            if (n == 1) return n * (n + 1);
-            return c(n - 1) + n * (n + 1);
-        }
-
+            => n == 1 ? n * (n + 1) : c(n - 1) + n * (n + 1);
     }
 }

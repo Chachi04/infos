@@ -86,25 +86,26 @@ namespace recursion
         static int SumOfDigits(int n)
             => n / 10 == 0 ? n : (SumOfDigits(n / 10) + n % 10);
 
-        // static int LCD(int[] nums)
-        //     => nums.Aggregate((a, b) => LCD(a, b));
-
-        static int LCD(int a, int b)
+        static int LCF(int a, int b)
             => a * b / GCD(a, b);
 
-        static int LCD(int[] nums)
-        {
-            int n = nums.Length;
-            if (n == 1)
-            {
-                return nums[0];
-            }
-            if (n == 2)
-            {
-                return nums[0] * nums[1] / GCD(nums[0], nums[1]);
-            }
-            return LCD(LCD1((int)nums[n], (int)nums[n - 1]));
-        }
+        static int LCF(int[] nums)
+            => nums.Aggregate((a, b) => LCF(a, b));
+
+
+        // static int LCD(int[] nums)
+        // {
+        //     int n = nums.Length;
+        //     if (n == 1)
+        //     {
+        //         return nums[0];
+        //     }
+        //     if (n == 2)
+        //     {
+        //         return nums[0] * nums[1] / GCD(nums[0], nums[1]);
+        //     }
+        //     return LCD1(LCD(nums[n - 1]), nums[n]);
+        // }
 
 
     }
