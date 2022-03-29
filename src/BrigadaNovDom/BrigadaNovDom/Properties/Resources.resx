@@ -118,19 +118,82 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="African_oak_ExquisitTrend_523_813" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>African oak ExquisitTrend 523 813.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="door_century_oak" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\door_century_oak.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="African_oak_Tundra_524_446" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>African oak Tundra 524 446.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="door_century_wallnut" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\door_century_wallnut.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ASH_Trend_524_642" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>ASH Trend 524 642.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="door_ceres_oak" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\door_ceres_oak.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Buche_gedaempft_Universal_Interieur_534_590_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Buche_gedaempft_Universal_Interieur_534 590-1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="door_ceres_wallnut" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\door_ceres_wallnut.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="door_malaga" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\door_malaga.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="floor_ash_trend" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\floor_ash_trend.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="floor_buche" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\floor_buche.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="floor_casa_oak" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\floor_casa_oak.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="floor_exquisit_trend" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\floor_exquisit_trend.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="floor_freedom" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\floor_freedom.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="floor_tundra" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\floor_tundra.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Ladder" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\Ladder.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Merbau_525_190" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Merbau 525 190.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\img\Merbau 525 190.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tool_angle_grinder" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\tool_angle_grinder.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tool_brush" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\tool_brush.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tool_roller" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\tool_roller.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wall_badem" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\wall_badem.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wall_bambuk" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\wall_bambuk.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wall_crem_brule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\wall_crem_brule.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wall_papaq" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\wall_papaq.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wall_praskova" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\wall_praskova.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wall_severno_siqnie" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\wall_severno_siqnie.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wall_slunchevo_utro" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\wall_slunchevo_utro.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wall_smokinq" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\wall_smokinq.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wall_sreburna_lisica" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\wall_sreburna_lisica.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wall_zlatna_ruj" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\wall_zlatna_ruj.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

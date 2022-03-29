@@ -63,9 +63,9 @@ namespace BrigadaNovDom.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap African_oak_ExquisitTrend_523_813 {
+        internal static System.Drawing.Bitmap door_century_oak {
             get {
-                object obj = ResourceManager.GetObject("African_oak_ExquisitTrend_523_813", resourceCulture);
+                object obj = ResourceManager.GetObject("door_century_oak", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace BrigadaNovDom.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap African_oak_Tundra_524_446 {
+        internal static System.Drawing.Bitmap door_century_wallnut {
             get {
-                object obj = ResourceManager.GetObject("African_oak_Tundra_524_446", resourceCulture);
+                object obj = ResourceManager.GetObject("door_century_wallnut", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,9 +83,9 @@ namespace BrigadaNovDom.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap ASH_Trend_524_642 {
+        internal static System.Drawing.Bitmap door_ceres_oak {
             get {
-                object obj = ResourceManager.GetObject("ASH_Trend_524_642", resourceCulture);
+                object obj = ResourceManager.GetObject("door_ceres_oak", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -93,9 +93,89 @@ namespace BrigadaNovDom.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Buche_gedaempft_Universal_Interieur_534_590_1 {
+        internal static System.Drawing.Bitmap door_ceres_wallnut {
             get {
-                object obj = ResourceManager.GetObject("Buche_gedaempft_Universal_Interieur_534_590_1", resourceCulture);
+                object obj = ResourceManager.GetObject("door_ceres_wallnut", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap door_malaga {
+            get {
+                object obj = ResourceManager.GetObject("door_malaga", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap floor_ash_trend {
+            get {
+                object obj = ResourceManager.GetObject("floor_ash_trend", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap floor_buche {
+            get {
+                object obj = ResourceManager.GetObject("floor_buche", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap floor_casa_oak {
+            get {
+                object obj = ResourceManager.GetObject("floor_casa_oak", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap floor_exquisit_trend {
+            get {
+                object obj = ResourceManager.GetObject("floor_exquisit_trend", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap floor_freedom {
+            get {
+                object obj = ResourceManager.GetObject("floor_freedom", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap floor_tundra {
+            get {
+                object obj = ResourceManager.GetObject("floor_tundra", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Ladder {
+            get {
+                object obj = ResourceManager.GetObject("Ladder", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -106,6 +186,136 @@ namespace BrigadaNovDom.Properties {
         internal static System.Drawing.Bitmap Merbau_525_190 {
             get {
                 object obj = ResourceManager.GetObject("Merbau_525_190", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap tool_angle_grinder {
+            get {
+                object obj = ResourceManager.GetObject("tool_angle_grinder", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap tool_brush {
+            get {
+                object obj = ResourceManager.GetObject("tool_brush", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap tool_roller {
+            get {
+                object obj = ResourceManager.GetObject("tool_roller", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap wall_badem {
+            get {
+                object obj = ResourceManager.GetObject("wall_badem", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap wall_bambuk {
+            get {
+                object obj = ResourceManager.GetObject("wall_bambuk", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap wall_crem_brule {
+            get {
+                object obj = ResourceManager.GetObject("wall_crem_brule", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap wall_papaq {
+            get {
+                object obj = ResourceManager.GetObject("wall_papaq", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap wall_praskova {
+            get {
+                object obj = ResourceManager.GetObject("wall_praskova", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap wall_severno_siqnie {
+            get {
+                object obj = ResourceManager.GetObject("wall_severno_siqnie", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap wall_slunchevo_utro {
+            get {
+                object obj = ResourceManager.GetObject("wall_slunchevo_utro", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap wall_smokinq {
+            get {
+                object obj = ResourceManager.GetObject("wall_smokinq", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap wall_sreburna_lisica {
+            get {
+                object obj = ResourceManager.GetObject("wall_sreburna_lisica", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap wall_zlatna_ruj {
+            get {
+                object obj = ResourceManager.GetObject("wall_zlatna_ruj", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
