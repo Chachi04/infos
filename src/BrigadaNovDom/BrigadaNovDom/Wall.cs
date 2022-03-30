@@ -11,14 +11,16 @@ namespace BrigadaNovDom
     /// </summary>
     class Wall
     {
+        private double height;
+        private double width;
         /// <summary>
         /// Height of the wall
         /// </summary>
-        public double Height { get; set; }
+        public double Height { get => this.height; set { this.height = value >= 0 ? value : 0; } }
         /// <summary>
         /// Width of the wall
         /// </summary>
-        public double Width { get; set; }
+        public double Width { get => this.width; set { this.width = value >= 0 ? value : 0; } }
         /// <summary>
         /// The Paint used for the wall
         /// </summary>

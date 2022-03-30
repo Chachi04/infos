@@ -11,14 +11,16 @@ namespace BrigadaNovDom
     /// </summary>
     class Floor
     {
+        private double width;
+            private double length;
         /// <summary>
         /// Width of the floor
         /// </summary>
-        public double Width { get; set; }
+        public double Width { get => this.width; set { this.width = value >= 0 ? value : 0; } }
         /// <summary>
         /// Length of the floor
         /// </summary>
-        public double Length { get; set; }
+        public double Length { get => this.length; set { this.length = value >= 0 ? value : 0; } }
         /// <summary>
         /// The Material used for the floor
         /// </summary>
