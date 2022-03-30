@@ -34,6 +34,8 @@ namespace BrigadaNovDom
             this.ViewTab = new System.Windows.Forms.TabPage();
             this.DoorVisualisation = new System.Windows.Forms.PictureBox();
             this.WallBackVisualisation = new System.Windows.Forms.PictureBox();
+            this.WallLeftVisualisation = new BrigadaNovDom.FlippedParallelogramPictureBox();
+            this.FloorVisualisation = new BrigadaNovDom.ParallelogramPictureBox();
             this.ToolsTab = new System.Windows.Forms.TabPage();
             this.LadderImage = new System.Windows.Forms.PictureBox();
             this.AngleGrinderImage = new System.Windows.Forms.PictureBox();
@@ -67,12 +69,12 @@ namespace BrigadaNovDom
             this.FloorWidth = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.Tabs = new System.Windows.Forms.TabControl();
-            this.WallLeftVisualisation = new BrigadaNovDom.FlippedParallelogramPictureBox();
-            this.FloorVisualisation = new BrigadaNovDom.ParallelogramPictureBox();
             this.TotalTab.SuspendLayout();
             this.ViewTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DoorVisualisation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.WallBackVisualisation)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.WallLeftVisualisation)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FloorVisualisation)).BeginInit();
             this.ToolsTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LadderImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AngleGrinderImage)).BeginInit();
@@ -85,8 +87,6 @@ namespace BrigadaNovDom
             this.FloorTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.FloorImage)).BeginInit();
             this.Tabs.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.WallLeftVisualisation)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.FloorVisualisation)).BeginInit();
             this.SuspendLayout();
             // 
             // TotalTab
@@ -140,6 +140,29 @@ namespace BrigadaNovDom
             this.WallBackVisualisation.Size = new System.Drawing.Size(437, 138);
             this.WallBackVisualisation.TabIndex = 2;
             this.WallBackVisualisation.TabStop = false;
+            // 
+            // WallLeftVisualisation
+            // 
+            this.WallLeftVisualisation.BackColor = System.Drawing.Color.Transparent;
+            this.WallLeftVisualisation.HeightPart = 0.65F;
+            this.WallLeftVisualisation.Location = new System.Drawing.Point(19, 8);
+            this.WallLeftVisualisation.Name = "WallLeftVisualisation";
+            this.WallLeftVisualisation.Size = new System.Drawing.Size(112, 211);
+            this.WallLeftVisualisation.TabIndex = 1;
+            this.WallLeftVisualisation.TabStop = false;
+            this.WallLeftVisualisation.WidthPart = 0F;
+            // 
+            // FloorVisualisation
+            // 
+            this.FloorVisualisation.BackColor = System.Drawing.Color.Transparent;
+            this.FloorVisualisation.HeightPart = 0.5F;
+            this.FloorVisualisation.Location = new System.Drawing.Point(18, 146);
+            this.FloorVisualisation.Name = "FloorVisualisation";
+            this.FloorVisualisation.Size = new System.Drawing.Size(548, 73);
+            this.FloorVisualisation.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.FloorVisualisation.TabIndex = 0;
+            this.FloorVisualisation.TabStop = false;
+            this.FloorVisualisation.WidthPart = 0.8F;
             // 
             // ToolsTab
             // 
@@ -299,11 +322,11 @@ namespace BrigadaNovDom
             // 
             this.DoorType.FormattingEnabled = true;
             this.DoorType.Items.AddRange(new object[] {
-            "Паркет Африкански дъб - 196 лв.",
-            "Паркет Африкански дъб Тундра - 196 лв.",
-            "Паркет Мербау - 170 лв.",
-            "Паркет Парен бук Универсал - 122 лв.",
-            "Паркет Ясен - 158 лв."});
+            "Врата Century Oak - 110 лв.",
+            "Врата Ceres Wallnut - 150 лв.",
+            "Врата Century Wallnut- 120 лв.",
+            "Врата Ceres Oak- 120 лв.",
+            "Врата Malaga - 310 лв."});
             this.DoorType.Location = new System.Drawing.Point(9, 81);
             this.DoorType.Name = "DoorType";
             this.DoorType.Size = new System.Drawing.Size(275, 24);
@@ -529,29 +552,6 @@ namespace BrigadaNovDom
             this.Tabs.Size = new System.Drawing.Size(577, 254);
             this.Tabs.TabIndex = 12;
             // 
-            // WallLeftVisualisation
-            // 
-            this.WallLeftVisualisation.BackColor = System.Drawing.Color.Transparent;
-            this.WallLeftVisualisation.HeightPart = 0.65F;
-            this.WallLeftVisualisation.Location = new System.Drawing.Point(19, 8);
-            this.WallLeftVisualisation.Name = "WallLeftVisualisation";
-            this.WallLeftVisualisation.Size = new System.Drawing.Size(112, 211);
-            this.WallLeftVisualisation.TabIndex = 1;
-            this.WallLeftVisualisation.TabStop = false;
-            this.WallLeftVisualisation.WidthPart = 0F;
-            // 
-            // FloorVisualisation
-            // 
-            this.FloorVisualisation.BackColor = System.Drawing.Color.Transparent;
-            this.FloorVisualisation.HeightPart = 0.5F;
-            this.FloorVisualisation.Location = new System.Drawing.Point(18, 146);
-            this.FloorVisualisation.Name = "FloorVisualisation";
-            this.FloorVisualisation.Size = new System.Drawing.Size(548, 73);
-            this.FloorVisualisation.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.FloorVisualisation.TabIndex = 0;
-            this.FloorVisualisation.TabStop = false;
-            this.FloorVisualisation.WidthPart = 0.8F;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -564,6 +564,8 @@ namespace BrigadaNovDom
             this.ViewTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DoorVisualisation)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.WallBackVisualisation)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.WallLeftVisualisation)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FloorVisualisation)).EndInit();
             this.ToolsTab.ResumeLayout(false);
             this.ToolsTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LadderImage)).EndInit();
@@ -580,8 +582,6 @@ namespace BrigadaNovDom
             this.FloorTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.FloorImage)).EndInit();
             this.Tabs.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.WallLeftVisualisation)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.FloorVisualisation)).EndInit();
             this.ResumeLayout(false);
 
         }

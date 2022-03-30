@@ -228,7 +228,7 @@ namespace BrigadaNovDom
         {
             RollerImage.Visible = Roller.Checked; // Showing/Hiding Image
             if (Roller.Checked) // Adding/Removing roller from Tools
-                room.Tools.Add("roller", 15);
+                room.Tools.Add("roller", 8.49);
             else room.Tools.Remove("roller");
             TotalListUpdate(); // Update the total list
         }
@@ -237,7 +237,7 @@ namespace BrigadaNovDom
         {
             BrushImage.Visible = Brush.Checked; // Showing/Hiding Image
             if (Brush.Checked) // Adding/Removing brush from Tools
-                room.Tools.Add("brush", 16);
+                room.Tools.Add("brush", 5.99);
             else room.Tools.Remove("brush");
             TotalListUpdate(); // Update the total list
         }
@@ -246,7 +246,7 @@ namespace BrigadaNovDom
         {
             AngleGrinderImage.Visible = AngleGrinder.Checked; // Showing/Hiding Image
             if (AngleGrinder.Checked) // Adding/Removing angle grinder from Tools
-                room.Tools.Add("anglegrinder", 20);
+                room.Tools.Add("anglegrinder", 139.99);
             else room.Tools.Remove("anglegrinder");
             TotalListUpdate(); // Update the total list
         }
@@ -255,7 +255,7 @@ namespace BrigadaNovDom
         {
             LadderImage.Visible = Ladder.Checked; // Showing/Hiding Image
             if (Ladder.Checked) // Adding/Removing ladder from Tools
-                room.Tools.Add("ladder", 18);
+                room.Tools.Add("ladder", 59.99);
             else room.Tools.Remove("ladder");
             TotalListUpdate(); // Update the total list
         }
