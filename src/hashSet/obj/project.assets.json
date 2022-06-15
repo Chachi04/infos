@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/chachi/school/infos/src/test/test.csproj",
-      "projectName": "test",
-      "projectPath": "/home/chachi/school/infos/src/test/test.csproj",
+      "projectUniqueName": "/home/chachi/school/infos/src/hashSet/hashSet.csproj",
+      "projectName": "hashSet",
+      "projectPath": "/home/chachi/school/infos/src/hashSet/hashSet.csproj",
       "packagesPath": "/home/chachi/.nuget/packages/",
-      "outputPath": "/home/chachi/school/infos/src/test/obj/",
+      "outputPath": "/home/chachi/school/infos/src/hashSet/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/chachi/.nuget/NuGet/NuGet.Config"

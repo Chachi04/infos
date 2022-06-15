@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/chachi/school/infos/src/test/test.csproj",
-      "projectName": "test",
-      "projectPath": "/home/chachi/school/infos/src/test/test.csproj",
+      "projectUniqueName": "/home/chachi/school/infos/src/examination/combinatorics/combinatorics.csproj",
+      "projectName": "combinatorics",
+      "projectPath": "/home/chachi/school/infos/src/examination/combinatorics/combinatorics.csproj",
       "packagesPath": "/home/chachi/.nuget/packages/",
-      "outputPath": "/home/chachi/school/infos/src/test/obj/",
+      "outputPath": "/home/chachi/school/infos/src/examination/combinatorics/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/chachi/.nuget/NuGet/NuGet.Config"

@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/vagrant/src/stack/stack.csproj": {}
+    "/home/chachi/school/infos/src/stack/stack.csproj": {}
   },
   "projects": {
-    "/home/vagrant/src/stack/stack.csproj": {
+    "/home/chachi/school/infos/src/stack/stack.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/vagrant/src/stack/stack.csproj",
+        "projectUniqueName": "/home/chachi/school/infos/src/stack/stack.csproj",
         "projectName": "stack",
-        "projectPath": "/home/vagrant/src/stack/stack.csproj",
-        "packagesPath": "/home/vagrant/.nuget/packages/",
-        "outputPath": "/home/vagrant/src/stack/obj/",
+        "projectPath": "/home/chachi/school/infos/src/stack/stack.csproj",
+        "packagesPath": "/home/chachi/.nuget/packages/",
+        "outputPath": "/home/chachi/school/infos/src/stack/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/vagrant/.nuget/NuGet/NuGet.Config"
+          "/home/chachi/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -47,12 +47,26 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[5.0.0, 5.0.0]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.linux-x64",
+              "version": "[5.0.14, 5.0.14]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[5.0.0, 5.0.0]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/5.0.403/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.102/RuntimeIdentifierGraph.json"
         }
       }
     }

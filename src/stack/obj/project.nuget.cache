@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "iAge7MjTndzk30QUZ58fQE1WdDg+5i+fxJ8uDJU53tx1V2eYRqFcS1dY4xM98xfxo8K3oeDzZUiXO6chwvaU3g==",
+  "dgSpecHash": "z+qCx+2zUp9anj6Ug7V7EFAVuKCF8gMwuA3+AXLFM2N7EWl5LTTEzOSCpnpM7xQvLZmk2dIsG4c4cx1OMejdTA==",
   "success": true,
-  "projectFilePath": "/home/vagrant/src/stack/stack.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "/home/chachi/school/infos/src/stack/stack.csproj",
+  "expectedPackageFiles": [
+    "/home/chachi/.nuget/packages/microsoft.netcore.app.ref/5.0.0/microsoft.netcore.app.ref.5.0.0.nupkg.sha512",
+    "/home/chachi/.nuget/packages/microsoft.aspnetcore.app.ref/5.0.0/microsoft.aspnetcore.app.ref.5.0.0.nupkg.sha512",
+    "/home/chachi/.nuget/packages/microsoft.netcore.app.host.linux-x64/5.0.14/microsoft.netcore.app.host.linux-x64.5.0.14.nupkg.sha512"
+  ],
   "logs": []
 }

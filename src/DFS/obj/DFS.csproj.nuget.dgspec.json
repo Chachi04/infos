@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/chachi/school/infos/src/test/test.csproj": {}
+    "/home/chachi/school/infos/src/DFS/DFS.csproj": {}
   },
   "projects": {
-    "/home/chachi/school/infos/src/test/test.csproj": {
+    "/home/chachi/school/infos/src/DFS/DFS.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/chachi/school/infos/src/test/test.csproj",
-        "projectName": "test",
-        "projectPath": "/home/chachi/school/infos/src/test/test.csproj",
+        "projectUniqueName": "/home/chachi/school/infos/src/DFS/DFS.csproj",
+        "projectName": "DFS",
+        "projectPath": "/home/chachi/school/infos/src/DFS/DFS.csproj",
         "packagesPath": "/home/chachi/.nuget/packages/",
-        "outputPath": "/home/chachi/school/infos/src/test/obj/",
+        "outputPath": "/home/chachi/school/infos/src/DFS/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/chachi/.nuget/NuGet/NuGet.Config"

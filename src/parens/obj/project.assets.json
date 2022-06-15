@@ -8,19 +8,19 @@
     "net5.0": []
   },
   "packageFolders": {
-    "/home/vagrant/.nuget/packages/": {}
+    "/home/chachi/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/vagrant/src/parens/parens.csproj",
+      "projectUniqueName": "/home/chachi/school/infos/src/parens/parens.csproj",
       "projectName": "parens",
-      "projectPath": "/home/vagrant/src/parens/parens.csproj",
-      "packagesPath": "/home/vagrant/.nuget/packages/",
-      "outputPath": "/home/vagrant/src/parens/obj/",
+      "projectPath": "/home/chachi/school/infos/src/parens/parens.csproj",
+      "packagesPath": "/home/chachi/.nuget/packages/",
+      "outputPath": "/home/chachi/school/infos/src/parens/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/vagrant/.nuget/NuGet/NuGet.Config"
+        "/home/chachi/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
@@ -53,12 +53,26 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[5.0.0, 5.0.0]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.linux-x64",
+            "version": "[5.0.14, 5.0.14]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[5.0.0, 5.0.0]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/5.0.403/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.102/RuntimeIdentifierGraph.json"
       }
     }
   }

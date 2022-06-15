@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "g00DqO7Q3FZb9+aDt+LuX9PqulkDIPxjRJxbsD6vefWxkPSOzmLvyYR9GtkluNCB0MJTn6kl5JrmloMp/VxQVg==",
+  "dgSpecHash": "+tCup/1Hki0szgpXwFq4LhBz1b0+A55qeO4vdwOGkbiBxEzJEE0vuIxiY3c8m15XXD1V9fpbG/Ddtqnpv/eCqQ==",
   "success": true,
-  "projectFilePath": "/home/chachi/school/infos/src/test/test.csproj",
+  "projectFilePath": "/home/chachi/school/infos/src/Graphs/Graphs.csproj",
   "expectedPackageFiles": [
     "/home/chachi/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.2/microsoft.aspnetcore.app.ref.6.0.2.nupkg.sha512"
   ],

@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "/zSTbnqCHOQwb1fdMwlk2fbhemRP9blyDg62TQmINbxTTQnSjth90AUECXXPrQdUM7T8K/Db4K/exrzTBGheIQ==",
+  "success": true,
+  "projectFilePath": "/home/chachi/school/infos/src/examination/combinatorics/combinatorics.csproj",
+  "expectedPackageFiles": [
+    "/home/chachi/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.2/microsoft.aspnetcore.app.ref.6.0.2.nupkg.sha512"
+  ],
+  "logs": []
+}
