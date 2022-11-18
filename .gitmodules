@@ -1,0 +1,3 @@
+[submodule "src/ClickoMania"]
+	path = src/ClickoMania
+	url = git@github.com:Chachi04/ClickoMania.git
