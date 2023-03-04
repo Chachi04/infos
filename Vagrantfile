@@ -67,18 +67,19 @@ Vagrant.configure("2") do |config|
   # documentation for more information about their specific syntax and use.
   config.vm.provision "file", source: "./packages-microsoft-prod.deb", destination: "/home/vagrant/packages-microsoft-prod.deb"
   config.vm.provision "file", source: "./alacritty.terminfo", destination: "/home/vagrant/alacritty.terminfo"
-  config.vm.provision "shell", inline: <<-SHELL
-    apt-get update
-    dpkg -i packages-microsoft-prod.deb
-    rm packages-microsoft-prod.deb
-    apt-get install -y apt-transport-https
-    apt-get install -y dotnet-sdk-5.0
-    apt-get install -y aspnetcore-runtime-5.0
-    apt-get install -y zsh
-  SHELL
+  # config.vm.provision "shell", inline: <<-SHELL
+  #   apt-get update
+  #   dpkg -i packages-microsoft-prod.deb
+  #   rm packages-microsoft-prod.deb
+  #   apt-get install -y apt-transport-https
+  #   apt-get install -y dotnet-sdk-5.0
+  #   apt-get install -y aspnetcore-runtime-5.0
+  #   apt-get install -y zsh
+  # SHELL
   config.vm.provision "shell", privileged: false, inline: <<-SHELL
     git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
     cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
   SHELL
   config.vm.provision "shell", inline: "chsh -s /bin/zsh vagrant"
+  config.vm.network "forwarded_port", guest: 5062, host:5062
 end

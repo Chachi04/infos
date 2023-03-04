@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>View Result</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="css/style.css" rel="stylesheet" />
+  </head>
+  <body>
+    @if(@ViewBag.is_correct)
+    {
+    <h3>You guessed right! The number was @ViewBag.answer</h3>
+    <img
+    src="https://imgs.search.brave.com/lAKq6tZG9Kz-W3M-zu3dORx8K9bzQm_Z-eTSUEI8olA/rs:fit:474:225:1/g:ce/aHR0cHM6Ly90c2Uy/Lm1tLmJpbmcubmV0/L3RoP2lkPU9JUC5i/SHJaZFBxTkVZNEEw/bV9iX3JsNjV3SGFI/YSZwaWQ9QXBp"
+    width="100"
+    />
+    }
+    else {
+    <h3>You guessed wrong! The number was @ViewBag.answer, but you answered @ViewBag.guess</h3>
+    <img
+      src="https://imgs.search.brave.com/t6pvSjfdFoWf4QaF7cM7dq1Vxj6hFJ6OPfcO9fj6B-c/rs:fit:474:225:1/g:ce/aHR0cHM6Ly90c2Ux/Lm1tLmJpbmcubmV0/L3RoP2lkPU9JUC5V/b3pvS1F6YVQwQnJQ/UFFRT1VNVUt3SGFI/YSZwaWQ9QXBp"
+      width="100"
+    />
+    } 
+  </body>
+</html>

@@ -1,0 +1,25 @@
+﻿@{ ViewData["Title"] = "Home Page"; }
+@if(ViewBag.error != null)
+{
+    <div style="background-color: red;">
+        @ViewBag.error
+    </div>
+}
+<div class="text-center">
+  <h1 class="display-4">Welcome</h1>
+  <form action="/home/viewresult">
+    <label for="username">Username:</label>
+    <input type="text" name="username" value="" /> <br />
+    <label for="password">Password:</label>
+    <input type="password" name="password" value="" /> <br />
+    <label for="guess">Guess:</label>
+    <input type="text" name="guess" value="" /> <br />
+    <button type="submit">Submit</button>
+  </form>
+  <p>
+    Learn about
+    <a href="https://docs.microsoft.com/aspnet/core"
+      >building Web apps with ASP.NET Core</a
+    >.
+  </p>
+</div>

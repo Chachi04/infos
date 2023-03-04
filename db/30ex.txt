@@ -1,0 +1,81 @@
+select `contactFirstName`, `contactLastName`, `addressLine1`, `addressLine2`, country, state from cu
+                                  -> stomers where country="USA" and state="CA";
++------------------+-----------------+---------------------------+--------------+---------+-------+
+| contactFirstName | contactLastName | addressLine1              | addressLine2 | country | state |
++------------------+-----------------+---------------------------+--------------+---------+-------+
+| Susan            | Nelson          | 5677 Strong St.           | <null>       | USA     | CA    |
+| Julie            | Murphy          | 5557 North Pendale Street | <null>       | USA     | CA    |
+| Juri             | Hashimoto       | 9408 Furth Circle         | <null>       | USA     | CA    |
+| Julie            | Young           | 78934 Hillside Dr.        | <null>       | USA     | CA    |
+| Mary             | Young           | 4097 Douglas Av.          | <null>       | USA     | CA    |
+| Valarie          | Thompson        | 361 Furth Circle          | <null>       | USA     | CA    |
+| Julie            | Brown           | 7734 Strong St.           | <null>       | USA     | CA    |
+| Brian            | Chandler        | 6047 Douglas Av.          | <null>       | USA     | CA    |
+| Sue              | Frick           | 3086 Ingle Ln.            | <null>       | USA     | CA    |
+| Steve            | Thompson        | 3675 Furth Circle         | <null>       | USA     | CA    |
+| Sue              | Taylor          | 2793 Furth Circle         | <null>       | USA     | CA    |
++------------------+-----------------+---------------------------+--------------+---------+-------+
+
+select contactfirstname, contactlastname, addressline1, addressline2 from customers
+                                  -> where country="USA" and state="CA" and `creditLimit`<100000;
++------------------+-----------------+---------------------------+--------------+
+| contactfirstname | contactlastname | addressline1              | addressline2 |
++------------------+-----------------+---------------------------+--------------+
+| Julie            | Murphy          | 5557 North Pendale Street | <null>       |
+| Juri             | Hashimoto       | 9408 Furth Circle         | <null>       |
+| Julie            | Young           | 78934 Hillside Dr.        | <null>       |
+| Mary             | Young           | 4097 Douglas Av.          | <null>       |
+| Brian            | Chandler        | 6047 Douglas Av.          | <null>       |
+| Sue              | Frick           | 3086 Ingle Ln.            | <null>       |
+| Steve            | Thompson        | 3675 Furth Circle         | <null>       |
+| Sue              | Taylor          | 2793 Furth Circle         | <null>       |
++------------------+-----------------+---------------------------+--------------+
+3. select contactfirstname, contactlastname, addressline1, addressline2, country from customers
+-> where country in ("USA", "Canada");
+
+4. select contactfirstname, contactlastname, addressline1, addressline2, country, `creditLimit` from cu stomers `creditLimit` where country in ("USA", "Canada") and `creditLimit`>100000;
+
+5. select * from products where `quantityInStock` between 7000 and 10000 and `buyPrice`>50;
+
+6. select * from products where `productLine` like "Classic%";
+7. select * from orders where `orderDate` >= "2004-06-01";
+
+8. select * from orders where `shippedDate`=`requiredDate`;
+
+9. select * from orders where status="Shipped" and comments is null;
+
+10. select * from orders where status="Cancelled" and comments is not null;
+
+11. select * from products where `productDescription` like "%replica%";
+
+12 .select * from employees where `lastName` like "%on%";
+
+13. select * from employees where `lastName` not like "B%"
+
+14. select e.firstname, e.lastname, o.country from employees e inner join offices o on e.`officeCode` =
+o.`officeCode` where o.country="Australia";
+
+15. select e.firstname, e.lastname, o.country from employees e inner join offices o on e.`officeCode` =
+o.`officeCode`;
+
+16. select o.`orderNumber`, c.`contactFirstName`, o.`orderDate`
+from customers c
+inner join orders o on c.`customerNumber` = o.`customerNumber`;
+
+17. select o.`orderNumber`, od.`quantityOrdered`* od.`priceEach` as 'total'
+from orders o
+inner join orderdetails od on od.`orderNumber` = o.`orderNumber`;
+
+18. select e.firstname, rt.`firstName`
+from employees e
+inner join employees rt on rt.`employeeNumber` = e.`reportsTo`;
+
+19. select o.`orderNumber`, p.productname, p.productLine
+from orders o
+inner join orderdetails od on od.`orderNumber` = o.`orderNumber`
+inner join products p on p.`productCode` = od.`productCode`;
+
+20. select e.firstname, c.contactfirstname
+from employees e
+inner join customers c on c.`salesRepEmployeeNumber` = e.`employeeNumber`
+order by e.`firstName`, e.`lastName`;

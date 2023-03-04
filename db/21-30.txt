@@ -1,0 +1,245 @@
+Connecting to socket /var/run/mysqld/mysqld.sock, owned by user mysql
+
+# 2022-12-06 12:27:41.897743
+21. select c.contactfirstname, p.`checkNumber`, p.`paymentDate`
+from customers c
+inner join payments p on p.`customerNumber` = c.`customerNumber`
+order by c.`contactFirstName`, p.`paymentDate`;
+╔══════════════════╦═════════════╦═════════════╗
+║ contactfirstname ║ checkNumber ║ paymentDate ║
+╠══════════════════╬═════════════╬═════════════╣
+║ Adrian           ║ IA793562    ║ 2003-08-03  ║
+║ Adrian           ║ JT819493    ║ 2004-08-02  ║
+║ Adrian           ║ OD327378    ║ 2005-01-03  ║
+║ Akiko            ║ DO787644    ║ 2004-06-21  ║
+║ Akiko            ║ KB54275     ║ 2004-11-29  ║
+║ Akiko            ║ AJ478695    ║ 2005-02-14  ║
+║ Akiko            ║ JPMR4544    ║ 2005-05-18  ║
+║ Allen            ║ FR499138    ║ 2003-09-16  ║
+║ Allen            ║ GB890854    ║ 2004-08-02  ║
+║ Allen            ║ CA762595    ║ 2005-02-12  ║
+...
+╚══════════════════╩═════════════╩═════════════╝
+273 rows in set
+Time: 0.051s
+
+# 2022-12-06 12:28:30.276124
+22. select c.contactfirstname, p.`checkNumber`, p.amount
+from customers c
+inner join payments p on p.`customerNumber` = c.`customerNumber`
+order by c.`contactFirstName`, p.amount;
+╔══════════════════╦═════════════╦═══════════╗
+║ contactfirstname ║ checkNumber ║ amount    ║
+╠══════════════════╬═════════════╬═══════════╣
+║ Adrian           ║ IA793562    ║ 24013.52  ║
+║ Adrian           ║ OD327378    ║ 31835.36  ║
+║ Adrian           ║ JT819493    ║ 35806.73  ║
+║ Akiko            ║ JPMR4544    ║ 615.45    ║
+║ Akiko            ║ DO787644    ║ 22037.91  ║
+║ Akiko            ║ AJ478695    ║ 33967.73  ║
+║ Akiko            ║ KB54275     ║ 48927.64  ║
+║ Allen            ║ GB890854    ║ 12530.51  ║
+║ Allen            ║ CA762595    ║ 28322.83  ║
+║ Allen            ║ FR499138    ║ 32680.31  ║
+...
+╚══════════════════╩═════════════╩═══════════╝
+273 rows in set
+Time: 0.035s
+
+# 2022-12-06 12:30:26.247264
+23. select p.checknumber, p.amount
+from payments p
+inner join customers c on c.`customerNumber` = p.`customerNumber`
+where c.country = "USA" or c.country = "Poland";
+╔═════════════╦═══════════╗
+║ checknumber ║ amount    ║
+╠═════════════╬═══════════╣
+║ BO864823    ║ 14191.12  ║
+║ HQ55022     ║ 32641.98  ║
+║ ND748579    ║ 33347.88  ║
+║ AE215433    ║ 101244.59 ║
+║ BG255406    ║ 85410.87  ║
+║ CQ287967    ║ 11044.30  ║
+║ ET64396     ║ 83598.04  ║
+║ HI366474    ║ 47142.70  ║
+║ HR86578     ║ 55639.66  ║
+║ KI131716    ║ 111654.40 ║
+...
+╚═════════════╩═══════════╝
+93 rows in set
+Time: 0.008s
+
+# 2022-12-06 12:32:38.747116
+24. select od.`orderNumber`, p.`productName`
+from orderdetails od
+inner join products p on p.`productCode` = od.`productCode`
+inner join orders o on o.orderNumber = od.orderNumber
+where o.status = "Shipped"
+order by od.`orderNumber`;
+╔═════════════╦═════════════════════════════════════════════╗
+║ orderNumber ║ productName                                 ║
+╠═════════════╬═════════════════════════════════════════════╣
+║ 10100       ║ 1917 Grand Touring Sedan                    ║
+║ 10100       ║ 1911 Ford Town Car                          ║
+║ 10100       ║ 1932 Alfa Romeo 8C2300 Spider Sport         ║
+║ 10100       ║ 1936 Mercedes Benz 500k Roadster            ║
+║ 10101       ║ 1932 Model A Ford J-Coupe                   ║
+║ 10101       ║ 1928 Mercedes-Benz SSK                      ║
+║ 10101       ║ 1939 Chevrolet Deluxe Coupe                 ║
+║ 10101       ║ 1938 Cadillac V-16 Presidential Limousine   ║
+║ 10102       ║ 1937 Lincoln Berline                        ║
+║ 10102       ║ 1936 Mercedes-Benz 500K Special Roadster    ║
+...
+╚═════════════╩═════════════════════════════════════════════╝
+2996 rows in set
+Time: 0.192s
+
+# 2022-12-06 12:34:16.834377
+25. select distinct country
+from offices;
+╔═══════════╗
+║ country   ║
+╠═══════════╣
+║ USA       ║
+║ France    ║
+║ Japan     ║
+║ Australia ║
+║ UK        ║
+╚═══════════╝
+5 rows in set
+Time: 0.007s
+
+# 2022-12-06 12:34:49.654709
+26. select distinct country
+from customers;
+╔══════════════╗
+║ country      ║
+╠══════════════╣
+║ France       ║
+║ USA          ║
+║ Australia    ║
+║ Norway       ║
+║ Poland       ║
+║ Germany      ║
+║ Spain        ║
+║ Sweden       ║
+║ Denmark      ║
+║ Singapore    ║
+║ Portugal     ║
+║ Japan        ║
+║ Finland      ║
+║ UK           ║
+║ Ireland      ║
+║ Canada       ║
+║ Hong Kong    ║
+║ Italy        ║
+║ Switzerland  ║
+║ Netherlands  ║
+║ Belgium      ║
+║ New Zealand  ║
+║ South Africa ║
+║ Austria      ║
+║ Philippines  ║
+║ Russia       ║
+║ Israel       ║
+╚══════════════╝
+27 rows in set
+Time: 0.007s
+
+# 2022-12-06 12:42:19.848272
+27. select o.`orderNumber`, c.contactfirstname, e.firstname
+from orders o
+inner join customers c on o.`customerNumber` = c.`customerNumber`
+inner join employees e on e.employeeNumber = c.`salesRepEmployeeNumber`;
+╔═════════════╦══════════════════╦═══════════╗
+║ orderNumber ║ contactfirstname ║ firstname ║
+╠═════════════╬══════════════════╬═══════════╣
+║ 10123       ║ Carine           ║ Gerard    ║
+║ 10298       ║ Carine           ║ Gerard    ║
+║ 10345       ║ Carine           ║ Gerard    ║
+║ 10124       ║ Jean             ║ Leslie    ║
+║ 10278       ║ Jean             ║ Leslie    ║
+║ 10346       ║ Jean             ║ Leslie    ║
+║ 10120       ║ Peter            ║ Andy      ║
+║ 10125       ║ Peter            ║ Andy      ║
+║ 10223       ║ Peter            ║ Andy      ║
+║ 10342       ║ Peter            ║ Andy      ║
+...
+╚═════════════╩══════════════════╩═══════════╝
+326 rows in set
+Time: 0.034s
+
+# 2022-12-06 12:43:36.898461
+28. select contactfirstname
+from customers
+where phone like "%(%)%";
+╔══════════════════╗
+║ contactfirstname ║
+╠══════════════════╣
+║ Zbyszek          ║
+║ Diego            ║
+║ Isabel           ║
+║ Marie            ║
+║ Rachel           ║
+║ Elizabeth        ║
+║ Yoshi            ║
+║ Eduardo          ║
+║ Jean             ║
+║ Alejandra        ║
+║ Helen            ║
+║ Elizabeth        ║
+║ Catherine        ║
+║ Ann              ║
+║ Lino             ║
+║ Pascale          ║
+║ Dominique        ║
+║ Martín           ║
+║ José Pedro       ║
+║ Thomas           ║
+╚══════════════════╝
+20 rows in set
+Time: 0.010s
+
+# 2022-12-06 12:45:40.929662
+29. select e.firstname
+from employees e
+inner join offices o on o.`officeCode` = e.`officeCode`
+where o.`addressLine1` like "%-%" or o.`addressLine2` like "%-%";
+╔═══════════╗
+║ firstname ║
+╠═══════════╣
+║ William   ║
+║ Andy      ║
+║ Peter     ║
+║ Tom       ║
+║ Mami      ║
+║ Yoshimi   ║
+╚═══════════╝
+6 rows in set
+Time: 0.004s
+
+# 2022-12-06 12:49:40.006741
+30. select p.`productName`
+from products p
+inner join productlines pl on pl.`productLine` = p.`productLine`
+where p.`productScale` like "__7%";
+╔════════════════════════════════╗
+║ productName                    ║
+╠════════════════════════════════╣
+║ P-51-D Mustang                 ║
+║ The Schooner Bluenose          ║
+║ American Airlines: B767-300    ║
+║ The Mayflower                  ║
+║ HMS Bounty                     ║
+║ America West Airlines B757-200 ║
+║ The USS Constitution Ship      ║
+║ ATA: B757-300                  ║
+║ F/A 18 Hornet 1/72             ║
+║ The Titanic                    ║
+║ The Queen Mary                 ║
+║ American Airlines: MD-11S      ║
+║ Boeing X-32A JSF               ║
+║ Pont Yacht                     ║
+╚════════════════════════════════╝
+14 rows in set
+Time: 0.013s

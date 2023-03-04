@@ -1,0 +1,441 @@
+Connecting to socket /var/run/mysqld/mysqld.sock, owned by user mysql
+
+# 2023-01-17 12:43:36.559676
+select customername, `paymentDate`
+from customers
+inner join payments using(`customerNumber`)
+where `paymentDate` = (select min(`paymentDate`) from payments);
+╔══════════════════════════════╦═════════════╗
+║ customername                 ║ paymentDate ║
+╠══════════════════════════════╬═════════════╣
+║ Online Diecast Creations Co. ║ 2003-01-16  ║
+╚══════════════════════════════╩═════════════╝
+1 row in set
+Time: 0.007s
+
+# 2023-01-17 12:44:42.299947
+select customername, `orderDate`
+from customers
+inner join orders using(`customerNumber`)
+where `orderDate` = (select min(`orderDate`) from orders);
+╔══════════════════════════════╦════════════╗
+║ customername                 ║ orderDate  ║
+╠══════════════════════════════╬════════════╣
+║ Online Diecast Creations Co. ║ 2003-01-06 ║
+╚══════════════════════════════╩════════════╝
+1 row in set
+Time: 0.007s
+
+# 2023-01-17 12:47:01.987849
+select customername, `orderDate`
+from customers
+inner join orders using(`customerNumber`)
+where `orderDate` = (select min(`orderDate`) from orders where status = "Cancelled");
+╔═════════════════════════╦════════════╗
+║ customername            ║ orderDate  ║
+╠═════════════════════════╬════════════╣
+║ Scandinavian Gift Ideas ║ 2003-10-23 ║
+╚═════════════════════════╩════════════╝
+1 row in set
+Time: 0.008s
+Connecting to socket /var/run/mysqld/mysqld.sock, owned by user mysql
+
+# 2023-01-17 13:00:51.823747
+select productName from products
+where `quantityInStock` = (select max(`quantityInStock`) from products);
+╔══════════════════╗
+║ productName      ║
+╠══════════════════╣
+║ 2002 Suzuki XREO ║
+╚══════════════════╝
+1 row in set
+Time: 0.013s
+
+# 2023-01-17 13:01:25.579081
+select productName from products
+where `buyPrice` = (select min(`buyPrice`) from products);
+╔═════════════════════════════════════╗
+║ productName                         ║
+╠═════════════════════════════════════╣
+║ 1958 Chevy Corvette Limited Edition ║
+╚═════════════════════════════════════╝
+1 row in set
+Time: 0.006s
+
+# 2023-01-17 13:05:47.723079
+select orderNumber, productName, quantityOrdered
+from orders
+inner join orderdetails using(`orderNumber`)
+inner join products using(`productCode`)
+where `orderDate` = (select min(`orderDate`) from orders);
+╔═════════════╦═════════════════════════════════════╦═════════════════╗
+║ orderNumber ║ productName                         ║ quantityOrdered ║
+╠═════════════╬═════════════════════════════════════╬═════════════════╣
+║ 10100       ║ 1917 Grand Touring Sedan            ║ 30              ║
+║ 10100       ║ 1911 Ford Town Car                  ║ 50              ║
+║ 10100       ║ 1932 Alfa Romeo 8C2300 Spider Sport ║ 22              ║
+║ 10100       ║ 1936 Mercedes Benz 500k Roadster    ║ 49              ║
+╚═════════════╩═════════════════════════════════════╩═════════════════╝
+4 rows in set
+Time: 0.008s
+Connecting to socket /var/run/mysqld/mysqld.sock, owned by user mysql
+
+# 2023-01-17 13:22:02.508907
+select country, `orderDate`
+from customers
+inner join orders using(`customerNumber`)
+where `orderDate` = (select min(`orderDate`) from orders);
+╔═════════╦════════════╗
+║ country ║ orderDate  ║
+╠═════════╬════════════╣
+║ USA     ║ 2003-01-06 ║
+╚═════════╩════════════╝
+1 row in set
+Time: 0.013s
+
+# 2023-01-17 13:22:22.457965
+select `salesRepEmployeeNumber`, `orderDate`
+from customers
+inner join orders using(`customerNumber`)
+where `orderDate` = (select min(`orderDate`) from orders);
+╔════════════════════════╦════════════╗
+║ salesRepEmployeeNumber ║ orderDate  ║
+╠════════════════════════╬════════════╣
+║ 1216                   ║ 2003-01-06 ║
+╚════════════════════════╩════════════╝
+1 row in set
+Time: 0.008s
+
+# 2023-01-17 13:22:58.072087
+select `salesRepEmployeeNumber`, concat(firstname, " ", lastname) as employeeName, `orderDate`
+from customers
+inner join orders using(`customerNumber`)
+where `orderDate` = (select min(`orderDate`) from orders)
+(1054, "Unknown column 'firstname' in 'field list'")
+
+# 2023-01-17 13:23:20.514120
+select `salesRepEmployeeNumber`, concat(firstname, " ", lastname) as employeeName, `orderDate`
+from customers
+inner join employees on employees.`employeeNumber` = customers.`salesRepEmployeeNumber`
+inner join orders using(`customerNumber`)
+where `orderDate` = (select min(`orderDate`) from orders);
+╔════════════════════════╦═════════════════╦════════════╗
+║ salesRepEmployeeNumber ║ employeeName    ║ orderDate  ║
+╠════════════════════════╬═════════════════╬════════════╣
+║ 1216                   ║ Steve Patterson ║ 2003-01-06 ║
+╚════════════════════════╩═════════════════╩════════════╝
+1 row in set
+Time: 0.008s
+
+# 2023-01-17 13:24:19.533261
+select productLine, count(productCode)
+from products
+group by productLine;
+╔══════════════════╦════════════════════╗
+║ productLine      ║ count(productCode) ║
+╠══════════════════╬════════════════════╣
+║ Classic Cars     ║ 38                 ║
+║ Motorcycles      ║ 13                 ║
+║ Planes           ║ 12                 ║
+║ Ships            ║ 9                  ║
+║ Trains           ║ 3                  ║
+║ Trucks and Buses ║ 11                 ║
+║ Vintage Cars     ║ 24                 ║
+╚══════════════════╩════════════════════╝
+7 rows in set
+Time: 0.006s
+
+# 2023-01-17 13:27:06.469943
+select textDescription, max(countOfProducts) from (select textDescription, productLine, count(productCode) countOfProducts
+from products
+group by productLine) as tmp;
+(1054, "Unknown column 'textDescription' in 'field list'")
+
+# 2023-01-17 13:28:41.135422
+select textDescription max(countOfProducts) 
+from (select textDescription, productLine, count(productCode) countOfProducts
+from products
+group by productLine)
+where max(countOfProducts) = countofProducts;
+(1064, "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'max(countOfProducts) \nfrom (select textDescription, productLine, count(produc...' at line 1")
+
+# 2023-01-17 13:31:15.120830
+from (select productLine, count(productCode)
+from products
+group by productLine) as tmp
+order by count(productCode);
+(1064, "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'from (select productLine, count(productCode)\nfrom products\ngroup by productLi...' at line 1")
+
+# 2023-01-17 13:33:42.859354
+select textDescription
+from productlines 
+where productLine = (select max(prods) from (select productLine, count(productCode) as prods
+from products) as aa
+group by productLine) as tmp;
+(1064, "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'as tmp' at line 5")
+
+# 2023-01-17 13:33:51.100099
+select textDescription
+from productlines 
+where productLine = (select max(prods) from (select productLine, count(productCode) as prods
+from products) as aa
+group by productLine);
+╔═════════════════╗
+║ textDescription ║
+╠═════════════════╣
+╚═════════════════╝
+0 rows in set
+Time: 0.039s
+
+# 2023-01-17 13:34:10.133192
+select max(prods) from (select productLine, count(productCode) as prods
+from products) as aa
+group by productLine;
+╔════════════╗
+║ max(prods) ║
+╠════════════╣
+║ 110        ║
+╚════════════╝
+1 row in set
+Time: 0.006s
+
+# 2023-01-17 13:35:15.148425
+select textDescription
+from productlines 
+where productLine = (select max(prods) from (select productLine, count(productCode) as prods
+from products
+group by productLine)) as tmp;
+(1064, "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ') as tmp' at line 5")
+
+# 2023-01-17 13:35:23.459758
+select textDescription
+from productlines 
+where productLine = (select max(prods) from (select productLine, count(productCode) as prods
+from products
+group by productLine));
+(1064, "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')' at line 5")
+
+# 2023-01-17 13:36:22.854631
+select textDescription
+from productlines 
+where productLine = (select productline from (select productLine, count(productCode) as prods
+from products
+group by productLine having count(productCode) = max(productCode);
+(1064, "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 5")
+
+# 2023-01-17 13:38:04.832057
+select productline from (select productLine, count(productCode) as prods
+from products
+group by productLine having count(productCode) = max(productCode);
+(1064, "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 3")
+
+# 2023-01-17 13:38:14.269278
+select productline from (select productLine, count(productCode) as prods
+from products
+group by productLine);
+(1064, "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 3")
+
+# 2023-01-17 13:38:21.093403
+select productline from (select productLine, count(productCode) as prods
+from products
+group by productLine;
+(1064, "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 3")
+
+# 2023-01-17 13:38:25.925902
+select productline from (select productLine, count(productCode) as prods
+from products
+group by productLine) as tmp;
+╔══════════════════╗
+║ productline      ║
+╠══════════════════╣
+║ Classic Cars     ║
+║ Motorcycles      ║
+║ Planes           ║
+║ Ships            ║
+║ Trains           ║
+║ Trucks and Buses ║
+║ Vintage Cars     ║
+╚══════════════════╝
+7 rows in set
+Time: 0.007s
+
+# 2023-01-17 13:38:43.295543
+select productline, max(prods) from (select productLine, count(productCode) as prods
+from products
+group by productLine);
+(1064, "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 3")
+
+# 2023-01-17 13:38:50.639742
+select productline, max(prods) from (select productLine, count(productCode) as prods
+from products
+group by productLine) as tmp;
+╔══════════════╦════════════╗
+║ productline  ║ max(prods) ║
+╠══════════════╬════════════╣
+║ Classic Cars ║ 38         ║
+╚══════════════╩════════════╝
+1 row in set
+Time: 0.006s
+
+# 2023-01-17 13:39:39.133673
+select textDescription from productlines where productline = (select productline from (select productline, max(prods) from (select productLine, count(productCode) as prods
+from products
+group by productLine) as tmp);
+(1064, "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 3")
+
+# 2023-01-17 13:40:03.457983
+select textDescription from productlines where productline = (select productline from (select productline, max(prods) from (select productLine, count(productCode) as prods
+from products
+group by productLine) as tmp) as aa;
+(1064, "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 3")
+
+# 2023-01-17 13:40:07.957289
+select textDescription from productlines where productline = (select productline from (select productline, max(prods) from (select productLine, count(productCode) as prods
+from products
+group by productLine) );
+(1064, "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')' at line 3")
+
+# 2023-01-17 13:40:37.688670
+select productline, max(prods) from (select productLine, count(productCode) as prods
+from products
+group by productLine) as tmp;
+╔══════════════╦════════════╗
+║ productline  ║ max(prods) ║
+╠══════════════╬════════════╣
+║ Classic Cars ║ 38         ║
+╚══════════════╩════════════╝
+1 row in set
+Time: 0.007s
+
+# 2023-01-17 13:41:34.175109
+select productline, max(prods) from (select textDescription, productLine, count(productCode) as prods
+from products
+inner join productlines using(`productLine`)
+group by productLine) as tmp;
+╔══════════════╦════════════╗
+║ productline  ║ max(prods) ║
+╠══════════════╬════════════╣
+║ Classic Cars ║ 38         ║
+╚══════════════╩════════════╝
+1 row in set
+Time: 0.007s
+
+# 2023-01-17 13:41:42.338158
+select textDescription, productline, max(prods) from (select textDescription, productLine, count(productCode) as prods
+from products
+inner join productlines using(`productLine`)
+group by productLine) as tmp;
+╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╦══════════════╦════════════╗
+║ textDescription                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      ║ productline  ║ max(prods) ║
+╠══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╬══════════════╬════════════╣
+║ Attention car enthusiasts: Make your wildest car ownership dreams come true. Whether you are looking for classic muscle cars, dream sports cars or movie-inspired miniatures, you will find great choices in this category. These replicas feature superb attention to detail and craftsmanship and offer features such as working steering system, opening forward compartment, opening rear trunk with removable spare wheel, 4-wheel independent spring suspension, and so on. The models range in size from 1... ║ Classic Cars ║ 38         ║
+╚══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╩══════════════╩════════════╝
+1 row in set
+Time: 0.009s
+
+# 2023-01-17 13:41:59.467719
+select textDesciption from (select textDescription, productline, max(prods) from (select textDescription, productLine, count(productCode) as prods
+from products
+inner join productlines using(`productLine`)
+group by productLine) as tmp) as aa;
+(1054, "Unknown column 'textDesciption' in 'field list'")
+
+# 2023-01-17 13:42:23.484238
+select textDesciption from (select textDescription, productline, max(prods) from (select textDescription, productLine, count(productCode) as prods
+from products
+inner join productlines using(`productLine`)
+group by productLine) as tmp);
+(1064, "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 4")
+
+# 2023-01-17 13:42:31.463870
+select textDesciption from (select textDescription, productline, max(prods) from (select textDescription, productLine, count(productCode) as prods
+from products
+inner join productlines using(`productLine`)
+group by productLine) as tmp) as temp;
+(1054, "Unknown column 'textDesciption' in 'field list'")
+
+# 2023-01-17 13:44:21.189589
+select textDescription from (select textDescription, productline, max(prods) from (select textDescription, productLine, count(productCode) as prods
+from products
+inner join productlines using(`productLine`)
+group by productLine) as tmp) as temp;
+╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
+║ textDescription                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      ║
+╠══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╣
+║ Attention car enthusiasts: Make your wildest car ownership dreams come true. Whether you are looking for classic muscle cars, dream sports cars or movie-inspired miniatures, you will find great choices in this category. These replicas feature superb attention to detail and craftsmanship and offer features such as working steering system, opening forward compartment, opening rear trunk with removable spare wheel, 4-wheel independent spring suspension, and so on. The models range in size from 1... ║
+╚══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
+1 row in set
+Time: 0.009s
+
+# 2023-01-17 13:46:32.835247
+select textDescription from (select textDescription from productlines, productline, max(prods) as maxx from (select textDescription, productLine, count(productCode) as prods
+from products
+inner join productlines using(`productLine`)
+group by productLine) as tmp) as temp;
+(1064, "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'max(prods) as maxx from (select textDescription, productLine, count(productCo...' at line 1")
+
+# 2023-01-17 13:46:35.943581
+select textDescription from (select textDescription, productline, max(prods) from (select textDescription, productLine, count(productCode) as prods
+from products
+inner join productlines using(`productLine`)
+group by productLine) as tmp) as temp;
+╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
+║ textDescription                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      ║
+╠══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╣
+║ Attention car enthusiasts: Make your wildest car ownership dreams come true. Whether you are looking for classic muscle cars, dream sports cars or movie-inspired miniatures, you will find great choices in this category. These replicas feature superb attention to detail and craftsmanship and offer features such as working steering system, opening forward compartment, opening rear trunk with removable spare wheel, 4-wheel independent spring suspension, and so on. The models range in size from 1... ║
+╚══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
+1 row in set
+Time: 0.009s
+
+# 2023-01-17 13:46:53.048310
+select textDescription from (select textDescription, productline, max(prods) from (select textDescription, productLine, count(productCode) as prods
+from products
+inner join productlines using(`productLine`)
+group by productLine) as tmp) as temp;
+╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
+║ textDescription                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      ║
+╠══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╣
+║ Attention car enthusiasts: Make your wildest car ownership dreams come true. Whether you are looking for classic muscle cars, dream sports cars or movie-inspired miniatures, you will find great choices in this category. These replicas feature superb attention to detail and craftsmanship and offer features such as working steering system, opening forward compartment, opening rear trunk with removable spare wheel, 4-wheel independent spring suspension, and so on. The models range in size from 1... ║
+╚══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
+1 row in set
+Time: 0.009s
+
+# 2023-01-17 13:49:15.695243
+select textDescription, productline, max(prods) from (select textDescription, productLine, count(productCode) as prods
+from products
+inner join productlines using(`productLine`)
+group by productLine) as tmp);
+(1064, "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')' at line 4")
+
+# 2023-01-17 13:49:18.411103
+select textDescription, productline, max(prods) from (select textDescription, productLine, count(productCode) as prods
+from products
+inner join productlines using(`productLine`)
+group by productLine) as tmp;
+╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╦══════════════╦════════════╗
+║ textDescription                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      ║ productline  ║ max(prods) ║
+╠══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╬══════════════╬════════════╣
+║ Attention car enthusiasts: Make your wildest car ownership dreams come true. Whether you are looking for classic muscle cars, dream sports cars or movie-inspired miniatures, you will find great choices in this category. These replicas feature superb attention to detail and craftsmanship and offer features such as working steering system, opening forward compartment, opening rear trunk with removable spare wheel, 4-wheel independent spring suspension, and so on. The models range in size from 1... ║ Classic Cars ║ 38         ║
+╚══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╩══════════════╩════════════╝
+1 row in set
+Time: 0.010s
+
+# 2023-01-17 13:49:27.682374
+select productline, max(prods) from (select textDescription, productLine, count(productCode) as prods
+from products
+inner join productlines using(`productLine`)
+group by productLine) as tmp);
+(1064, "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')' at line 4")
+
+# 2023-01-17 13:49:33.762188
+select productline, max(prods) from (select textDescription, productLine, count(productCode) as prods
+from products
+inner join productlines using(`productLine`)
+group by productLine) as tmp;
+╔══════════════╦════════════╗
+║ productline  ║ max(prods) ║
+╠══════════════╬════════════╣
+║ Classic Cars ║ 38         ║
+╚══════════════╩════════════╝
+1 row in set
+Time: 0.007s

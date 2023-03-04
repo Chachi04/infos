@@ -1,0 +1,234 @@
+Connecting to socket /var/run/mysqld/mysqld.sock, owned by user mysql
+
+# 2022-12-03 15:15:00.102800
+use classicmodels;
+You are now connected to database "classicmodels" as user "chachi"
+Time: 0.000s
+
+# 2022-12-03 15:15:13.836792
+select e.firstname, c.contactfirstname
+from employees e
+inner join customers c on c.`salesRepEmployeeNumber` = e.`employeeNumber`
+order by e.`firstName`, e.`lastName`;
+╔═══════════╦══════════════════╗
+║ firstname ║ contactfirstname ║
+╠═══════════╬══════════════════╣
+║ Andy      ║ Anna             ║
+║ Andy      ║ Adrian           ║
+║ Andy      ║ Peter            ║
+║ Andy      ║ Ben              ║
+║ Andy      ║ Sean             ║
+║ Barry     ║ Jan              ║
+║ Barry     ║ Christina        ║
+║ Barry     ║ Veysel           ║
+║ Barry     ║ Dean             ║
+║ Barry     ║ Martha           ║
+║ Barry     ║ Jonas            ║
+║ Barry     ║ Michael          ║
+║ Barry     ║ Henriette        ║
+║ Barry     ║ Roland           ║
+║ Foon Yue  ║ Yu               ║
+║ Foon Yue  ║ Maria            ║
+║ Foon Yue  ║ Jean             ║
+║ Foon Yue  ║ Leslie           ║
+║ Foon Yue  ║ Michael          ║
+║ Foon Yue  ║ Jeff             ║
+║ Foon Yue  ║ Keith            ║
+║ George    ║ Steve            ║
+║ George    ║ Kwai             ║
+║ George    ║ William          ║
+║ George    ║ Yoshi            ║
+║ George    ║ Elizabeth        ║
+║ George    ║ Rosa             ║
+║ George    ║ Julie            ║
+║ George    ║ Dan              ║
+║ Gerard    ║ Carine           ║
+║ Gerard    ║ Daniel           ║
+║ Gerard    ║ Frédérique       ║
+║ Gerard    ║ Annette          ║
+║ Gerard    ║ Martine          ║
+║ Gerard    ║ Diego            ║
+║ Gerard    ║ Janine           ║
+║ Julie     ║ Miguel           ║
+║ Julie     ║ Francisca        ║
+║ Julie     ║ Valarie          ║
+║ Julie     ║ Wing             ║
+║ Julie     ║ Allen            ║
+║ Julie     ║ Jerry            ║
+║ Larry     ║ Matti            ║
+║ Larry     ║ Kalle            ║
+║ Larry     ║ Ann              ║
+║ Larry     ║ Helen            ║
+║ Larry     ║ Thomas           ║
+║ Larry     ║ Elizabeth        ║
+║ Larry     ║ Pirkko           ║
+║ Larry     ║ Rachel           ║
+║ Leslie    ║ Sue              ║
+║ Leslie    ║ Juri             ║
+║ Leslie    ║ Sue              ║
+║ Leslie    ║ Susan            ║
+║ Leslie    ║ Julie            ║
+║ Leslie    ║ Julie            ║
+║ Leslie    ║ Valarie          ║
+║ Leslie    ║ Mary             ║
+║ Leslie    ║ Steve            ║
+║ Leslie    ║ Brian            ║
+║ Leslie    ║ Julie            ║
+║ Leslie    ║ Jean             ║
+║ Loui      ║ Marie            ║
+║ Loui      ║ Dominique        ║
+║ Loui      ║ Daniel           ║
+║ Loui      ║ Paul             ║
+║ Loui      ║ Mary             ║
+║ Loui      ║ Laurence         ║
+║ Mami      ║ Mory             ║
+║ Mami      ║ Eric             ║
+║ Mami      ║ Arnold           ║
+║ Mami      ║ Akiko            ║
+║ Mami      ║ Mike             ║
+║ Martin    ║ Braun            ║
+║ Martin    ║ Eduardo          ║
+║ Martin    ║ Mihael           ║
+║ Martin    ║ Jesus            ║
+║ Martin    ║ Martín           ║
+║ Martin    ║ José Pedro       ║
+║ Pamela    ║ Maurizio         ║
+║ Pamela    ║ Pascale          ║
+║ Pamela    ║ Catherine        ║
+║ Pamela    ║ Franco           ║
+║ Pamela    ║ Giovanni         ║
+║ Pamela    ║ Palle            ║
+║ Pamela    ║ Roland           ║
+║ Pamela    ║ Paolo            ║
+║ Pamela    ║ Georg            ║
+║ Pamela    ║ Jytte            ║
+║ Peter     ║ Sarah            ║
+║ Peter     ║ Wales            ║
+║ Peter     ║ Wendy            ║
+║ Peter     ║ Mike             ║
+║ Peter     ║ Tony             ║
+║ Steve     ║ Leslie           ║
+║ Steve     ║ Violeta          ║
+║ Steve     ║ Dorothy          ║
+║ Steve     ║ Kelvin           ║
+║ Steve     ║ Juri             ║
+║ Steve     ║ Marta            ║
+╚═══════════╩══════════════════╝
+100 rows in set
+Time: 0.023s
+
+# 2022-12-03 15:15:20.460482
+pager
+;
+PAGER set to less.
+Time: 0.000s
+
+# 2022-12-03 15:15:27.234259
+SELECT e.firstname, c.contactfirstname FROM employees AS e INNER JOIN customers AS c ON c.`salesRepEmployeeNumber` = e.`employeeNumber` ORDER BY e.`firstName`, e.`lastName`;
+╔═══════════╦══════════════════╗
+║ firstname ║ contactfirstname ║
+╠═══════════╬══════════════════╣
+║ Andy      ║ Anna             ║
+║ Andy      ║ Adrian           ║
+║ Andy      ║ Peter            ║
+║ Andy      ║ Ben              ║
+║ Andy      ║ Sean             ║
+║ Barry     ║ Jan              ║
+║ Barry     ║ Veysel           ║
+║ Barry     ║ Christina        ║
+║ Barry     ║ Dean             ║
+║ Barry     ║ Martha           ║
+║ Barry     ║ Jonas            ║
+║ Barry     ║ Michael          ║
+║ Barry     ║ Henriette        ║
+║ Barry     ║ Roland           ║
+║ Foon Yue  ║ Yu               ║
+║ Foon Yue  ║ Maria            ║
+║ Foon Yue  ║ Jean             ║
+║ Foon Yue  ║ Leslie           ║
+║ Foon Yue  ║ Michael          ║
+║ Foon Yue  ║ Jeff             ║
+║ Foon Yue  ║ Keith            ║
+║ George    ║ Steve            ║
+║ George    ║ Kwai             ║
+║ George    ║ William          ║
+║ George    ║ Julie            ║
+║ George    ║ Yoshi            ║
+║ George    ║ Elizabeth        ║
+║ George    ║ Rosa             ║
+║ George    ║ Dan              ║
+║ Gerard    ║ Carine           ║
+║ Gerard    ║ Daniel           ║
+║ Gerard    ║ Frédérique       ║
+║ Gerard    ║ Annette          ║
+║ Gerard    ║ Martine          ║
+║ Gerard    ║ Diego            ║
+║ Gerard    ║ Janine           ║
+║ Julie     ║ Miguel           ║
+║ Julie     ║ Francisca        ║
+║ Julie     ║ Valarie          ║
+║ Julie     ║ Wing             ║
+║ Julie     ║ Allen            ║
+║ Julie     ║ Jerry            ║
+║ Larry     ║ Matti            ║
+║ Larry     ║ Kalle            ║
+║ Larry     ║ Ann              ║
+║ Larry     ║ Helen            ║
+║ Larry     ║ Thomas           ║
+║ Larry     ║ Elizabeth        ║
+║ Larry     ║ Pirkko           ║
+║ Larry     ║ Rachel           ║
+║ Leslie    ║ Juri             ║
+║ Leslie    ║ Sue              ║
+║ Leslie    ║ Sue              ║
+║ Leslie    ║ Susan            ║
+║ Leslie    ║ Julie            ║
+║ Leslie    ║ Julie            ║
+║ Leslie    ║ Valarie          ║
+║ Leslie    ║ Mary             ║
+║ Leslie    ║ Steve            ║
+║ Leslie    ║ Brian            ║
+║ Leslie    ║ Julie            ║
+║ Leslie    ║ Jean             ║
+║ Loui      ║ Marie            ║
+║ Loui      ║ Dominique        ║
+║ Loui      ║ Mary             ║
+║ Loui      ║ Daniel           ║
+║ Loui      ║ Paul             ║
+║ Loui      ║ Laurence         ║
+║ Mami      ║ Mory             ║
+║ Mami      ║ Eric             ║
+║ Mami      ║ Arnold           ║
+║ Mami      ║ Akiko            ║
+║ Mami      ║ Mike             ║
+║ Martin    ║ Braun            ║
+║ Martin    ║ Eduardo          ║
+║ Martin    ║ Mihael           ║
+║ Martin    ║ Jesus            ║
+║ Martin    ║ Martín           ║
+║ Martin    ║ José Pedro       ║
+║ Pamela    ║ Maurizio         ║
+║ Pamela    ║ Pascale          ║
+║ Pamela    ║ Catherine        ║
+║ Pamela    ║ Franco           ║
+║ Pamela    ║ Giovanni         ║
+║ Pamela    ║ Palle            ║
+║ Pamela    ║ Roland           ║
+║ Pamela    ║ Paolo            ║
+║ Pamela    ║ Georg            ║
+║ Pamela    ║ Jytte            ║
+║ Peter     ║ Sarah            ║
+║ Peter     ║ Wales            ║
+║ Peter     ║ Wendy            ║
+║ Peter     ║ Mike             ║
+║ Peter     ║ Tony             ║
+║ Steve     ║ Leslie           ║
+║ Steve     ║ Violeta          ║
+║ Steve     ║ Kelvin           ║
+║ Steve     ║ Dorothy          ║
+║ Steve     ║ Juri             ║
+║ Steve     ║ Marta            ║
+╚═══════════╩══════════════════╝
+100 rows in set
+Time: 0.016s
+Goodbye!

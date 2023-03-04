@@ -1,0 +1,52 @@
+10. select productline, count(productcode) amount
+                      -> from products
+                      -> group by productline
+                      -> order by amount desc
+                      -> limit 1;
+
+
+9. select productline, count(productcode)
+                      -> from products
+                      -> group by productline;
+
+8. select p.productcode, count(ordernumber)
+                      -> from products p
+                      -> left join orderdetails od on p.`productcode` = od.`productcode`
+                      -> group by p.productcode;
+
+7. select c.customernumber, count(ordernumber) as amount
+                      -> from customers c
+                      -> left join orders o on o.customernumber = c.`customernumber`
+                      -> group by c.customernumber
+                      -> having amount = 0;
+
+
+6. select c.customernumber, count(ordernumber)
+                      -> from customers c
+                      -> left join orders o on o.customernumber = c.`customernumber`
+                      -> group by c.customernumber;
+
+5. select ordernumber, `quantityordered`
+                      -> from orderdetails
+                      -> where `quantityordered` < 5;
+
+4. select c.customernumber, sum(amount)
+                      -> from customers c
+                      -> left join payments p on p.`customernumber` = c.`customernumber`
+                      -> group by c.customernumber;
+
+3. select employeenumber, count(customernumber)
+                      -> from employees e
+                      -> inner join customers c on c.`salesrepemployeenumber` = e.`employeenumber`
+                      -> group by employeenumber;
+
+2. select officecode, count(`employeenumber`) count
+                      -> from offices
+                      -> inner join employees using(`officecode`)
+                      -> group by officecode
+                      -> having count < 5;
+
+1. select officecode, count(`employeenumber`)
+                      -> from offices
+                      -> inner join employees using(`officecode`)
+                      -> group by officecode;

@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "LKPmqvxX9nHt9QA9xktAUxhOQrah27M98Uy7Ed7WRTg2o/o43oQYRRDyHXXS3NtJroF0xcCjTfb+LrJIcHuN2A==",
+  "success": true,
+  "projectFilePath": "/home/chachi/school/infos/src/Y12/ex1/ex1.csproj",
+  "expectedPackageFiles": [
+    "/home/chachi/.nuget/packages/microsoft.aspnetcore.app.ref/7.0.2/microsoft.aspnetcore.app.ref.7.0.2.nupkg.sha512"
+  ],
+  "logs": []
+}

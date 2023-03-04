@@ -1,0 +1,563 @@
+1. Всички служители на компанията, която поддържа електронния магазин
+
+# 2022-12-09 12:34:29.387941
+select * from employees;
+╔════════════════╦═══════════╦═══════════╦═══════════╦═════════════════════════════════╦════════════╦═══════════╦══════════════════════╗
+║ employeeNumber ║ lastName  ║ firstName ║ extension ║ email                           ║ officeCode ║ reportsTo ║ jobTitle             ║
+╠════════════════╬═══════════╬═══════════╬═══════════╬═════════════════════════════════╬════════════╬═══════════╬══════════════════════╣
+║ 1002           ║ Murphy    ║ Diane     ║ x5800     ║ dmurphy@classicmodelcars.com    ║ 1          ║ <null>    ║ President            ║
+║ 1056           ║ Patterson ║ Mary      ║ x4611     ║ mpatterso@classicmodelcars.com  ║ 1          ║ 1002      ║ VP Sales             ║
+║ 1076           ║ Firrelli  ║ Jeff      ║ x9273     ║ jfirrelli@classicmodelcars.com  ║ 1          ║ 1002      ║ VP Marketing         ║
+║ 1088           ║ Patterson ║ William   ║ x4871     ║ wpatterson@classicmodelcars.com ║ 6          ║ 1056      ║ Sales Manager (APAC) ║
+║ 1102           ║ Bondur    ║ Gerard    ║ x5408     ║ gbondur@classicmodelcars.com    ║ 4          ║ 1056      ║ Sale Manager (EMEA)  ║
+║ 1143           ║ Bow       ║ Anthony   ║ x5428     ║ abow@classicmodelcars.com       ║ 1          ║ 1056      ║ Sales Manager (NA)   ║
+║ 1165           ║ Jennings  ║ Leslie    ║ x3291     ║ ljennings@classicmodelcars.com  ║ 1          ║ 1143      ║ Sales Rep            ║
+║ 1166           ║ Thompson  ║ Leslie    ║ x4065     ║ lthompson@classicmodelcars.com  ║ 1          ║ 1143      ║ Sales Rep            ║
+║ 1188           ║ Firrelli  ║ Julie     ║ x2173     ║ jfirrelli@classicmodelcars.com  ║ 2          ║ 1143      ║ Sales Rep            ║
+║ 1216           ║ Patterson ║ Steve     ║ x4334     ║ spatterson@classicmodelcars.com ║ 2          ║ 1143      ║ Sales Rep            ║
+║ 1286           ║ Tseng     ║ Foon Yue  ║ x2248     ║ ftseng@classicmodelcars.com     ║ 3          ║ 1143      ║ Sales Rep            ║
+║ 1323           ║ Vanauf    ║ George    ║ x4102     ║ gvanauf@classicmodelcars.com    ║ 3          ║ 1143      ║ Sales Rep            ║
+║ 1337           ║ Bondur    ║ Loui      ║ x6493     ║ lbondur@classicmodelcars.com    ║ 4          ║ 1102      ║ Sales Rep            ║
+║ 1370           ║ Hernandez ║ Gerard    ║ x2028     ║ ghernande@classicmodelcars.com  ║ 4          ║ 1102      ║ Sales Rep            ║
+║ 1401           ║ Castillo  ║ Pamela    ║ x2759     ║ pcastillo@classicmodelcars.com  ║ 4          ║ 1102      ║ Sales Rep            ║
+║ 1501           ║ Bott      ║ Larry     ║ x2311     ║ lbott@classicmodelcars.com      ║ 7          ║ 1102      ║ Sales Rep            ║
+║ 1504           ║ Jones     ║ Barry     ║ x102      ║ bjones@classicmodelcars.com     ║ 7          ║ 1102      ║ Sales Rep            ║
+║ 1611           ║ Fixter    ║ Andy      ║ x101      ║ afixter@classicmodelcars.com    ║ 6          ║ 1088      ║ Sales Rep            ║
+║ 1612           ║ Marsh     ║ Peter     ║ x102      ║ pmarsh@classicmodelcars.com     ║ 6          ║ 1088      ║ Sales Rep            ║
+║ 1619           ║ King      ║ Tom       ║ x103      ║ tking@classicmodelcars.com      ║ 6          ║ 1088      ║ Sales Rep            ║
+║ 1621           ║ Nishi     ║ Mami      ║ x101      ║ mnishi@classicmodelcars.com     ║ 5          ║ 1056      ║ Sales Rep            ║
+║ 1625           ║ Kato      ║ Yoshimi   ║ x102      ║ ykato@classicmodelcars.com      ║ 5          ║ 1621      ║ Sales Rep            ║
+║ 1702           ║ Gerard    ║ Martin    ║ x2312     ║ mgerard@classicmodelcars.com    ║ 4          ║ 1102      ║ Sales Rep            ║
+╚════════════════╩═══════════╩═══════════╩═══════════╩═════════════════════════════════╩════════════╩═══════════╩══════════════════════╝
+23 rows in set
+Time: 0.016s
+
+2. Името и фамилията на контактните лица за всеки от клиентите на магазина
+# 2022-12-09 12:35:14.651002
+select contactfirstname, contactlastname from customers;
+╔══════════════════╦═════════════════╗
+║ contactfirstname ║ contactlastname ║
+╠══════════════════╬═════════════════╣
+║ Carine           ║ Schmitt         ║
+║ Jean             ║ King            ║
+║ Peter            ║ Ferguson        ║
+║ Janine           ║ Labrune         ║
+║ Jonas            ║ Bergulfsen      ║
+║ Susan            ║ Nelson          ║
+║ Zbyszek          ║ Piestrzeniewicz ║
+║ Roland           ║ Keitel          ║
+║ Julie            ║ Murphy          ║
+║ Kwai             ║ Lee             ║
+║ Diego            ║ Freyre          ║
+║ Christina        ║ Berglund        ║
+║ Jytte            ║ Petersen        ║
+║ Mary             ║ Saveley         ║
+║ Eric             ║ Natividad       ║
+║ Jeff             ║ Young           ║
+║ Kelvin           ║ Leong           ║
+║ Juri             ║ Hashimoto       ║
+║ Wendy            ║ Victorino       ║
+║ Veysel           ║ Oeztan          ║
+║ Keith            ║ Franco          ║
+║ Isabel           ║ de Castro       ║
+║ Martine          ║ Rancé           ║
+║ Marie            ║ Bertrand        ║
+║ Jerry            ║ Tseng           ║
+║ Julie            ║ King            ║
+║ Mory             ║ Kentary         ║
+║ Michael          ║ Frick           ║
+║ Matti            ║ Karttunen       ║
+║ Rachel           ║ Ashworth        ║
+║ Dean             ║ Cassidy         ║
+║ Leslie           ║ Taylor          ║
+║ Elizabeth        ║ Devon           ║
+║ Yoshi            ║ Tamuri          ║
+║ Miguel           ║ Barajas         ║
+║ Julie            ║ Young           ║
+║ Brydey           ║ Walker          ║
+║ Frédérique       ║ Citeaux         ║
+║ Mike             ║ Gao             ║
+║ Eduardo          ║ Saavedra        ║
+║ Mary             ║ Young           ║
+║ Horst            ║ Kloss           ║
+║ Palle            ║ Ibsen           ║
+║ Jean             ║ Fresnière       ║
+║ Alejandra        ║ Camino          ║
+║ Valarie          ║ Thompson        ║
+║ Helen            ║ Bennett         ║
+║ Annette          ║ Roulet          ║
+║ Renate           ║ Messner         ║
+║ Paolo            ║ Accorti         ║
+║ Daniel           ║ Da Silva        ║
+║ Daniel           ║ Tonini          ║
+║ Henriette        ║ Pfalzheim       ║
+║ Elizabeth        ║ Lincoln         ║
+║ Peter            ║ Franken         ║
+║ Anna             ║ O'Hara          ║
+║ Giovanni         ║ Rovelli         ║
+║ Adrian           ║ Huxley          ║
+║ Marta            ║ Hernandez       ║
+║ Ed               ║ Harrison        ║
+║ Mihael           ║ Holz            ║
+║ Jan              ║ Klaeboe         ║
+║ Bradley          ║ Schuyler        ║
+║ Mel              ║ Andersen        ║
+║ Pirkko           ║ Koskitalo       ║
+║ Catherine        ║ Dewey           ║
+║ Steve            ║ Frick           ║
+║ Wing             ║ Huang           ║
+║ Julie            ║ Brown           ║
+║ Mike             ║ Graham          ║
+║ Ann              ║ Brown           ║
+║ William          ║ Brown           ║
+║ Ben              ║ Calaghan        ║
+║ Kalle            ║ Suominen        ║
+║ Philip           ║ Cramer          ║
+║ Francisca        ║ Cervantes       ║
+║ Jesus            ║ Fernandez       ║
+║ Brian            ║ Chandler        ║
+║ Patricia         ║ McKenna         ║
+║ Laurence         ║ Lebihan         ║
+║ Paul             ║ Henriot         ║
+║ Armand           ║ Kuger           ║
+║ Wales            ║ MacKinlay       ║
+║ Karin            ║ Josephs         ║
+║ Juri             ║ Yoshido         ║
+║ Dorothy          ║ Young           ║
+║ Lino             ║ Rodriguez       ║
+║ Braun            ║ Urs             ║
+║ Allen            ║ Nelson          ║
+║ Pascale          ║ Cartrain        ║
+║ Georg            ║ Pipps           ║
+║ Arnold           ║ Cruz            ║
+║ Maurizio         ║ Moroni          ║
+║ Akiko            ║ Shimamura       ║
+║ Dominique        ║ Perrier         ║
+║ Rita             ║ Müller          ║
+║ Sarah            ║ McRoy           ║
+║ Michael          ║ Donnermeyer     ║
+║ Maria            ║ Hernandez       ║
+║ Alexander        ║ Feuer           ║
+║ Dan              ║ Lewis           ║
+║ Martha           ║ Larsson         ║
+║ Sue              ║ Frick           ║
+║ Roland           ║ Mendel          ║
+║ Leslie           ║ Murphy          ║
+║ Yu               ║ Choi            ║
+║ Martín           ║ Sommer          ║
+║ Sven             ║ Ottlieb         ║
+║ Violeta          ║ Benitez         ║
+║ Carmen           ║ Anton           ║
+║ Sean             ║ Clenahan        ║
+║ Franco           ║ Ricotti         ║
+║ Steve            ║ Thompson        ║
+║ Hanna            ║ Moos            ║
+║ Alexander        ║ Semenov         ║
+║ Raanan           ║ Altagar,G M     ║
+║ José Pedro       ║ Roel            ║
+║ Rosa             ║ Salazar         ║
+║ Sue              ║ Taylor          ║
+║ Thomas           ║ Smith           ║
+║ Valarie          ║ Franco          ║
+║ Tony             ║ Snowden         ║
+╚══════════════════╩═════════════════╝
+122 rows in set
+Time: 0.014s
+
+3. Имената и фамилиите на служителите, техните длъжности, градът и държавата на техните офиси
+# 2022-12-09 12:37:15.461427
+select firstname, lastname, jobtitle, o.city, o.country
+from employees e
+inner join offices o on o.`officeCode` = e.`officeCode`;
+╔═══════════╦═══════════╦══════════════════════╦═══════════════╦═══════════╗
+║ firstname ║ lastname  ║ jobtitle             ║ city          ║ country   ║
+╠═══════════╬═══════════╬══════════════════════╬═══════════════╬═══════════╣
+║ Diane     ║ Murphy    ║ President            ║ San Francisco ║ USA       ║
+║ Mary      ║ Patterson ║ VP Sales             ║ San Francisco ║ USA       ║
+║ Jeff      ║ Firrelli  ║ VP Marketing         ║ San Francisco ║ USA       ║
+║ William   ║ Patterson ║ Sales Manager (APAC) ║ Sydney        ║ Australia ║
+║ Gerard    ║ Bondur    ║ Sale Manager (EMEA)  ║ Paris         ║ France    ║
+║ Anthony   ║ Bow       ║ Sales Manager (NA)   ║ San Francisco ║ USA       ║
+║ Leslie    ║ Jennings  ║ Sales Rep            ║ San Francisco ║ USA       ║
+║ Leslie    ║ Thompson  ║ Sales Rep            ║ San Francisco ║ USA       ║
+║ Julie     ║ Firrelli  ║ Sales Rep            ║ Boston        ║ USA       ║
+║ Steve     ║ Patterson ║ Sales Rep            ║ Boston        ║ USA       ║
+║ Foon Yue  ║ Tseng     ║ Sales Rep            ║ NYC           ║ USA       ║
+║ George    ║ Vanauf    ║ Sales Rep            ║ NYC           ║ USA       ║
+║ Loui      ║ Bondur    ║ Sales Rep            ║ Paris         ║ France    ║
+║ Gerard    ║ Hernandez ║ Sales Rep            ║ Paris         ║ France    ║
+║ Pamela    ║ Castillo  ║ Sales Rep            ║ Paris         ║ France    ║
+║ Larry     ║ Bott      ║ Sales Rep            ║ London        ║ UK        ║
+║ Barry     ║ Jones     ║ Sales Rep            ║ London        ║ UK        ║
+║ Andy      ║ Fixter    ║ Sales Rep            ║ Sydney        ║ Australia ║
+║ Peter     ║ Marsh     ║ Sales Rep            ║ Sydney        ║ Australia ║
+║ Tom       ║ King      ║ Sales Rep            ║ Sydney        ║ Australia ║
+║ Mami      ║ Nishi     ║ Sales Rep            ║ Tokyo         ║ Japan     ║
+║ Yoshimi   ║ Kato      ║ Sales Rep            ║ Tokyo         ║ Japan     ║
+║ Martin    ║ Gerard    ║ Sales Rep            ║ Paris         ║ France    ║
+╚═══════════╩═══════════╩══════════════════════╩═══════════════╩═══════════╝
+23 rows in set
+Time: 0.010s
+
+4. Имената на клиентите, телефонните им номера, държавата, от която са и номерата на чековете, които са за над 45000
+
+# 2022-12-09 12:38:58.055358
+select c.`customerName`, c.phone, c.country, p.`checkNumber`
+from customers c
+inner join payments p on p.`customerNumber` = c.`customerNumber`
+where p.amount > 45000;
+╔══════════════════════════════╦══════════════════╦═════════════╦═════════════╗
+║ customerName                 ║ phone            ║ country     ║ checkNumber ║
+╠══════════════════════════════╬══════════════════╬═════════════╬═════════════╣
+║ Australian Collectors, Co.   ║ 03 9520 4555     ║ Australia   ║ GG31455     ║
+║ Australian Collectors, Co.   ║ 03 9520 4555     ║ Australia   ║ MA765515    ║
+║ La Rochelle Gifts            ║ 40.67.8555       ║ France      ║ LN373447    ║
+║ La Rochelle Gifts            ║ 40.67.8555       ║ France      ║ NG94694     ║
+║ Baane Mini Imports           ║ 07-98 9555       ║ Norway      ║ DB889831    ║
+║ Mini Gifts Distributors Ltd. ║ 4155551450       ║ USA         ║ AE215433    ║
+║ Mini Gifts Distributors Ltd. ║ 4155551450       ║ USA         ║ BG255406    ║
+║ Mini Gifts Distributors Ltd. ║ 4155551450       ║ USA         ║ ET64396     ║
+║ Mini Gifts Distributors Ltd. ║ 4155551450       ║ USA         ║ HI366474    ║
+║ Mini Gifts Distributors Ltd. ║ 4155551450       ║ USA         ║ HR86578     ║
+║ Mini Gifts Distributors Ltd. ║ 4155551450       ║ USA         ║ KI131716    ║
+║ Mini Gifts Distributors Ltd. ║ 4155551450       ║ USA         ║ NT141748    ║
+║ Land of Toys Inc.            ║ 2125557818       ║ USA         ║ MA724562    ║
+║ Euro+ Shopping Channel       ║ (91) 555 94 44   ║ Spain       ║ DL460618    ║
+║ Euro+ Shopping Channel       ║ (91) 555 94 44   ║ Spain       ║ HJ32686     ║
+║ Euro+ Shopping Channel       ║ (91) 555 94 44   ║ Spain       ║ ID10962     ║
+║ Euro+ Shopping Channel       ║ (91) 555 94 44   ║ Spain       ║ IN446258    ║
+║ Euro+ Shopping Channel       ║ (91) 555 94 44   ║ Spain       ║ JE105477    ║
+║ Euro+ Shopping Channel       ║ (91) 555 94 44   ║ Spain       ║ JN355280    ║
+║ Euro+ Shopping Channel       ║ (91) 555 94 44   ║ Spain       ║ KT52578     ║
+║ Danish Wholesale Imports     ║ 31 12 3555       ║ Denmark     ║ JJ246391    ║
+║ Saveley & Henriot, Co.       ║ 78.32.5555       ║ France      ║ FU793410    ║
+║ Dragon Souveniers, Ltd.      ║ +65 221 7555     ║ Singapore   ║ KM172879    ║
+║ Muscle Machine Inc           ║ 2125557413       ║ USA         ║ BF686658    ║
+║ Muscle Machine Inc           ║ 2125557413       ║ USA         ║ IP568906    ║
+║ Diecast Classics Inc.        ║ 2155551555       ║ USA         ║ NN711988    ║
+║ Technics Stores Inc.         ║ 6505556809       ║ USA         ║ BR478494    ║
+║ Herkku Gifts                 ║ +47 2267 3215    ║ Norway      ║ GN228846    ║
+║ La Corne D'abondance, Co.    ║ (1) 42.34.2555   ║ France      ║ CE51751     ║
+║ Osaka Souveniers Co.         ║ +81 06 6342 5555 ║ Japan       ║ CI381435    ║
+║ AV Stores, Co.               ║ (171) 555-1555   ║ UK          ║ AM968797    ║
+║ AV Stores, Co.               ║ (171) 555-1555   ║ UK          ║ BQ39062     ║
+║ AV Stores, Co.               ║ (171) 555-1555   ║ UK          ║ KL124726    ║
+║ Online Mini Collectables     ║ 6175557555       ║ USA         ║ GC697638    ║
+║ Toys4GrownUps.com            ║ 6265557265       ║ USA         ║ LL562733    ║
+║ King Kong Collectables, Co.  ║ +852 2251 1555   ║ Hong Kong   ║ BJ535230    ║
+║ Heintze Collectables         ║ 86 21 3555       ║ Denmark     ║ NU21326     ║
+║ Collectable Mini Designs Co. ║ 7605558146       ║ USA         ║ NQ865547    ║
+║ giftsbymail.co.uk            ║ (198) 555-8888   ║ UK          ║ IF245157    ║
+║ Amica Models & Co.           ║ 011-4988555      ║ Italy       ║ NE404084    ║
+║ Auto Associés & Cie.         ║ 30.59.8555       ║ France      ║ HE84936     ║
+║ Toms Spezialitäten, Ltd      ║ 0221-5554327     ║ Germany     ║ EU280955    ║
+║ Rovelli Gifts                ║ 035-640555       ║ Italy       ║ GP636783    ║
+║ Marta's Replicas Co.         ║ 6175558555       ║ USA         ║ DR578578    ║
+║ Vida Sport, Ltd              ║ 0897-034555      ║ Switzerland ║ AJ574927    ║
+║ Vida Sport, Ltd              ║ 0897-034555      ║ Switzerland ║ LF501133    ║
+║ Oulu Toy Supplies, Inc.      ║ 981-443655       ║ Finland     ║ DG336041    ║
+║ Petit Auto                   ║ (02) 5554 67     ║ Belgium     ║ LQ244073    ║
+║ Mini Creations Ltd.          ║ 5085559555       ║ USA         ║ MU817160    ║
+║ Corporate Gift Ideas Co.     ║ 6505551386       ║ USA         ║ DJ15149     ║
+║ Corporate Gift Ideas Co.     ║ 6505551386       ║ USA         ║ LA556321    ║
+║ Down Under Souveniers, Inc   ║ +64 9 312 5555   ║ New Zealand ║ AL493079    ║
+║ Suominen Souveniers          ║ +358 9 8045 555  ║ Finland     ║ CS435306    ║
+║ Marseille Mini Autos         ║ 91.24.4555       ║ France      ║ CI471510    ║
+║ Reims Collectables           ║ 26.47.1555       ║ France      ║ CO351193    ║
+║ Reims Collectables           ║ 26.47.1555       ║ France      ║ HJ618252    ║
+║ Online Diecast Creations Co. ║ 6035558647       ║ USA         ║ HL575273    ║
+║ Online Diecast Creations Co. ║ 6035558647       ║ USA         ║ PN238558    ║
+║ Cruz & Sons Co.              ║ +63 2 555 3587   ║ Philippines ║ EK785462    ║
+║ L'ordine Souveniers          ║ 0522-556555      ║ Italy       ║ HG438769    ║
+║ Tokyo Collectables, Ltd      ║ +81 3 3584 0555  ║ Japan       ║ KB54275     ║
+║ Auto Canal+ Petit            ║ (1) 47.55.6555   ║ France      ║ HJ217687    ║
+║ Scandinavian Gift Ideas      ║ 0695-34 6555     ║ Sweden      ║ KR822727    ║
+║ The Sharp Gifts Warehouse    ║ 4085553659       ║ USA         ║ EF485824    ║
+║ Corrida Auto Replicas, Ltd   ║ (91) 555 22 82   ║ Spain       ║ OO606861    ║
+║ FunGiftIdeas.com             ║ 5085552555       ║ USA         ║ PE176846    ║
+║ Iberia Gift Imports, Corp.   ║ (95) 555 82 82   ║ Spain       ║ JH546765    ║
+║ Motor Mint Distributors Inc. ║ 2155559857       ║ USA         ║ HS86661     ║
+║ Diecast Collectables         ║ 6175552555       ║ USA         ║ BH167026    ║
+║ Kelly's Gift Shop            ║ +64 9 5555500    ║ New Zealand ║ MN89921     ║
+╚══════════════════════════════╩══════════════════╩═════════════╩═════════════╝
+70 rows in set
+Time: 0.016s
+
+5. Поръчките, които имат статус Прекратени и имат коментар и имената на клиентите, които са ги направили;
+# 2022-12-09 12:43:23.762043
+select o.ordernumber, o.status, c.customername, o.comments
+from orders o
+inner join customers c on c.`customerNumber` = o.`customerNumber`
+where o.status = "Cancelled" and o.comments is not null;
+╔═════════════╦═══════════╦═════════════════════════╦═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╦
+║ orderNumber ║ status    ║ customerName            ║ comments                                                                                                                                                                                      ║
+╠═════════════╬═══════════╬═════════════════════════╬═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╬
+║ 10167       ║ Cancelled ║ Scandinavian Gift Ideas ║ Customer called to cancel. The warehouse was notified in time and the order didn't ship. They have a new VP of Sales and are shifting their sales model. Our VP of Sales should contact them. ║
+║ 10179       ║ Cancelled ║ Kelly's Gift Shop       ║ Customer cancelled due to urgent budgeting issues. Must be cautious when dealing with them in the future. Since order shipped already we must discuss who would cover the shipping charges.   ║
+║ 10248       ║ Cancelled ║ Land of Toys Inc.       ║ Order was mistakenly placed. The warehouse noticed the lack of documentation.                                                                                                                 ║
+║ 10253       ║ Cancelled ║ UK Collectables, Ltd.   ║ Customer disputed the order and we agreed to cancel it. We must be more cautions with this customer going forward, since they are very hard to please. We must cover the shipping fees.       ║
+║ 10260       ║ Cancelled ║ GiftsForHim.com         ║ Customer heard complaints from their customers and called to cancel this order. Will notify the Sales Manager.                                                                                ║
+║ 10262       ║ Cancelled ║ Euro+ Shopping Channel  ║ This customer found a better offer from one of our competitors. Will call back to renegotiate.                                                                                                ║
+╚═════════════╩═══════════╩═════════════════════════╩═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╩
+6 rows in set
+Time: 0.012s
+
+6. Кои поръчки (номер и дата) съдържат модели от серията “кораби”, сортирани по дата на поръчка
+# 2022-12-09 13:13:08.060485
+select o.ordernumber, o.orderdate
+from orders o
+inner join orderdetails od on od.`orderNumber` = o.`orderNumber`
+inner join products p on od.`productCode` = p.productcode
+where p.productline = "ships"
+order by o.`orderDate`;
+╔═════════════╦════════════╗
+║ ordernumber ║ orderdate  ║
+╠═════════════╬════════════╣
+║ 10105       ║ 2003-02-11 ║
+║ 10105       ║ 2003-02-11 ║
+║ 10105       ║ 2003-02-11 ║
+║ 10105       ║ 2003-02-11 ║
+║ 10105       ║ 2003-02-11 ║
+║ 10105       ║ 2003-02-11 ║
+║ 10105       ║ 2003-02-11 ║
+║ 10106       ║ 2003-02-17 ║
+║ 10106       ║ 2003-02-17 ║
+║ 10117       ║ 2003-04-16 ║
+║ 10117       ║ 2003-04-16 ║
+║ 10117       ║ 2003-04-16 ║
+║ 10117       ║ 2003-04-16 ║
+║ 10118       ║ 2003-04-21 ║
+║ 10119       ║ 2003-04-28 ║
+║ 10119       ║ 2003-04-28 ║
+║ 10119       ║ 2003-04-28 ║
+║ 10119       ║ 2003-04-28 ║
+║ 10128       ║ 2003-06-06 ║
+║ 10129       ║ 2003-06-12 ║
+║ 10129       ║ 2003-06-12 ║
+║ 10129       ║ 2003-06-12 ║
+║ 10129       ║ 2003-06-12 ║
+║ 10129       ║ 2003-06-12 ║
+║ 10129       ║ 2003-06-12 ║
+║ 10130       ║ 2003-06-16 ║
+║ 10131       ║ 2003-06-16 ║
+║ 10142       ║ 2003-08-08 ║
+║ 10142       ║ 2003-08-08 ║
+║ 10142       ║ 2003-08-08 ║
+║ 10142       ║ 2003-08-08 ║
+║ 10142       ║ 2003-08-08 ║
+║ 10142       ║ 2003-08-08 ║
+║ 10143       ║ 2003-08-10 ║
+║ 10143       ║ 2003-08-10 ║
+║ 10143       ║ 2003-08-10 ║
+║ 10153       ║ 2003-09-28 ║
+║ 10153       ║ 2003-09-28 ║
+║ 10153       ║ 2003-09-28 ║
+║ 10153       ║ 2003-09-28 ║
+║ 10153       ║ 2003-09-28 ║
+║ 10153       ║ 2003-09-28 ║
+║ 10154       ║ 2003-10-02 ║
+║ 10155       ║ 2003-10-06 ║
+║ 10155       ║ 2003-10-06 ║
+║ 10166       ║ 2003-10-21 ║
+║ 10167       ║ 2003-10-23 ║
+║ 10167       ║ 2003-10-23 ║
+║ 10167       ║ 2003-10-23 ║
+║ 10167       ║ 2003-10-23 ║
+║ 10167       ║ 2003-10-23 ║
+║ 10167       ║ 2003-10-23 ║
+║ 10167       ║ 2003-10-23 ║
+║ 10167       ║ 2003-10-23 ║
+║ 10177       ║ 2003-11-07 ║
+║ 10177       ║ 2003-11-07 ║
+║ 10177       ║ 2003-11-07 ║
+║ 10177       ║ 2003-11-07 ║
+║ 10177       ║ 2003-11-07 ║
+║ 10177       ║ 2003-11-07 ║
+║ 10177       ║ 2003-11-07 ║
+║ 10178       ║ 2003-11-08 ║
+║ 10178       ║ 2003-11-08 ║
+║ 10186       ║ 2003-11-14 ║
+║ 10186       ║ 2003-11-14 ║
+║ 10185       ║ 2003-11-14 ║
+║ 10185       ║ 2003-11-14 ║
+║ 10185       ║ 2003-11-14 ║
+║ 10185       ║ 2003-11-14 ║
+║ 10185       ║ 2003-11-14 ║
+║ 10185       ║ 2003-11-14 ║
+║ 10185       ║ 2003-11-14 ║
+║ 10196       ║ 2003-11-26 ║
+║ 10197       ║ 2003-11-26 ║
+║ 10197       ║ 2003-11-26 ║
+║ 10197       ║ 2003-11-26 ║
+║ 10197       ║ 2003-11-26 ║
+║ 10197       ║ 2003-11-26 ║
+║ 10197       ║ 2003-11-26 ║
+║ 10197       ║ 2003-11-26 ║
+║ 10197       ║ 2003-11-26 ║
+║ 10208       ║ 2004-01-02 ║
+║ 10208       ║ 2004-01-02 ║
+║ 10208       ║ 2004-01-02 ║
+║ 10208       ║ 2004-01-02 ║
+║ 10208       ║ 2004-01-02 ║
+║ 10208       ║ 2004-01-02 ║
+║ 10208       ║ 2004-01-02 ║
+║ 10209       ║ 2004-01-09 ║
+║ 10209       ║ 2004-01-09 ║
+║ 10221       ║ 2004-02-18 ║
+║ 10221       ║ 2004-02-18 ║
+║ 10222       ║ 2004-02-19 ║
+║ 10222       ║ 2004-02-19 ║
+║ 10222       ║ 2004-02-19 ║
+║ 10222       ║ 2004-02-19 ║
+║ 10222       ║ 2004-02-19 ║
+║ 10222       ║ 2004-02-19 ║
+║ 10222       ║ 2004-02-19 ║
+║ 10232       ║ 2004-03-20 ║
+║ 10232       ║ 2004-03-20 ║
+║ 10232       ║ 2004-03-20 ║
+║ 10232       ║ 2004-03-20 ║
+║ 10232       ║ 2004-03-20 ║
+║ 10233       ║ 2004-03-29 ║
+║ 10233       ║ 2004-03-29 ║
+║ 10234       ║ 2004-03-30 ║
+║ 10234       ║ 2004-03-30 ║
+║ 10248       ║ 2004-05-07 ║
+║ 10248       ║ 2004-05-07 ║
+║ 10248       ║ 2004-05-07 ║
+║ 10248       ║ 2004-05-07 ║
+║ 10248       ║ 2004-05-07 ║
+║ 10248       ║ 2004-05-07 ║
+║ 10248       ║ 2004-05-07 ║
+║ 10248       ║ 2004-05-07 ║
+║ 10249       ║ 2004-05-08 ║
+║ 10260       ║ 2004-06-16 ║
+║ 10261       ║ 2004-06-17 ║
+║ 10261       ║ 2004-06-17 ║
+║ 10261       ║ 2004-06-17 ║
+║ 10261       ║ 2004-06-17 ║
+║ 10261       ║ 2004-06-17 ║
+║ 10261       ║ 2004-06-17 ║
+║ 10262       ║ 2004-06-24 ║
+║ 10262       ║ 2004-06-24 ║
+║ 10274       ║ 2004-07-21 ║
+║ 10273       ║ 2004-07-21 ║
+║ 10273       ║ 2004-07-21 ║
+║ 10273       ║ 2004-07-21 ║
+║ 10273       ║ 2004-07-21 ║
+║ 10273       ║ 2004-07-21 ║
+║ 10273       ║ 2004-07-21 ║
+║ 10273       ║ 2004-07-21 ║
+║ 10273       ║ 2004-07-21 ║
+║ 10282       ║ 2004-08-20 ║
+║ 10283       ║ 2004-08-20 ║
+║ 10283       ║ 2004-08-20 ║
+║ 10283       ║ 2004-08-20 ║
+║ 10283       ║ 2004-08-20 ║
+║ 10283       ║ 2004-08-20 ║
+║ 10283       ║ 2004-08-20 ║
+║ 10283       ║ 2004-08-20 ║
+║ 10283       ║ 2004-08-20 ║
+║ 10293       ║ 2004-09-09 ║
+║ 10293       ║ 2004-09-09 ║
+║ 10293       ║ 2004-09-09 ║
+║ 10294       ║ 2004-09-10 ║
+║ 10295       ║ 2004-09-10 ║
+║ 10295       ║ 2004-09-10 ║
+║ 10295       ║ 2004-09-10 ║
+║ 10296       ║ 2004-09-15 ║
+║ 10296       ║ 2004-09-15 ║
+║ 10307       ║ 2004-10-14 ║
+║ 10307       ║ 2004-10-14 ║
+║ 10306       ║ 2004-10-14 ║
+║ 10306       ║ 2004-10-14 ║
+║ 10306       ║ 2004-10-14 ║
+║ 10306       ║ 2004-10-14 ║
+║ 10306       ║ 2004-10-14 ║
+║ 10306       ║ 2004-10-14 ║
+║ 10306       ║ 2004-10-14 ║
+║ 10314       ║ 2004-10-22 ║
+║ 10315       ║ 2004-10-29 ║
+║ 10315       ║ 2004-10-29 ║
+║ 10315       ║ 2004-10-29 ║
+║ 10315       ║ 2004-10-29 ║
+║ 10315       ║ 2004-10-29 ║
+║ 10316       ║ 2004-11-01 ║
+║ 10316       ║ 2004-11-01 ║
+║ 10316       ║ 2004-11-01 ║
+║ 10326       ║ 2004-11-09 ║
+║ 10326       ║ 2004-11-09 ║
+║ 10327       ║ 2004-11-10 ║
+║ 10327       ║ 2004-11-10 ║
+║ 10327       ║ 2004-11-10 ║
+║ 10327       ║ 2004-11-10 ║
+║ 10327       ║ 2004-11-10 ║
+║ 10327       ║ 2004-11-10 ║
+║ 10328       ║ 2004-11-12 ║
+║ 10337       ║ 2004-11-21 ║
+║ 10337       ║ 2004-11-21 ║
+║ 10337       ║ 2004-11-21 ║
+║ 10337       ║ 2004-11-21 ║
+║ 10337       ║ 2004-11-21 ║
+║ 10338       ║ 2004-11-22 ║
+║ 10339       ║ 2004-11-23 ║
+║ 10339       ║ 2004-11-23 ║
+║ 10339       ║ 2004-11-23 ║
+║ 10350       ║ 2004-12-02 ║
+║ 10350       ║ 2004-12-02 ║
+║ 10350       ║ 2004-12-02 ║
+║ 10350       ║ 2004-12-02 ║
+║ 10350       ║ 2004-12-02 ║
+║ 10350       ║ 2004-12-02 ║
+║ 10350       ║ 2004-12-02 ║
+║ 10350       ║ 2004-12-02 ║
+║ 10352       ║ 2004-12-03 ║
+║ 10360       ║ 2004-12-16 ║
+║ 10360       ║ 2004-12-16 ║
+║ 10360       ║ 2004-12-16 ║
+║ 10360       ║ 2004-12-16 ║
+║ 10360       ║ 2004-12-16 ║
+║ 10360       ║ 2004-12-16 ║
+║ 10360       ║ 2004-12-16 ║
+║ 10360       ║ 2004-12-16 ║
+║ 10361       ║ 2004-12-17 ║
+║ 10372       ║ 2005-01-26 ║
+║ 10372       ║ 2005-01-26 ║
+║ 10373       ║ 2005-01-31 ║
+║ 10373       ║ 2005-01-31 ║
+║ 10373       ║ 2005-01-31 ║
+║ 10373       ║ 2005-01-31 ║
+║ 10373       ║ 2005-01-31 ║
+║ 10373       ║ 2005-01-31 ║
+║ 10373       ║ 2005-01-31 ║
+║ 10384       ║ 2005-02-23 ║
+║ 10384       ║ 2005-02-23 ║
+║ 10385       ║ 2005-02-28 ║
+║ 10386       ║ 2005-03-01 ║
+║ 10386       ║ 2005-03-01 ║
+║ 10386       ║ 2005-03-01 ║
+║ 10386       ║ 2005-03-01 ║
+║ 10386       ║ 2005-03-01 ║
+║ 10386       ║ 2005-03-01 ║
+║ 10396       ║ 2005-03-23 ║
+║ 10396       ║ 2005-03-23 ║
+║ 10397       ║ 2005-03-28 ║
+║ 10397       ║ 2005-03-28 ║
+║ 10397       ║ 2005-03-28 ║
+║ 10397       ║ 2005-03-28 ║
+║ 10397       ║ 2005-03-28 ║
+║ 10398       ║ 2005-03-30 ║
+║ 10398       ║ 2005-03-30 ║
+║ 10400       ║ 2005-04-01 ║
+║ 10400       ║ 2005-04-01 ║
+║ 10414       ║ 2005-05-06 ║
+║ 10414       ║ 2005-05-06 ║
+║ 10414       ║ 2005-05-06 ║
+║ 10414       ║ 2005-05-06 ║
+║ 10414       ║ 2005-05-06 ║
+║ 10414       ║ 2005-05-06 ║
+║ 10414       ║ 2005-05-06 ║
+║ 10414       ║ 2005-05-06 ║
+║ 10415       ║ 2005-05-09 ║
+╚═════════════╩════════════╝
+245 rows in set
+Time: 0.033s

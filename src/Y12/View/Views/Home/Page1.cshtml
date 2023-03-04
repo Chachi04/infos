@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Page 1</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- <link href="css/style.css" rel="stylesheet"> -->
+  </head>
+  <body>
+    <form action="/home/page2">
+      <label for="guess">Points:</label>
+      <input type="text" name="points" value="" />
+      <button type="submit">Submit</button>
+    </form>
+    <img
+      src="https://imgs.search.brave.com/PXt2k8jRxddyXskSd1EIiS1lWtB9ATdiBthXi18YjRE/rs:fit:286:225:1/g:ce/aHR0cHM6Ly90c2Ux/Lm1tLmJpbmcubmV0/L3RoP2lkPU9JUC5T/NGF0Zl9sZ0dlSXg5/d0dXLTJSRm9BSGFN/UiZwaWQ9QXBp"
+      alt=""
+    />
+    <p>Address: @ViewBag.address</p>
+    <p>Country: @ViewBag.country</p>
+    <p>Country: @ViewData["phone"]</p>
+    @{var x = 1;}
+    <p>x = @x</p>
+    @{var auth =false;} @if (auth) {
+    <p>Authenticated</p>
+    } else {
+    <p>Not Authenticated</p>
+    } @for(int i = 0; i < 10; i++) {
+    <text>@i</text>
+    } @for(int i = 0; i<10; i++) { 
+    int blue = 25*1;
+    String blueHex = blue.ToString("X2");
+    String color = "#00FF" + blueHex;
+    String msg = "";
+    msg+= "<span style='color: " + color + "' >A</span >"; 
+    @Html.Raw(msg)}
+  </body>
+</html>

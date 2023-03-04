@@ -1,0 +1,2101 @@
+Connecting to socket /var/run/mysqld/mysqld.sock, owned by user mysql
+
+-- 1
+# 2023-01-10 12:28:41.344895
+select count(*) from orders where `orderDate` like "2003-03-%";
+╔══════════╗
+║ count(*) ║
+╠══════════╣
+║ 6        ║
+╚══════════╝
+1 row in set
+Time: 0.009s
+
+# 2023-01-10 12:29:00.003055
+-- 2
+Query OK, 0 rows affected
+Time: 0.000s
+
+# 2023-01-10 12:30:23.265249
+select sum(amount) from orderdetails inner join orders using(`orderNumber`) where status="Cancelled";
+(1054, "Unknown column 'amount' in 'field list'")
+
+# 2023-01-10 12:30:47.766938
+select sum(`quantityOrdered` * `priceEach`) from orderdetails inner join orders using(`orderNumber`) where status="Cancelled";
+╔══════════════════════════════════════╗
+║ sum(`quantityOrdered` * `priceEach`) ║
+╠══════════════════════════════════════╣
+║ 238854.18                            ║
+╚══════════════════════════════════════╝
+1 row in set
+Time: 0.008s
+
+# 2023-01-10 12:31:09.982743
+select sum(`quantityOrdered` * `priceEach`) from orderdetails inner join orders using(`orderNumber`) where status="Cancelled" and `orderDate` = "2004%";
+╔══════════════════════════════════════╗
+║ sum(`quantityOrdered` * `priceEach`) ║
+╠══════════════════════════════════════╣
+║ <null>                               ║
+╚══════════════════════════════════════╝
+1 row in set
+Time: 0.009s
+
+# 2023-01-10 12:31:17.728083
+select sum(`quantityOrdered` * `priceEach`) from orderdetails inner join orders using(`orderNumber`) where status="Cancelled" and `orderDate` like "2004%";
+╔══════════════════════════════════════╗
+║ sum(`quantityOrdered` * `priceEach`) ║
+╠══════════════════════════════════════╣
+║ 171723.49                            ║
+╚══════════════════════════════════════╝
+1 row in set
+Time: 0.010s
+
+# 2023-01-10 12:32:07.856480
+select sum(`quantityOrdered` * `priceEach`) from orders inner join orderdetails using(`orderNumber`) where status="Cancelled" and `orderDate` like "2004%";
+╔══════════════════════════════════════╗
+║ sum(`quantityOrdered` * `priceEach`) ║
+╠══════════════════════════════════════╣
+║ 171723.49                            ║
+╚══════════════════════════════════════╝
+1 row in set
+Time: 0.005s
+
+# 2023-01-10 12:32:31.267096
+-- 3;
+Query OK, 0 rows affected
+Time: 0.000s
+
+# 2023-01-10 12:33:05.590295
+select count(*) from payments where `paymentDate` like "2003%";
+╔══════════╗
+║ count(*) ║
+╠══════════╣
+║ 100      ║
+╚══════════╝
+1 row in set
+Time: 0.006s
+
+# 2023-01-10 12:33:10.451167
+-- 4;
+Query OK, 0 rows affected
+Time: 0.000s
+
+# 2023-01-10 12:34:44.038590
+select customerNumber, count(`checkNumber`) from customers
+inner join payments using(`customerNumber`)
+group by customerNumber
+having `paymentDate` like "2004%";
+(1054, "Unknown column 'paymentDate' in 'having clause'")
+
+# 2023-01-10 12:35:07.621568
+select customerNumber, count(`checkNumber`) from customers
+inner join payments using(`customerNumber`)
+having `paymentDate` like "2004%"
+group by customerNumber;
+(1064, "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'group by customerNumber' at line 4")
+
+# 2023-01-10 12:35:43.703957
+select customerNumber, count(`checkNumber`) from customers
+inner join payments using(`customerNumber`)
+having `paymentDate` like "2004%";
+(1054, "Unknown column 'paymentDate' in 'having clause'")
+
+# 2023-01-10 12:35:59.624713
+select customerNumber, count(`checkNumber`) from customers
+inner join payments using(`customerNumber`)
+where `paymentDate` like "2004%"
+group by customerNumber;
+╔════════════════╦══════════════════════╗
+║ customerNumber ║ count(`checkNumber`) ║
+╠════════════════╬══════════════════════╣
+║ 103            ║ 2                    ║
+║ 112            ║ 2                    ║
+║ 114            ║ 2                    ║
+║ 119            ║ 2                    ║
+║ 121            ║ 2                    ║
+║ 124            ║ 4                    ║
+║ 128            ║ 2                    ║
+║ 129            ║ 1                    ║
+║ 131            ║ 2                    ║
+║ 141            ║ 6                    ║
+║ 144            ║ 1                    ║
+║ 145            ║ 3                    ║
+║ 146            ║ 2                    ║
+║ 148            ║ 1                    ║
+║ 151            ║ 2                    ║
+║ 157            ║ 2                    ║
+║ 161            ║ 1                    ║
+║ 166            ║ 3                    ║
+║ 167            ║ 1                    ║
+║ 171            ║ 1                    ║
+║ 172            ║ 2                    ║
+║ 173            ║ 2                    ║
+║ 175            ║ 1                    ║
+║ 177            ║ 2                    ║
+║ 181            ║ 2                    ║
+║ 186            ║ 1                    ║
+║ 187            ║ 2                    ║
+║ 189            ║ 2                    ║
+║ 198            ║ 2                    ║
+║ 201            ║ 1                    ║
+║ 202            ║ 1                    ║
+║ 204            ║ 2                    ║
+║ 209            ║ 2                    ║
+║ 216            ║ 1                    ║
+║ 227            ║ 1                    ║
+║ 233            ║ 1                    ║
+║ 239            ║ 1                    ║
+║ 240            ║ 2                    ║
+║ 249            ║ 2                    ║
+║ 250            ║ 1                    ║
+║ 256            ║ 2                    ║
+║ 259            ║ 1                    ║
+║ 260            ║ 2                    ║
+║ 278            ║ 1                    ║
+║ 282            ║ 1                    ║
+║ 286            ║ 2                    ║
+║ 298            ║ 2                    ║
+║ 299            ║ 1                    ║
+║ 311            ║ 1                    ║
+║ 314            ║ 2                    ║
+║ 319            ║ 1                    ║
+║ 323            ║ 2                    ║
+║ 324            ║ 1                    ║
+║ 328            ║ 2                    ║
+║ 334            ║ 1                    ║
+║ 339            ║ 1                    ║
+║ 344            ║ 1                    ║
+║ 347            ║ 1                    ║
+║ 350            ║ 1                    ║
+║ 357            ║ 1                    ║
+║ 362            ║ 2                    ║
+║ 363            ║ 1                    ║
+║ 379            ║ 1                    ║
+║ 381            ║ 1                    ║
+║ 382            ║ 2                    ║
+║ 385            ║ 1                    ║
+║ 386            ║ 1                    ║
+║ 398            ║ 2                    ║
+║ 406            ║ 2                    ║
+║ 412            ║ 2                    ║
+║ 415            ║ 1                    ║
+║ 424            ║ 1                    ║
+║ 447            ║ 1                    ║
+║ 448            ║ 1                    ║
+║ 450            ║ 1                    ║
+║ 455            ║ 1                    ║
+║ 456            ║ 2                    ║
+║ 458            ║ 2                    ║
+║ 462            ║ 1                    ║
+║ 471            ║ 1                    ║
+║ 473            ║ 1                    ║
+║ 475            ║ 1                    ║
+║ 484            ║ 1                    ║
+║ 486            ║ 2                    ║
+║ 487            ║ 1                    ║
+║ 489            ║ 1                    ║
+║ 495            ║ 1                    ║
+║ 496            ║ 1                    ║
+╚════════════════╩══════════════════════╝
+88 rows in set
+Time: 0.010s
+
+# 2023-01-10 12:36:15.703748
+-- 5;
+Query OK, 0 rows affected
+Time: 0.000s
+
+# 2023-01-10 12:37:22.516851
+select country, sum(amount) as amount from payments
+inner join customers using(`customerNumber`)
+group by country;
+╔═════════════╦════════════╗
+║ country     ║ amount     ║
+╠═════════════╬════════════╣
+║ Australia   ║ 509385.82  ║
+║ Austria     ║ 136119.99  ║
+║ Belgium     ║ 91471.03   ║
+║ Canada      ║ 205911.86  ║
+║ Denmark     ║ 197356.30  ║
+║ Finland     ║ 295149.35  ║
+║ France      ║ 965750.58  ║
+║ Germany     ║ 196470.99  ║
+║ Hong Kong   ║ 45480.79   ║
+║ Ireland     ║ 49898.27   ║
+║ Italy       ║ 325254.55  ║
+║ Japan       ║ 167909.95  ║
+║ New Zealand ║ 392486.59  ║
+║ Norway      ║ 270846.30  ║
+║ Philippines ║ 87468.30   ║
+║ Singapore   ║ 261671.60  ║
+║ Spain       ║ 994438.53  ║
+║ Sweden      ║ 120457.09  ║
+║ Switzerland ║ 108777.92  ║
+║ UK          ║ 391503.90  ║
+║ USA         ║ 3040029.52 ║
+╚═════════════╩════════════╝
+21 rows in set
+Time: 0.009s
+
+# 2023-01-10 12:37:27.451400
+-- 6;
+Query OK, 0 rows affected
+Time: 0.000s
+
+# 2023-01-10 12:40:42.485183
+select customerNumber, sum(creditlimit)
+from customers
+where country = "Poland"
+group by country;
+╔════════════════╦══════════════════╗
+║ customerNumber ║ sum(creditlimit) ║
+╠════════════════╬══════════════════╣
+║ 125            ║ 0.00             ║
+╚════════════════╩══════════════════╝
+1 row in set
+Time: 0.004s
+
+# 2023-01-10 12:41:09.645834
+select sum(creditlimit) sum_credit_limit_Poland
+from customers
+where country = "Poland"
+group by country;
+╔═════════════════════════╗
+║ sum_credit_limit_Poland ║
+╠═════════════════════════╣
+║ 0.00                    ║
+╚═════════════════════════╝
+1 row in set
+Time: 0.007s
+
+# 2023-01-10 12:43:01.923509
+select sum(creditlimit) sum_credit_limit_Poland
+from customers
+where country = "Poland";
+╔═════════════════════════╗
+║ sum_credit_limit_Poland ║
+╠═════════════════════════╣
+║ 0.00                    ║
+╚═════════════════════════╝
+1 row in set
+Time: 0.007s
+
+# 2023-01-10 12:43:24.925213
+select sum(creditlimit) sum_credit_limit_Poland
+from customers
+group by country
+having country = "Poland";
+╔═════════════════════════╗
+║ sum_credit_limit_Poland ║
+╠═════════════════════════╣
+║ 0.00                    ║
+╚═════════════════════════╝
+1 row in set
+Time: 0.007s
+
+# 2023-01-10 12:43:35.517091
+select distinct country from customers;
+╔══════════════╗
+║ country      ║
+╠══════════════╣
+║ France       ║
+║ USA          ║
+║ Australia    ║
+║ Norway       ║
+║ Poland       ║
+║ Germany      ║
+║ Spain        ║
+║ Sweden       ║
+║ Denmark      ║
+║ Singapore    ║
+║ Portugal     ║
+║ Japan        ║
+║ Finland      ║
+║ UK           ║
+║ Ireland      ║
+║ Canada       ║
+║ Hong Kong    ║
+║ Italy        ║
+║ Switzerland  ║
+║ Netherlands  ║
+║ Belgium      ║
+║ New Zealand  ║
+║ South Africa ║
+║ Austria      ║
+║ Philippines  ║
+║ Russia       ║
+║ Israel       ║
+╚══════════════╝
+27 rows in set
+Time: 0.007s
+
+# 2023-01-10 12:43:59.218157
+select creditlimit from customers where country = "Poland";
+╔═════════════╗
+║ creditlimit ║
+╠═════════════╣
+║ 0.00        ║
+╚═════════════╝
+1 row in set
+Time: 0.006s
+
+# 2023-01-10 12:44:45.704285
+select * from customers where country = "Poland";
+╔════════════════╦════════════════════╦═════════════════╦══════════════════╦═══════════════╦═════════════════╦══════════════╦══════════╦════════╦════════════╦═════════╦════════════════════════╦═════════════╗
+║ customerNumber ║ customerName       ║ contactLastName ║ contactFirstName ║ phone         ║ addressLine1    ║ addressLine2 ║ city     ║ state  ║ postalCode ║ country ║ salesRepEmployeeNumber ║ creditLimit ║
+╠════════════════╬════════════════════╬═════════════════╬══════════════════╬═══════════════╬═════════════════╬══════════════╬══════════╬════════╬════════════╬═════════╬════════════════════════╬═════════════╣
+║ 125            ║ Havel & Zbyszek Co ║ Piestrzeniewicz ║ Zbyszek          ║ (26) 642-7555 ║ ul. Filtrowa 68 ║ <null>       ║ Warszawa ║ <null> ║ 01-012     ║ Poland  ║ <null>                 ║ 0.00        ║
+╚════════════════╩════════════════════╩═════════════════╩══════════════════╩═══════════════╩═════════════════╩══════════════╩══════════╩════════╩════════════╩═════════╩════════════════════════╩═════════════╝
+1 row in set
+Time: 0.008s
+
+# 2023-01-10 12:45:33.436009
+-- 7;
+Query OK, 0 rows affected
+Time: 0.000s
+
+# 2023-01-10 12:49:12.293671
+select customerNumber, creditlimit, sum(amount)
+from customers
+left join payments using(`customerNumber`)
+group by customerNumber;
+╔════════════════╦═════════════╦═════════════╗
+║ customerNumber ║ creditlimit ║ sum(amount) ║
+╠════════════════╬═════════════╬═════════════╣
+║ 103            ║ 21000.00    ║ 22314.36    ║
+║ 112            ║ 71800.00    ║ 80180.98    ║
+║ 114            ║ 117300.00   ║ 180585.07   ║
+║ 119            ║ 118200.00   ║ 116949.68   ║
+║ 121            ║ 81700.00    ║ 104224.79   ║
+║ 124            ║ 210500.00   ║ 584188.24   ║
+║ 125            ║ 0.00        ║ <null>      ║
+║ 128            ║ 59700.00    ║ 75937.76    ║
+║ 129            ║ 64600.00    ║ 66710.56    ║
+║ 131            ║ 114900.00   ║ 107639.94   ║
+║ 141            ║ 227600.00   ║ 715738.98   ║
+║ 144            ║ 53100.00    ║ 43680.65    ║
+║ 145            ║ 83400.00    ║ 107446.50   ║
+║ 146            ║ 123900.00   ║ 130305.35   ║
+║ 148            ║ 103800.00   ║ 156251.03   ║
+║ 151            ║ 138500.00   ║ 177913.95   ║
+║ 157            ║ 100600.00   ║ 98509.25    ║
+║ 161            ║ 84600.00    ║ 104545.22   ║
+║ 166            ║ 97900.00    ║ 105420.57   ║
+║ 167            ║ 96800.00    ║ 97562.47    ║
+║ 168            ║ 0.00        ║ <null>      ║
+║ 169            ║ 0.00        ║ <null>      ║
+║ 171            ║ 82900.00    ║ 61781.70    ║
+║ 172            ║ 84300.00    ║ 86553.52    ║
+║ 173            ║ 43400.00    ║ 32198.69    ║
+║ 175            ║ 84300.00    ║ 95424.63    ║
+║ 177            ║ 81200.00    ║ 62361.22    ║
+║ 181            ║ 76400.00    ║ 72497.64    ║
+║ 186            ║ 96500.00    ║ 95546.46    ║
+║ 187            ║ 136800.00   ║ 148410.09   ║
+║ 189            ║ 69400.00    ║ 49898.27    ║
+║ 198            ║ 23000.00    ║ 21554.26    ║
+║ 201            ║ 92700.00    ║ 61167.18    ║
+║ 202            ║ 90300.00    ║ 70122.19    ║
+║ 204            ║ 68700.00    ║ 55577.26    ║
+║ 205            ║ 90700.00    ║ 93803.30    ║
+║ 206            ║ 0.00        ║ <null>      ║
+║ 209            ║ 53800.00    ║ 75859.32    ║
+║ 211            ║ 58600.00    ║ 45480.79    ║
+║ 216            ║ 60300.00    ║ 68520.47    ║
+║ 219            ║ 11000.00    ║ 7918.60     ║
+║ 223            ║ 0.00        ║ <null>      ║
+║ 227            ║ 120800.00   ║ 89909.80    ║
+║ 233            ║ 48700.00    ║ 68977.67    ║
+║ 237            ║ 0.00        ║ <null>      ║
+║ 239            ║ 105000.00   ║ 80375.24    ║
+║ 240            ║ 93900.00    ║ 71783.75    ║
+║ 242            ║ 61100.00    ║ 60483.36    ║
+║ 247            ║ 0.00        ║ <null>      ║
+║ 249            ║ 113000.00   ║ 82223.23    ║
+║ 250            ║ 68100.00    ║ 67659.19    ║
+║ 256            ║ 77900.00    ║ 58876.41    ║
+║ 259            ║ 120400.00   ║ 89223.14    ║
+║ 260            ║ 89600.00    ║ 66812.00    ║
+║ 273            ║ 0.00        ║ <null>      ║
+║ 276            ║ 107800.00   ║ 137034.22   ║
+║ 278            ║ 119600.00   ║ 127529.69   ║
+║ 282            ║ 93300.00    ║ 91655.61    ║
+║ 286            ║ 123700.00   ║ 90545.37    ║
+║ 293            ║ 0.00        ║ <null>      ║
+║ 298            ║ 141300.00   ║ 108777.92   ║
+║ 299            ║ 95100.00    ║ 69059.04    ║
+║ 303            ║ 0.00        ║ <null>      ║
+║ 307            ║ 0.00        ║ <null>      ║
+║ 311            ║ 90500.00    ║ 95706.15    ║
+║ 314            ║ 79900.00    ║ 62253.85    ║
+║ 319            ║ 102700.00   ║ 78432.16    ║
+║ 320            ║ 94500.00    ║ 101872.52   ║
+║ 321            ║ 105000.00   ║ 132340.78   ║
+║ 323            ║ 88000.00    ║ 154622.08   ║
+║ 324            ║ 77000.00    ║ 80556.73    ║
+║ 328            ║ 43000.00    ║ 38281.51    ║
+║ 333            ║ 51600.00    ║ 55190.16    ║
+║ 334            ║ 98800.00    ║ 103896.74   ║
+║ 335            ║ 0.00        ║ <null>      ║
+║ 339            ║ 81100.00    ║ 57939.34    ║
+║ 344            ║ 59600.00    ║ 46751.14    ║
+║ 347            ║ 57700.00    ║ 41506.19    ║
+║ 348            ║ 0.00        ║ <null>      ║
+║ 350            ║ 65000.00    ║ 71547.53    ║
+║ 353            ║ 81100.00    ║ 126983.19   ║
+║ 356            ║ 0.00        ║ <null>      ║
+║ 357            ║ 77700.00    ║ 56662.38    ║
+║ 361            ║ 0.00        ║ <null>      ║
+║ 362            ║ 41900.00    ║ 33533.47    ║
+║ 363            ║ 114200.00   ║ 116449.29   ║
+║ 369            ║ 0.00        ║ <null>      ║
+║ 376            ║ 0.00        ║ <null>      ║
+║ 379            ║ 70700.00    ║ 73533.65    ║
+║ 381            ║ 23500.00    ║ 29217.18    ║
+║ 382            ║ 71700.00    ║ 85060.00    ║
+║ 385            ║ 81500.00    ║ 87468.30    ║
+║ 386            ║ 121400.00   ║ 90143.31    ║
+║ 398            ║ 94400.00    ║ 105548.73   ║
+║ 406            ║ 95000.00    ║ 86436.97    ║
+║ 409            ║ 0.00        ║ <null>      ║
+║ 412            ║ 86800.00    ║ 66704.94    ║
+║ 415            ║ 77000.00    ║ 31310.09    ║
+║ 424            ║ 67500.00    ║ 69214.33    ║
+║ 443            ║ 0.00        ║ <null>      ║
+║ 447            ║ 49700.00    ║ 49967.78    ║
+║ 448            ║ 116400.00   ║ 76776.44    ║
+║ 450            ║ 77600.00    ║ 59551.38    ║
+║ 452            ║ 45300.00    ║ 51059.99    ║
+║ 455            ║ 95400.00    ║ 70378.65    ║
+║ 456            ║ 39800.00    ║ 29230.43    ║
+║ 458            ║ 104600.00   ║ 112440.09   ║
+║ 459            ║ 0.00        ║ <null>      ║
+║ 462            ║ 85800.00    ║ 88627.49    ║
+║ 465            ║ 0.00        ║ <null>      ║
+║ 471            ║ 60300.00    ║ 44920.76    ║
+║ 473            ║ 34800.00    ║ 25358.32    ║
+║ 475            ║ 55400.00    ║ 43748.72    ║
+║ 477            ║ 0.00        ║ <null>      ║
+║ 480            ║ 0.00        ║ <null>      ║
+║ 481            ║ 0.00        ║ <null>      ║
+║ 484            ║ 65700.00    ║ 50987.85    ║
+║ 486            ║ 72600.00    ║ 77726.59    ║
+║ 487            ║ 60300.00    ║ 42570.37    ║
+║ 489            ║ 43300.00    ║ 29586.15    ║
+║ 495            ║ 85100.00    ║ 65541.74    ║
+║ 496            ║ 110000.00   ║ 114497.19   ║
+╚════════════════╩═════════════╩═════════════╝
+122 rows in set
+Time: 0.023s
+
+# 2023-01-10 12:49:46.747604
+-- 8;
+Query OK, 0 rows affected
+Time: 0.000s
+
+# 2023-01-10 12:51:30.725520
+select count(*) count_of_orders_from_USA from orders
+inner join customers using(`customerNumber`)
+where country = "USA";
+╔══════════════════════════╗
+║ count_of_orders_from_USA ║
+╠══════════════════════════╣
+║ 112                      ║
+╚══════════════════════════╝
+1 row in set
+Time: 0.008s
+
+# 2023-01-10 12:51:36.889560
+select count(*) count_of_orders_from_USA from orders
+inner join customers using(`customerNumber`)
+where country = "Germany";
+╔══════════════════════════╗
+║ count_of_orders_from_USA ║
+╠══════════════════════════╣
+║ 7                        ║
+╚══════════════════════════╝
+1 row in set
+Time: 0.007s
+
+# 2023-01-10 12:51:49.381203
+-- 9;
+Query OK, 0 rows affected
+Time: 0.000s
+
+# 2023-01-10 12:52:48.684890
+select count(*) people_with_limit_gt_200K
+from customers
+where `creditLimit` > 200000;
+╔═══════════════════════════╗
+║ people_with_limit_gt_200K ║
+╠═══════════════════════════╣
+║ 2                         ║
+╚═══════════════════════════╝
+1 row in set
+Time: 0.007s
+
+# 2023-01-10 12:52:58.328940
+-- 10;
+Query OK, 0 rows affected
+Time: 0.000s
+
+# 2023-01-10 12:53:09.796371
+select count(*) people_with_limit_0
+from customers
+where `creditLimit` = 0;
+╔═════════════════════╗
+║ people_with_limit_0 ║
+╠═════════════════════╣
+║ 24                  ║
+╚═════════════════════╝
+1 row in set
+Time: 0.004s
+
+# 2023-01-10 12:53:16.719973
+-- 11;
+Query OK, 0 rows affected
+Time: 0.000s
+
+# 2023-01-10 12:53:46.714552
+select count(*) from orders where `orderDate` is "2003-07-05";
+(1064, 'You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near \'"2003-07-05"\' at line 1')
+
+# 2023-01-10 12:53:50.858830
+select count(*) from orders where `orderDate` = "2003-07-05";
+╔══════════╗
+║ count(*) ║
+╠══════════╣
+║ 0        ║
+╚══════════╝
+1 row in set
+Time: 0.007s
+
+# 2023-01-10 12:53:56.356191
+-- 12;
+Query OK, 0 rows affected
+Time: 0.000s
+
+# 2023-01-10 12:54:13.702821
+select count(*) from orders where comments is not null;
+╔══════════╗
+║ count(*) ║
+╠══════════╣
+║ 80       ║
+╚══════════╝
+1 row in set
+Time: 0.007s
+
+# 2023-01-10 12:54:18.808277
+-- 13;
+Query OK, 0 rows affected
+Time: 0.000s
+
+# 2023-01-10 12:55:10.162760
+select avg(quantityOrdered * priceEach) from orderdetails;
+╔══════════════════════════════════╗
+║ avg(quantityOrdered * priceEach) ║
+╠══════════════════════════════════╣
+║ 3205.671098                      ║
+╚══════════════════════════════════╝
+1 row in set
+Time: 0.008s
+
+# 2023-01-10 12:55:17.090141
+-- 14;
+Query OK, 0 rows affected
+Time: 0.000s
+
+# 2023-01-10 12:55:37.781798
+select avg(quantityOrdered) from orderdetails;
+╔══════════════════════╗
+║ avg(quantityOrdered) ║
+╠══════════════════════╣
+║ 35.2190              ║
+╚══════════════════════╝
+1 row in set
+Time: 0.007s
+
+# 2023-01-10 12:55:43.704913
+-- 15;
+Query OK, 0 rows affected
+Time: 0.000s
+
+# 2023-01-10 12:57:31.996072
+select avg(quantity) from (sum(quantityOrdered) quantity from orderdetails group by orderNumber) as tmp;
+(1064, "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'sum(quantityOrdered) quantity from orderdetails group by orderNumber) as tmp' at line 1")
+
+# 2023-01-10 12:58:30.524331
+select avg(quantity) from (sum(quantityOrdered) as quantity from orderdetails group by orderNumber) as tmp;
+(1064, "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'sum(quantityOrdered) as quantity from orderdetails group by orderNumber) as tmp' at line 1")
+
+# 2023-01-10 12:58:46.499824
+select avg(quantity) from (sum(quantityOrdered) as quantity from orderdetails group by orderNumber);
+(1064, "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'sum(quantityOrdered) as quantity from orderdetails group by orderNumber)' at line 1")
+
+# 2023-01-10 12:59:00.349582
+select avg(quantity) from (select sum(quantityOrdered) quantity from orderdetails group by orderNumber) as tmp;
+╔═══════════════╗
+║ avg(quantity) ║
+╠═══════════════╣
+║ 323.6687      ║
+╚═══════════════╝
+1 row in set
+Time: 0.011s
+
+# 2023-01-10 13:00:15.675677
+(select sum(quantityOrdered) quantity from orderdetails group by orderNumber) as tmp;
+(1064, "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'as tmp' at line 1")
+
+# 2023-01-10 13:00:27.782630
+select sum(quantityOrdered) quantity from orderdetails group by orderNumber;
+╔══════════╗
+║ quantity ║
+╠══════════╣
+║ 151      ║
+║ 142      ║
+║ 80       ║
+║ 541      ║
+║ 443      ║
+║ 545      ║
+║ 675      ║
+║ 229      ║
+║ 561      ║
+║ 212      ║
+║ 570      ║
+║ 217      ║
+║ 52       ║
+║ 143      ║
+║ 351      ║
+║ 210      ║
+║ 27       ║
+║ 402      ║
+║ 36       ║
+║ 442      ║
+║ 525      ║
+║ 185      ║
+║ 545      ║
+║ 156      ║
+║ 448      ║
+║ 66       ║
+║ 617      ║
+║ 540      ║
+║ 157      ║
+║ 349      ║
+║ 73       ║
+║ 244      ║
+║ 36       ║
+║ 286      ║
+║ 227      ║
+║ 607      ║
+║ 102      ║
+║ 138      ║
+║ 420      ║
+║ 266      ║
+║ 385      ║
+║ 290      ║
+║ 577      ║
+║ 524      ║
+║ 20       ║
+║ 563      ║
+║ 76       ║
+║ 341      ║
+║ 430      ║
+║ 367      ║
+║ 380      ║
+║ 342      ║
+║ 116      ║
+║ 458      ║
+║ 67       ║
+║ 454      ║
+║ 68       ║
+║ 216      ║
+║ 22       ║
+║ 585      ║
+║ 231      ║
+║ 358      ║
+║ 391      ║
+║ 225      ║
+║ 288      ║
+║ 670      ║
+║ 98       ║
+║ 550      ║
+║ 642      ║
+║ 444      ║
+║ 142      ║
+║ 145      ║
+║ 263      ║
+║ 480      ║
+║ 220      ║
+║ 432      ║
+║ 325      ║
+║ 377      ║
+║ 413      ║
+║ 288      ║
+║ 458      ║
+║ 522      ║
+║ 571      ║
+║ 391      ║
+║ 519      ║
+║ 520      ║
+║ 267      ║
+║ 395      ║
+║ 301      ║
+║ 28       ║
+║ 170      ║
+║ 317      ║
+║ 585      ║
+║ 447      ║
+║ 396      ║
+║ 385      ║
+║ 316      ║
+║ 503      ║
+║ 242      ║
+║ 115      ║
+║ 201      ║
+║ 214      ║
+║ 271      ║
+║ 391      ║
+║ 619      ║
+║ 180      ║
+║ 355      ║
+║ 615      ║
+║ 530      ║
+║ 269      ║
+║ 577      ║
+║ 530      ║
+║ 612      ║
+║ 90       ║
+║ 241      ║
+║ 396      ║
+║ 43       ║
+║ 240      ║
+║ 56       ║
+║ 147      ║
+║ 289      ║
+║ 167      ║
+║ 717      ║
+║ 497      ║
+║ 241      ║
+║ 483      ║
+║ 237      ║
+║ 502      ║
+║ 194      ║
+║ 476      ║
+║ 338      ║
+║ 91       ║
+║ 272      ║
+║ 105      ║
+║ 354      ║
+║ 390      ║
+║ 81       ║
+║ 239      ║
+║ 280      ║
+║ 163      ║
+║ 115      ║
+║ 382      ║
+║ 46       ║
+║ 80       ║
+║ 301      ║
+║ 320      ║
+║ 399      ║
+║ 233      ║
+║ 454      ║
+║ 163      ║
+║ 521      ║
+║ 286      ║
+║ 312      ║
+║ 429      ║
+║ 469      ║
+║ 61       ║
+║ 63       ║
+║ 208      ║
+║ 200      ║
+║ 454      ║
+║ 308      ║
+║ 287      ║
+║ 605      ║
+║ 411      ║
+║ 253      ║
+║ 94       ║
+║ 495      ║
+║ 244      ║
+║ 402      ║
+║ 80       ║
+║ 374      ║
+║ 393      ║
+║ 214      ║
+║ 518      ║
+║ 161      ║
+║ 601      ║
+║ 527      ║
+║ 28       ║
+║ 318      ║
+║ 236      ║
+║ 551      ║
+║ 449      ║
+║ 447      ║
+║ 483      ║
+║ 418      ║
+║ 474      ║
+║ 38       ║
+║ 595      ║
+║ 475      ║
+║ 150      ║
+║ 71       ║
+║ 493      ║
+║ 416      ║
+║ 292      ║
+║ 45       ║
+║ 174      ║
+║ 401      ║
+║ 201      ║
+║ 71       ║
+║ 382      ║
+║ 251      ║
+║ 369      ║
+║ 246      ║
+║ 70       ║
+║ 594      ║
+║ 502      ║
+║ 587      ║
+║ 277      ║
+║ 544      ║
+║ 190      ║
+║ 619      ║
+║ 383      ║
+║ 601      ║
+║ 348      ║
+║ 524      ║
+║ 244      ║
+║ 623      ║
+║ 35       ║
+║ 372      ║
+║ 335      ║
+║ 155      ║
+║ 490      ║
+║ 512      ║
+║ 80       ║
+║ 468      ║
+║ 329      ║
+║ 223      ║
+║ 253      ║
+║ 495      ║
+║ 532      ║
+║ 158      ║
+║ 437      ║
+║ 621      ║
+║ 261      ║
+║ 217      ║
+║ 117      ║
+║ 447      ║
+║ 285      ║
+║ 114      ║
+║ 614      ║
+║ 343      ║
+║ 411      ║
+║ 420      ║
+║ 191      ║
+║ 211      ║
+║ 43       ║
+║ 163      ║
+║ 418      ║
+║ 305      ║
+║ 372      ║
+║ 554      ║
+║ 156      ║
+║ 143      ║
+║ 346      ║
+║ 384      ║
+║ 338      ║
+║ 301      ║
+║ 391      ║
+║ 484      ║
+║ 290      ║
+║ 620      ║
+║ 429      ║
+║ 117      ║
+║ 508      ║
+║ 48       ║
+║ 96       ║
+║ 117      ║
+║ 469      ║
+║ 183      ║
+║ 293      ║
+║ 256      ║
+║ 382      ║
+║ 321      ║
+║ 605      ║
+║ 209      ║
+║ 560      ║
+║ 35       ║
+║ 215      ║
+║ 377      ║
+║ 159      ║
+║ 438      ║
+║ 317      ║
+║ 451      ║
+║ 416      ║
+║ 154      ║
+║ 62       ║
+║ 650      ║
+║ 44       ║
+║ 315      ║
+║ 316      ║
+║ 603      ║
+║ 339      ║
+║ 102      ║
+║ 355      ║
+║ 239      ║
+║ 156      ║
+║ 287      ║
+║ 172      ║
+║ 629      ║
+║ 319      ║
+║ 356      ║
+║ 597      ║
+║ 159      ║
+║ 371      ║
+║ 447      ║
+║ 336      ║
+║ 174      ║
+║ 571      ║
+║ 15       ║
+║ 67       ║
+║ 424      ║
+║ 285      ║
+║ 455      ║
+║ 229      ║
+║ 609      ║
+║ 164      ║
+║ 460      ║
+║ 259      ║
+║ 299      ║
+║ 509      ║
+║ 532      ║
+║ 75       ║
+║ 76       ║
+║ 111      ║
+║ 269      ║
+║ 427      ║
+╚══════════╝
+326 rows in set
+Time: 0.019s
+
+# 2023-01-10 13:01:10.466548
+-- 15;
+Query OK, 0 rows affected
+Time: 0.000s
+
+# 2023-01-10 13:01:41.702519
+select min(quantity) min, max(quantity) max from (select sum(quantityOrdered) quantity from orderdetails group by orderNumber) as tmp;
+╔═════╦═════╗
+║ min ║ max ║
+╠═════╬═════╣
+║ 15  ║ 717 ║
+╚═════╩═════╝
+1 row in set
+Time: 0.009s
+
+# 2023-01-10 13:02:05.547780
+-- 16;
+Query OK, 0 rows affected
+Time: 0.000s
+
+# 2023-01-10 13:03:48.891271
+select customerName, avg(amount) from (select customerName, sum(amount) from customers inner join payments using(`customerNumber`) group by customerNumber) as tmp;
+(1054, "Unknown column 'amount' in 'field list'")
+
+# 2023-01-10 13:03:56.807213
+select customerName, avg(amount) from (select customerName, sum(amount) amount from customers inner join payments using(`customerNumber`) group by customerNumber) as tmp;
+╔═══════════════════╦══════════════╗
+║ customerName      ║ avg(amount)  ║
+╠═══════════════════╬══════════════╣
+║ Atelier graphique ║ 90345.298265 ║
+╚═══════════════════╩══════════════╝
+1 row in set
+Time: 0.011s
+
+# 2023-01-10 13:04:28.128613
+select customerName, avg(amount) from (select customerName, sum(amount) amount from customers inner join payments using(`customerNumber`) group by customerNumber) as tmp group by customerNumber;;
+(1054, "Unknown column 'customerNumber' in 'group statement'")
+
+# 2023-01-10 13:04:30.508654
+select customerName, avg(amount) from (select customerName, sum(amount) amount from customers inner join payments using(`customerNumber`) group by customerNumber) as tmp group by customerNumber;
+(1054, "Unknown column 'customerNumber' in 'group statement'")
+
+# 2023-01-10 13:04:37.250881
+select customerName, avg(amount) from (select customerName, sum(amount) amount from customers inner join payments using(`customerNumber`) group by customerNumber) as tmp group by customerName;
+╔════════════════════════════════════╦═══════════════╗
+║ customerName                       ║ avg(amount)   ║
+╠════════════════════════════════════╬═══════════════╣
+║ Alpha Cognac                       ║ 60483.360000  ║
+║ Amica Models & Co.                 ║ 82223.230000  ║
+║ Anna's Decorations, Ltd            ║ 137034.220000 ║
+║ Atelier graphique                  ║ 22314.360000  ║
+║ Australian Collectables, Ltd       ║ 44920.760000  ║
+║ Australian Collectors, Co.         ║ 180585.070000 ║
+║ Australian Gift Network, Co        ║ 55190.160000  ║
+║ Auto Associés & Cie.               ║ 58876.410000  ║
+║ Auto Canal+ Petit                  ║ 86436.970000  ║
+║ Auto-Moto Classics Inc.            ║ 21554.260000  ║
+║ AV Stores, Co.                     ║ 148410.090000 ║
+║ Baane Mini Imports                 ║ 104224.790000 ║
+║ Bavarian Collectables Imports, Co. ║ 31310.090000  ║
+║ Blauer See Auto, Co.               ║ 75937.760000  ║
+║ Boards & Toys Co.                  ║ 7918.600000   ║
+║ CAF Imports                        ║ 46751.140000  ║
+║ Cambridge Collectables Co.         ║ 32198.690000  ║
+║ Canadian Gift Exchange Network     ║ 70122.190000  ║
+║ Classic Gift Ideas, Inc            ║ 57939.340000  ║
+║ Classic Legends Inc.               ║ 69214.330000  ║
+║ Clover Collections, Co.            ║ 49898.270000  ║
+║ Collectable Mini Designs Co.       ║ 80375.240000  ║
+║ Collectables For Less Inc.         ║ 73533.650000  ║
+║ Corporate Gift Ideas Co.           ║ 132340.780000 ║
+║ Corrida Auto Replicas, Ltd         ║ 112440.090000 ║
+║ Cruz & Sons Co.                    ║ 87468.300000  ║
+║ Daedalus Designs Imports           ║ 61781.700000  ║
+║ Danish Wholesale Imports           ║ 107446.500000 ║
+║ Diecast Classics Inc.              ║ 98509.250000  ║
+║ Diecast Collectables               ║ 65541.740000  ║
+║ Double Decker Gift Stores, Ltd     ║ 29586.150000  ║
+║ Down Under Souveniers, Inc         ║ 154622.080000 ║
+║ Dragon Souveniers, Ltd.            ║ 156251.030000 ║
+║ Enaco Distributors                 ║ 68520.470000  ║
+║ Euro+ Shopping Channel             ║ 715738.980000 ║
+║ Extreme Desk Decorations, Ltd      ║ 66704.940000  ║
+║ Frau da Collezione                 ║ 25358.320000  ║
+║ FunGiftIdeas.com                   ║ 88627.490000  ║
+║ Gift Depot Inc.                    ║ 95424.630000  ║
+║ Gift Ideas Corp.                   ║ 49967.780000  ║
+║ Gifts4AllAges.com                  ║ 33533.470000  ║
+║ giftsbymail.co.uk                  ║ 71783.750000  ║
+║ GiftsForHim.com                    ║ 56662.380000  ║
+║ Handji Gifts& Co                   ║ 105420.570000 ║
+║ Heintze Collectables               ║ 89909.800000  ║
+║ Herkku Gifts                       ║ 97562.470000  ║
+║ Iberia Gift Imports, Corp.         ║ 50987.850000  ║
+║ Kelly's Gift Shop                  ║ 114497.190000 ║
+║ King Kong Collectables, Co.        ║ 45480.790000  ║
+║ L'ordine Souveniers                ║ 90143.310000  ║
+║ La Corne D'abondance, Co.          ║ 86553.520000  ║
+║ La Rochelle Gifts                  ║ 116949.680000 ║
+║ Land of Toys Inc.                  ║ 107639.940000 ║
+║ Lyon Souveniers                    ║ 67659.190000  ║
+║ Marseille Mini Autos               ║ 71547.530000  ║
+║ Marta's Replicas Co.               ║ 90545.370000  ║
+║ Men 'R' US Retailers, Ltd.         ║ 41506.190000  ║
+║ Microscale Inc.                    ║ 29230.430000  ║
+║ Mini Auto Werke                    ║ 51059.990000  ║
+║ Mini Caravy                        ║ 75859.320000  ║
+║ Mini Classics                      ║ 78432.160000  ║
+║ Mini Creations Ltd.                ║ 101872.520000 ║
+║ Mini Gifts Distributors Ltd.       ║ 584188.240000 ║
+║ Mini Wheels Co.                    ║ 66710.560000  ║
+║ Motor Mint Distributors Inc.       ║ 77726.590000  ║
+║ Muscle Machine Inc                 ║ 177913.950000 ║
+║ Norway Gifts By Mail, Co.          ║ 69059.040000  ║
+║ Online Diecast Creations Co.       ║ 116449.290000 ║
+║ Online Mini Collectables           ║ 55577.260000  ║
+║ Osaka Souveniers Co.               ║ 62361.220000  ║
+║ Oulu Toy Supplies, Inc.            ║ 95706.150000  ║
+║ Petit Auto                         ║ 62253.850000  ║
+║ Québec Home Shopping Network       ║ 68977.670000  ║
+║ Reims Collectables                 ║ 126983.190000 ║
+║ Rovelli Gifts                      ║ 127529.690000 ║
+║ Royal Canadian Collectables, Ltd.  ║ 66812.000000  ║
+║ Royale Belge                       ║ 29217.180000  ║
+║ Salzburg Collectables              ║ 85060.000000  ║
+║ Saveley & Henriot, Co.             ║ 130305.350000 ║
+║ Scandinavian Gift Ideas            ║ 76776.440000  ║
+║ Signal Collectibles Ltd.           ║ 42570.370000  ║
+║ Signal Gift Stores                 ║ 80180.980000  ║
+║ Souveniers And Things Co.          ║ 91655.610000  ║
+║ Stylish Desk Decors, Co.           ║ 80556.730000  ║
+║ Suominen Souveniers                ║ 103896.740000 ║
+║ Super Scale Inc.                   ║ 70378.650000  ║
+║ Technics Stores Inc.               ║ 104545.220000 ║
+║ Tekni Collectables Inc.            ║ 38281.510000  ║
+║ The Sharp Gifts Warehouse          ║ 59551.380000  ║
+║ Tokyo Collectables, Ltd            ║ 105548.730000 ║
+║ Toms Spezialitäten, Ltd            ║ 89223.140000  ║
+║ Toys of Finland, Co.               ║ 95546.460000  ║
+║ Toys4GrownUps.com                  ║ 93803.300000  ║
+║ UK Collectables, Ltd.              ║ 61167.180000  ║
+║ Vida Sport, Ltd                    ║ 108777.920000 ║
+║ Vitachrome Inc.                    ║ 72497.640000  ║
+║ Volvo Model Replicas, Co           ║ 43680.650000  ║
+║ West Coast Collectables Co.        ║ 43748.720000  ║
+╚════════════════════════════════════╩═══════════════╝
+98 rows in set
+Time: 0.019s
+
+# 2023-01-10 13:04:50.423138
+-- 17;
+Query OK, 0 rows affected
+Time: 0.000s
+
+# 2023-01-10 13:09:48.541291
+select customername, orderNumber, amount, salesrepname
+from (
+select customername, count(orderNumber), sum(quantityOrdered * priceEach) as amount, salesrepemployeenumber
+from customers
+inner join orders using(`customerNumber`)
+inner join orderdetails using(`orderNumber`)
+group by customerNumber
+)
+group by customername;
+(1064, "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'group by customername' at line 9")
+
+# 2023-01-10 13:10:00.645865
+select customername, orderNumber, amount, salesrepname
+from (
+select customername, count(orderNumber), sum(quantityOrdered * priceEach) as amount, salesrepemployeenumber
+from customers
+inner join orders using(`customerNumber`)
+inner join orderdetails using(`orderNumber`)
+group by customerNumber
+)
+group by customerNumber;
+(1064, "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'group by customerNumber' at line 9")
+
+# 2023-01-10 13:10:27.903032
+select customername, count(orderNumber), sum(quantityOrdered * priceEach) as amount, salesrepemployeenumber
+from customers
+inner join orders using(`customerNumber`)
+inner join orderdetails using(`orderNumber`)
+group by customerNumber;
+╔════════════════════════════════════╦════════════════════╦═══════════╦════════════════════════╗
+║ customername                       ║ count(orderNumber) ║ amount    ║ salesrepemployeenumber ║
+╠════════════════════════════════════╬════════════════════╬═══════════╬════════════════════════╣
+║ Atelier graphique                  ║ 7                  ║ 22314.36  ║ 1370                   ║
+║ Signal Gift Stores                 ║ 29                 ║ 80180.98  ║ 1166                   ║
+║ Australian Collectors, Co.         ║ 55                 ║ 180585.07 ║ 1611                   ║
+║ La Rochelle Gifts                  ║ 53                 ║ 158573.12 ║ 1370                   ║
+║ Baane Mini Imports                 ║ 32                 ║ 104224.79 ║ 1504                   ║
+║ Mini Gifts Distributors Ltd.       ║ 180                ║ 591827.34 ║ 1165                   ║
+║ Blauer See Auto, Co.               ║ 22                 ║ 75937.76  ║ 1504                   ║
+║ Mini Wheels Co.                    ║ 21                 ║ 66710.56  ║ 1165                   ║
+║ Land of Toys Inc.                  ║ 49                 ║ 149085.15 ║ 1323                   ║
+║ Euro+ Shopping Channel             ║ 259                ║ 820689.54 ║ 1370                   ║
+║ Volvo Model Replicas, Co           ║ 19                 ║ 66694.82  ║ 1504                   ║
+║ Danish Wholesale Imports           ║ 36                 ║ 129085.12 ║ 1401                   ║
+║ Saveley & Henriot, Co.             ║ 41                 ║ 130305.35 ║ 1337                   ║
+║ Dragon Souveniers, Ltd.            ║ 43                 ║ 156251.03 ║ 1621                   ║
+║ Muscle Machine Inc                 ║ 48                 ║ 177913.95 ║ 1286                   ║
+║ Diecast Classics Inc.              ║ 31                 ║ 104358.69 ║ 1216                   ║
+║ Technics Stores Inc.               ║ 34                 ║ 104545.22 ║ 1165                   ║
+║ Handji Gifts& Co                   ║ 36                 ║ 107746.75 ║ 1612                   ║
+║ Herkku Gifts                       ║ 29                 ║ 97562.47  ║ 1504                   ║
+║ Daedalus Designs Imports           ║ 20                 ║ 61781.70  ║ 1370                   ║
+║ La Corne D'abondance, Co.          ║ 23                 ║ 86553.52  ║ 1337                   ║
+║ Cambridge Collectables Co.         ║ 11                 ║ 32198.69  ║ 1188                   ║
+║ Gift Depot Inc.                    ║ 25                 ║ 95424.63  ║ 1323                   ║
+║ Osaka Souveniers Co.               ║ 20                 ║ 62361.22  ║ 1621                   ║
+║ Vitachrome Inc.                    ║ 25                 ║ 72497.64  ║ 1286                   ║
+║ Toys of Finland, Co.               ║ 30                 ║ 95546.46  ║ 1501                   ║
+║ AV Stores, Co.                     ║ 51                 ║ 148410.09 ║ 1501                   ║
+║ Clover Collections, Co.            ║ 16                 ║ 49898.27  ║ 1504                   ║
+║ Auto-Moto Classics Inc.            ║ 8                  ║ 21554.26  ║ 1216                   ║
+║ UK Collectables, Ltd.              ║ 29                 ║ 106610.72 ║ 1501                   ║
+║ Canadian Gift Exchange Network     ║ 22                 ║ 70122.19  ║ 1323                   ║
+║ Online Mini Collectables           ║ 15                 ║ 55577.26  ║ 1188                   ║
+║ Toys4GrownUps.com                  ║ 30                 ║ 93803.30  ║ 1166                   ║
+║ Mini Caravy                        ║ 19                 ║ 75859.32  ║ 1370                   ║
+║ King Kong Collectables, Co.        ║ 16                 ║ 45480.79  ║ 1621                   ║
+║ Enaco Distributors                 ║ 23                 ║ 68520.47  ║ 1702                   ║
+║ Boards & Toys Co.                  ║ 3                  ║ 7918.60   ║ 1166                   ║
+║ Heintze Collectables               ║ 27                 ║ 89909.80  ║ 1401                   ║
+║ Québec Home Shopping Network       ║ 22                 ║ 68977.67  ║ 1286                   ║
+║ Collectable Mini Designs Co.       ║ 25                 ║ 80375.24  ║ 1166                   ║
+║ giftsbymail.co.uk                  ║ 26                 ║ 71783.75  ║ 1501                   ║
+║ Alpha Cognac                       ║ 20                 ║ 60483.36  ║ 1370                   ║
+║ Amica Models & Co.                 ║ 26                 ║ 82223.23  ║ 1401                   ║
+║ Lyon Souveniers                    ║ 20                 ║ 67659.19  ║ 1337                   ║
+║ Auto Associés & Cie.               ║ 18                 ║ 58876.41  ║ 1370                   ║
+║ Toms Spezialitäten, Ltd            ║ 26                 ║ 89223.14  ║ 1504                   ║
+║ Royal Canadian Collectables, Ltd.  ║ 26                 ║ 66812.00  ║ 1323                   ║
+║ Anna's Decorations, Ltd            ║ 46                 ║ 137034.22 ║ 1611                   ║
+║ Rovelli Gifts                      ║ 48                 ║ 127529.69 ║ 1401                   ║
+║ Souveniers And Things Co.          ║ 46                 ║ 133907.12 ║ 1611                   ║
+║ Marta's Replicas Co.               ║ 27                 ║ 90545.37  ║ 1216                   ║
+║ Vida Sport, Ltd                    ║ 31                 ║ 108777.92 ║ 1702                   ║
+║ Norway Gifts By Mail, Co.          ║ 24                 ║ 69059.04  ║ 1504                   ║
+║ Oulu Toy Supplies, Inc.            ║ 32                 ║ 95706.15  ║ 1501                   ║
+║ Petit Auto                         ║ 25                 ║ 70851.58  ║ 1401                   ║
+║ Mini Classics                      ║ 26                 ║ 78432.16  ║ 1323                   ║
+║ Mini Creations Ltd.                ║ 35                 ║ 101872.52 ║ 1188                   ║
+║ Corporate Gift Ideas Co.           ║ 41                 ║ 132340.78 ║ 1165                   ║
+║ Down Under Souveniers, Inc         ║ 46                 ║ 154622.08 ║ 1612                   ║
+║ Stylish Desk Decors, Co.           ║ 26                 ║ 80556.73  ║ 1501                   ║
+║ Tekni Collectables Inc.            ║ 21                 ║ 81806.55  ║ 1323                   ║
+║ Australian Gift Network, Co        ║ 15                 ║ 55190.16  ║ 1611                   ║
+║ Suominen Souveniers                ║ 30                 ║ 103896.74 ║ 1501                   ║
+║ Classic Gift Ideas, Inc            ║ 21                 ║ 57939.34  ║ 1188                   ║
+║ CAF Imports                        ║ 13                 ║ 46751.14  ║ 1702                   ║
+║ Men 'R' US Retailers, Ltd.         ║ 14                 ║ 41506.19  ║ 1166                   ║
+║ Marseille Mini Autos               ║ 25                 ║ 71547.53  ║ 1337                   ║
+║ Reims Collectables                 ║ 41                 ║ 126983.19 ║ 1337                   ║
+║ GiftsForHim.com                    ║ 26                 ║ 94431.76  ║ 1612                   ║
+║ Gifts4AllAges.com                  ║ 26                 ║ 84340.32  ║ 1216                   ║
+║ Online Diecast Creations Co.       ║ 34                 ║ 116449.29 ║ 1216                   ║
+║ Collectables For Less Inc.         ║ 24                 ║ 73533.65  ║ 1188                   ║
+║ Royale Belge                       ║ 8                  ║ 29217.18  ║ 1401                   ║
+║ Salzburg Collectables              ║ 40                 ║ 137480.07 ║ 1401                   ║
+║ Cruz & Sons Co.                    ║ 26                 ║ 87468.30  ║ 1621                   ║
+║ L'ordine Souveniers                ║ 39                 ║ 125505.57 ║ 1401                   ║
+║ Tokyo Collectables, Ltd            ║ 32                 ║ 105548.73 ║ 1621                   ║
+║ Auto Canal+ Petit                  ║ 27                 ║ 86436.97  ║ 1337                   ║
+║ Extreme Desk Decorations, Ltd      ║ 29                 ║ 90332.38  ║ 1612                   ║
+║ Bavarian Collectables Imports, Co. ║ 14                 ║ 31310.09  ║ 1504                   ║
+║ Classic Legends Inc.               ║ 20                 ║ 69214.33  ║ 1286                   ║
+║ Gift Ideas Corp.                   ║ 19                 ║ 49967.78  ║ 1323                   ║
+║ Scandinavian Gift Ideas            ║ 38                 ║ 120943.53 ║ 1504                   ║
+║ The Sharp Gifts Warehouse          ║ 40                 ║ 143536.27 ║ 1165                   ║
+║ Mini Auto Werke                    ║ 15                 ║ 51059.99  ║ 1401                   ║
+║ Super Scale Inc.                   ║ 17                 ║ 70378.65  ║ 1286                   ║
+║ Microscale Inc.                    ║ 10                 ║ 29230.43  ║ 1286                   ║
+║ Corrida Auto Replicas, Ltd         ║ 32                 ║ 112440.09 ║ 1702                   ║
+║ FunGiftIdeas.com                   ║ 26                 ║ 88627.49  ║ 1216                   ║
+║ Australian Collectables, Ltd       ║ 23                 ║ 55866.02  ║ 1611                   ║
+║ Frau da Collezione                 ║ 8                  ║ 25358.32  ║ 1401                   ║
+║ West Coast Collectables Co.        ║ 13                 ║ 43748.72  ║ 1166                   ║
+║ Iberia Gift Imports, Corp.         ║ 15                 ║ 50987.85  ║ 1702                   ║
+║ Motor Mint Distributors Inc.       ║ 23                 ║ 77726.59  ║ 1323                   ║
+║ Signal Collectibles Ltd.           ║ 15                 ║ 42570.37  ║ 1165                   ║
+║ Double Decker Gift Stores, Ltd     ║ 12                 ║ 29586.15  ║ 1501                   ║
+║ Diecast Collectables               ║ 18                 ║ 65541.74  ║ 1188                   ║
+║ Kelly's Gift Shop                  ║ 48                 ║ 137460.79 ║ 1612                   ║
+╚════════════════════════════════════╩════════════════════╩═══════════╩════════════════════════╝
+98 rows in set
+Time: 0.140s
+
+# 2023-01-10 13:11:02.718459
+select customername, count(orderNumber) as number_of_orders, sum(quantityOrdered * priceEach) as amount, salesrepemployeenumber
+from customers
+inner join orders using(`customerNumber`)
+inner join orderdetails using(`orderNumber`)
+group by customerNumber;
+╔════════════════════════════════════╦══════════════════╦═══════════╦════════════════════════╗
+║ customername                       ║ number_of_orders ║ amount    ║ salesrepemployeenumber ║
+╠════════════════════════════════════╬══════════════════╬═══════════╬════════════════════════╣
+║ Atelier graphique                  ║ 7                ║ 22314.36  ║ 1370                   ║
+║ Signal Gift Stores                 ║ 29               ║ 80180.98  ║ 1166                   ║
+║ Australian Collectors, Co.         ║ 55               ║ 180585.07 ║ 1611                   ║
+║ La Rochelle Gifts                  ║ 53               ║ 158573.12 ║ 1370                   ║
+║ Baane Mini Imports                 ║ 32               ║ 104224.79 ║ 1504                   ║
+║ Mini Gifts Distributors Ltd.       ║ 180              ║ 591827.34 ║ 1165                   ║
+║ Blauer See Auto, Co.               ║ 22               ║ 75937.76  ║ 1504                   ║
+║ Mini Wheels Co.                    ║ 21               ║ 66710.56  ║ 1165                   ║
+║ Land of Toys Inc.                  ║ 49               ║ 149085.15 ║ 1323                   ║
+║ Euro+ Shopping Channel             ║ 259              ║ 820689.54 ║ 1370                   ║
+║ Volvo Model Replicas, Co           ║ 19               ║ 66694.82  ║ 1504                   ║
+║ Danish Wholesale Imports           ║ 36               ║ 129085.12 ║ 1401                   ║
+║ Saveley & Henriot, Co.             ║ 41               ║ 130305.35 ║ 1337                   ║
+║ Dragon Souveniers, Ltd.            ║ 43               ║ 156251.03 ║ 1621                   ║
+║ Muscle Machine Inc                 ║ 48               ║ 177913.95 ║ 1286                   ║
+║ Diecast Classics Inc.              ║ 31               ║ 104358.69 ║ 1216                   ║
+║ Technics Stores Inc.               ║ 34               ║ 104545.22 ║ 1165                   ║
+║ Handji Gifts& Co                   ║ 36               ║ 107746.75 ║ 1612                   ║
+║ Herkku Gifts                       ║ 29               ║ 97562.47  ║ 1504                   ║
+║ Daedalus Designs Imports           ║ 20               ║ 61781.70  ║ 1370                   ║
+║ La Corne D'abondance, Co.          ║ 23               ║ 86553.52  ║ 1337                   ║
+║ Cambridge Collectables Co.         ║ 11               ║ 32198.69  ║ 1188                   ║
+║ Gift Depot Inc.                    ║ 25               ║ 95424.63  ║ 1323                   ║
+║ Osaka Souveniers Co.               ║ 20               ║ 62361.22  ║ 1621                   ║
+║ Vitachrome Inc.                    ║ 25               ║ 72497.64  ║ 1286                   ║
+║ Toys of Finland, Co.               ║ 30               ║ 95546.46  ║ 1501                   ║
+║ AV Stores, Co.                     ║ 51               ║ 148410.09 ║ 1501                   ║
+║ Clover Collections, Co.            ║ 16               ║ 49898.27  ║ 1504                   ║
+║ Auto-Moto Classics Inc.            ║ 8                ║ 21554.26  ║ 1216                   ║
+║ UK Collectables, Ltd.              ║ 29               ║ 106610.72 ║ 1501                   ║
+║ Canadian Gift Exchange Network     ║ 22               ║ 70122.19  ║ 1323                   ║
+║ Online Mini Collectables           ║ 15               ║ 55577.26  ║ 1188                   ║
+║ Toys4GrownUps.com                  ║ 30               ║ 93803.30  ║ 1166                   ║
+║ Mini Caravy                        ║ 19               ║ 75859.32  ║ 1370                   ║
+║ King Kong Collectables, Co.        ║ 16               ║ 45480.79  ║ 1621                   ║
+║ Enaco Distributors                 ║ 23               ║ 68520.47  ║ 1702                   ║
+║ Boards & Toys Co.                  ║ 3                ║ 7918.60   ║ 1166                   ║
+║ Heintze Collectables               ║ 27               ║ 89909.80  ║ 1401                   ║
+║ Québec Home Shopping Network       ║ 22               ║ 68977.67  ║ 1286                   ║
+║ Collectable Mini Designs Co.       ║ 25               ║ 80375.24  ║ 1166                   ║
+║ giftsbymail.co.uk                  ║ 26               ║ 71783.75  ║ 1501                   ║
+║ Alpha Cognac                       ║ 20               ║ 60483.36  ║ 1370                   ║
+║ Amica Models & Co.                 ║ 26               ║ 82223.23  ║ 1401                   ║
+║ Lyon Souveniers                    ║ 20               ║ 67659.19  ║ 1337                   ║
+║ Auto Associés & Cie.               ║ 18               ║ 58876.41  ║ 1370                   ║
+║ Toms Spezialitäten, Ltd            ║ 26               ║ 89223.14  ║ 1504                   ║
+║ Royal Canadian Collectables, Ltd.  ║ 26               ║ 66812.00  ║ 1323                   ║
+║ Anna's Decorations, Ltd            ║ 46               ║ 137034.22 ║ 1611                   ║
+║ Rovelli Gifts                      ║ 48               ║ 127529.69 ║ 1401                   ║
+║ Souveniers And Things Co.          ║ 46               ║ 133907.12 ║ 1611                   ║
+║ Marta's Replicas Co.               ║ 27               ║ 90545.37  ║ 1216                   ║
+║ Vida Sport, Ltd                    ║ 31               ║ 108777.92 ║ 1702                   ║
+║ Norway Gifts By Mail, Co.          ║ 24               ║ 69059.04  ║ 1504                   ║
+║ Oulu Toy Supplies, Inc.            ║ 32               ║ 95706.15  ║ 1501                   ║
+║ Petit Auto                         ║ 25               ║ 70851.58  ║ 1401                   ║
+║ Mini Classics                      ║ 26               ║ 78432.16  ║ 1323                   ║
+║ Mini Creations Ltd.                ║ 35               ║ 101872.52 ║ 1188                   ║
+║ Corporate Gift Ideas Co.           ║ 41               ║ 132340.78 ║ 1165                   ║
+║ Down Under Souveniers, Inc         ║ 46               ║ 154622.08 ║ 1612                   ║
+║ Stylish Desk Decors, Co.           ║ 26               ║ 80556.73  ║ 1501                   ║
+║ Tekni Collectables Inc.            ║ 21               ║ 81806.55  ║ 1323                   ║
+║ Australian Gift Network, Co        ║ 15               ║ 55190.16  ║ 1611                   ║
+║ Suominen Souveniers                ║ 30               ║ 103896.74 ║ 1501                   ║
+║ Classic Gift Ideas, Inc            ║ 21               ║ 57939.34  ║ 1188                   ║
+║ CAF Imports                        ║ 13               ║ 46751.14  ║ 1702                   ║
+║ Men 'R' US Retailers, Ltd.         ║ 14               ║ 41506.19  ║ 1166                   ║
+║ Marseille Mini Autos               ║ 25               ║ 71547.53  ║ 1337                   ║
+║ Reims Collectables                 ║ 41               ║ 126983.19 ║ 1337                   ║
+║ GiftsForHim.com                    ║ 26               ║ 94431.76  ║ 1612                   ║
+║ Gifts4AllAges.com                  ║ 26               ║ 84340.32  ║ 1216                   ║
+║ Online Diecast Creations Co.       ║ 34               ║ 116449.29 ║ 1216                   ║
+║ Collectables For Less Inc.         ║ 24               ║ 73533.65  ║ 1188                   ║
+║ Royale Belge                       ║ 8                ║ 29217.18  ║ 1401                   ║
+║ Salzburg Collectables              ║ 40               ║ 137480.07 ║ 1401                   ║
+║ Cruz & Sons Co.                    ║ 26               ║ 87468.30  ║ 1621                   ║
+║ L'ordine Souveniers                ║ 39               ║ 125505.57 ║ 1401                   ║
+║ Tokyo Collectables, Ltd            ║ 32               ║ 105548.73 ║ 1621                   ║
+║ Auto Canal+ Petit                  ║ 27               ║ 86436.97  ║ 1337                   ║
+║ Extreme Desk Decorations, Ltd      ║ 29               ║ 90332.38  ║ 1612                   ║
+║ Bavarian Collectables Imports, Co. ║ 14               ║ 31310.09  ║ 1504                   ║
+║ Classic Legends Inc.               ║ 20               ║ 69214.33  ║ 1286                   ║
+║ Gift Ideas Corp.                   ║ 19               ║ 49967.78  ║ 1323                   ║
+║ Scandinavian Gift Ideas            ║ 38               ║ 120943.53 ║ 1504                   ║
+║ The Sharp Gifts Warehouse          ║ 40               ║ 143536.27 ║ 1165                   ║
+║ Mini Auto Werke                    ║ 15               ║ 51059.99  ║ 1401                   ║
+║ Super Scale Inc.                   ║ 17               ║ 70378.65  ║ 1286                   ║
+║ Microscale Inc.                    ║ 10               ║ 29230.43  ║ 1286                   ║
+║ Corrida Auto Replicas, Ltd         ║ 32               ║ 112440.09 ║ 1702                   ║
+║ FunGiftIdeas.com                   ║ 26               ║ 88627.49  ║ 1216                   ║
+║ Australian Collectables, Ltd       ║ 23               ║ 55866.02  ║ 1611                   ║
+║ Frau da Collezione                 ║ 8                ║ 25358.32  ║ 1401                   ║
+║ West Coast Collectables Co.        ║ 13               ║ 43748.72  ║ 1166                   ║
+║ Iberia Gift Imports, Corp.         ║ 15               ║ 50987.85  ║ 1702                   ║
+║ Motor Mint Distributors Inc.       ║ 23               ║ 77726.59  ║ 1323                   ║
+║ Signal Collectibles Ltd.           ║ 15               ║ 42570.37  ║ 1165                   ║
+║ Double Decker Gift Stores, Ltd     ║ 12               ║ 29586.15  ║ 1501                   ║
+║ Diecast Collectables               ║ 18               ║ 65541.74  ║ 1188                   ║
+║ Kelly's Gift Shop                  ║ 48               ║ 137460.79 ║ 1612                   ║
+╚════════════════════════════════════╩══════════════════╩═══════════╩════════════════════════╝
+98 rows in set
+Time: 0.140s
+
+# 2023-01-10 13:11:51.606152
+select customername, count(orderNumber) as number_of_orders, sum(quantityOrdered * priceEach) as amount, salesrepemployeenumber
+from customers
+inner join orders using(`customerNumber`)
+inner join orderdetails using(`orderNumber`)
+group by customerNumber;
+╔════════════════════════════════════╦══════════════════╦═══════════╦════════════════════════╗
+║ customername                       ║ number_of_orders ║ amount    ║ salesrepemployeenumber ║
+╠════════════════════════════════════╬══════════════════╬═══════════╬════════════════════════╣
+║ Atelier graphique                  ║ 7                ║ 22314.36  ║ 1370                   ║
+║ Signal Gift Stores                 ║ 29               ║ 80180.98  ║ 1166                   ║
+║ Australian Collectors, Co.         ║ 55               ║ 180585.07 ║ 1611                   ║
+║ La Rochelle Gifts                  ║ 53               ║ 158573.12 ║ 1370                   ║
+║ Baane Mini Imports                 ║ 32               ║ 104224.79 ║ 1504                   ║
+║ Mini Gifts Distributors Ltd.       ║ 180              ║ 591827.34 ║ 1165                   ║
+║ Blauer See Auto, Co.               ║ 22               ║ 75937.76  ║ 1504                   ║
+║ Mini Wheels Co.                    ║ 21               ║ 66710.56  ║ 1165                   ║
+║ Land of Toys Inc.                  ║ 49               ║ 149085.15 ║ 1323                   ║
+║ Euro+ Shopping Channel             ║ 259              ║ 820689.54 ║ 1370                   ║
+║ Volvo Model Replicas, Co           ║ 19               ║ 66694.82  ║ 1504                   ║
+║ Danish Wholesale Imports           ║ 36               ║ 129085.12 ║ 1401                   ║
+║ Saveley & Henriot, Co.             ║ 41               ║ 130305.35 ║ 1337                   ║
+║ Dragon Souveniers, Ltd.            ║ 43               ║ 156251.03 ║ 1621                   ║
+║ Muscle Machine Inc                 ║ 48               ║ 177913.95 ║ 1286                   ║
+║ Diecast Classics Inc.              ║ 31               ║ 104358.69 ║ 1216                   ║
+║ Technics Stores Inc.               ║ 34               ║ 104545.22 ║ 1165                   ║
+║ Handji Gifts& Co                   ║ 36               ║ 107746.75 ║ 1612                   ║
+║ Herkku Gifts                       ║ 29               ║ 97562.47  ║ 1504                   ║
+║ Daedalus Designs Imports           ║ 20               ║ 61781.70  ║ 1370                   ║
+║ La Corne D'abondance, Co.          ║ 23               ║ 86553.52  ║ 1337                   ║
+║ Cambridge Collectables Co.         ║ 11               ║ 32198.69  ║ 1188                   ║
+║ Gift Depot Inc.                    ║ 25               ║ 95424.63  ║ 1323                   ║
+║ Osaka Souveniers Co.               ║ 20               ║ 62361.22  ║ 1621                   ║
+║ Vitachrome Inc.                    ║ 25               ║ 72497.64  ║ 1286                   ║
+║ Toys of Finland, Co.               ║ 30               ║ 95546.46  ║ 1501                   ║
+║ AV Stores, Co.                     ║ 51               ║ 148410.09 ║ 1501                   ║
+║ Clover Collections, Co.            ║ 16               ║ 49898.27  ║ 1504                   ║
+║ Auto-Moto Classics Inc.            ║ 8                ║ 21554.26  ║ 1216                   ║
+║ UK Collectables, Ltd.              ║ 29               ║ 106610.72 ║ 1501                   ║
+║ Canadian Gift Exchange Network     ║ 22               ║ 70122.19  ║ 1323                   ║
+║ Online Mini Collectables           ║ 15               ║ 55577.26  ║ 1188                   ║
+║ Toys4GrownUps.com                  ║ 30               ║ 93803.30  ║ 1166                   ║
+║ Mini Caravy                        ║ 19               ║ 75859.32  ║ 1370                   ║
+║ King Kong Collectables, Co.        ║ 16               ║ 45480.79  ║ 1621                   ║
+║ Enaco Distributors                 ║ 23               ║ 68520.47  ║ 1702                   ║
+║ Boards & Toys Co.                  ║ 3                ║ 7918.60   ║ 1166                   ║
+║ Heintze Collectables               ║ 27               ║ 89909.80  ║ 1401                   ║
+║ Québec Home Shopping Network       ║ 22               ║ 68977.67  ║ 1286                   ║
+║ Collectable Mini Designs Co.       ║ 25               ║ 80375.24  ║ 1166                   ║
+║ giftsbymail.co.uk                  ║ 26               ║ 71783.75  ║ 1501                   ║
+║ Alpha Cognac                       ║ 20               ║ 60483.36  ║ 1370                   ║
+║ Amica Models & Co.                 ║ 26               ║ 82223.23  ║ 1401                   ║
+║ Lyon Souveniers                    ║ 20               ║ 67659.19  ║ 1337                   ║
+║ Auto Associés & Cie.               ║ 18               ║ 58876.41  ║ 1370                   ║
+║ Toms Spezialitäten, Ltd            ║ 26               ║ 89223.14  ║ 1504                   ║
+║ Royal Canadian Collectables, Ltd.  ║ 26               ║ 66812.00  ║ 1323                   ║
+║ Anna's Decorations, Ltd            ║ 46               ║ 137034.22 ║ 1611                   ║
+║ Rovelli Gifts                      ║ 48               ║ 127529.69 ║ 1401                   ║
+║ Souveniers And Things Co.          ║ 46               ║ 133907.12 ║ 1611                   ║
+║ Marta's Replicas Co.               ║ 27               ║ 90545.37  ║ 1216                   ║
+║ Vida Sport, Ltd                    ║ 31               ║ 108777.92 ║ 1702                   ║
+║ Norway Gifts By Mail, Co.          ║ 24               ║ 69059.04  ║ 1504                   ║
+║ Oulu Toy Supplies, Inc.            ║ 32               ║ 95706.15  ║ 1501                   ║
+║ Petit Auto                         ║ 25               ║ 70851.58  ║ 1401                   ║
+║ Mini Classics                      ║ 26               ║ 78432.16  ║ 1323                   ║
+║ Mini Creations Ltd.                ║ 35               ║ 101872.52 ║ 1188                   ║
+║ Corporate Gift Ideas Co.           ║ 41               ║ 132340.78 ║ 1165                   ║
+║ Down Under Souveniers, Inc         ║ 46               ║ 154622.08 ║ 1612                   ║
+║ Stylish Desk Decors, Co.           ║ 26               ║ 80556.73  ║ 1501                   ║
+║ Tekni Collectables Inc.            ║ 21               ║ 81806.55  ║ 1323                   ║
+║ Australian Gift Network, Co        ║ 15               ║ 55190.16  ║ 1611                   ║
+║ Suominen Souveniers                ║ 30               ║ 103896.74 ║ 1501                   ║
+║ Classic Gift Ideas, Inc            ║ 21               ║ 57939.34  ║ 1188                   ║
+║ CAF Imports                        ║ 13               ║ 46751.14  ║ 1702                   ║
+║ Men 'R' US Retailers, Ltd.         ║ 14               ║ 41506.19  ║ 1166                   ║
+║ Marseille Mini Autos               ║ 25               ║ 71547.53  ║ 1337                   ║
+║ Reims Collectables                 ║ 41               ║ 126983.19 ║ 1337                   ║
+║ GiftsForHim.com                    ║ 26               ║ 94431.76  ║ 1612                   ║
+║ Gifts4AllAges.com                  ║ 26               ║ 84340.32  ║ 1216                   ║
+║ Online Diecast Creations Co.       ║ 34               ║ 116449.29 ║ 1216                   ║
+║ Collectables For Less Inc.         ║ 24               ║ 73533.65  ║ 1188                   ║
+║ Royale Belge                       ║ 8                ║ 29217.18  ║ 1401                   ║
+║ Salzburg Collectables              ║ 40               ║ 137480.07 ║ 1401                   ║
+║ Cruz & Sons Co.                    ║ 26               ║ 87468.30  ║ 1621                   ║
+║ L'ordine Souveniers                ║ 39               ║ 125505.57 ║ 1401                   ║
+║ Tokyo Collectables, Ltd            ║ 32               ║ 105548.73 ║ 1621                   ║
+║ Auto Canal+ Petit                  ║ 27               ║ 86436.97  ║ 1337                   ║
+║ Extreme Desk Decorations, Ltd      ║ 29               ║ 90332.38  ║ 1612                   ║
+║ Bavarian Collectables Imports, Co. ║ 14               ║ 31310.09  ║ 1504                   ║
+║ Classic Legends Inc.               ║ 20               ║ 69214.33  ║ 1286                   ║
+║ Gift Ideas Corp.                   ║ 19               ║ 49967.78  ║ 1323                   ║
+║ Scandinavian Gift Ideas            ║ 38               ║ 120943.53 ║ 1504                   ║
+║ The Sharp Gifts Warehouse          ║ 40               ║ 143536.27 ║ 1165                   ║
+║ Mini Auto Werke                    ║ 15               ║ 51059.99  ║ 1401                   ║
+║ Super Scale Inc.                   ║ 17               ║ 70378.65  ║ 1286                   ║
+║ Microscale Inc.                    ║ 10               ║ 29230.43  ║ 1286                   ║
+║ Corrida Auto Replicas, Ltd         ║ 32               ║ 112440.09 ║ 1702                   ║
+║ FunGiftIdeas.com                   ║ 26               ║ 88627.49  ║ 1216                   ║
+║ Australian Collectables, Ltd       ║ 23               ║ 55866.02  ║ 1611                   ║
+║ Frau da Collezione                 ║ 8                ║ 25358.32  ║ 1401                   ║
+║ West Coast Collectables Co.        ║ 13               ║ 43748.72  ║ 1166                   ║
+║ Iberia Gift Imports, Corp.         ║ 15               ║ 50987.85  ║ 1702                   ║
+║ Motor Mint Distributors Inc.       ║ 23               ║ 77726.59  ║ 1323                   ║
+║ Signal Collectibles Ltd.           ║ 15               ║ 42570.37  ║ 1165                   ║
+║ Double Decker Gift Stores, Ltd     ║ 12               ║ 29586.15  ║ 1501                   ║
+║ Diecast Collectables               ║ 18               ║ 65541.74  ║ 1188                   ║
+║ Kelly's Gift Shop                  ║ 48               ║ 137460.79 ║ 1612                   ║
+╚════════════════════════════════════╩══════════════════╩═══════════╩════════════════════════╝
+98 rows in set
+Time: 0.140s
+
+# 2023-01-10 13:12:24.348309
+select customername, count(orderNumber) as number_of_orders, sum(quantityOrdered * priceEach) as amount, salesrepemployeenumber
+from customers
+inner join orders using(`customerNumber`)
+inner join orderdetails using(`orderNumber`)
+inner join employees on customers.`salesRepEmployeeNumber` = employees.employeeNumber
+group by customerNumber;
+╔════════════════════════════════════╦══════════════════╦═══════════╦════════════════════════╗
+║ customername                       ║ number_of_orders ║ amount    ║ salesrepemployeenumber ║
+╠════════════════════════════════════╬══════════════════╬═══════════╬════════════════════════╣
+║ Atelier graphique                  ║ 7                ║ 22314.36  ║ 1370                   ║
+║ Signal Gift Stores                 ║ 29               ║ 80180.98  ║ 1166                   ║
+║ Australian Collectors, Co.         ║ 55               ║ 180585.07 ║ 1611                   ║
+║ La Rochelle Gifts                  ║ 53               ║ 158573.12 ║ 1370                   ║
+║ Baane Mini Imports                 ║ 32               ║ 104224.79 ║ 1504                   ║
+║ Mini Gifts Distributors Ltd.       ║ 180              ║ 591827.34 ║ 1165                   ║
+║ Blauer See Auto, Co.               ║ 22               ║ 75937.76  ║ 1504                   ║
+║ Mini Wheels Co.                    ║ 21               ║ 66710.56  ║ 1165                   ║
+║ Land of Toys Inc.                  ║ 49               ║ 149085.15 ║ 1323                   ║
+║ Euro+ Shopping Channel             ║ 259              ║ 820689.54 ║ 1370                   ║
+║ Volvo Model Replicas, Co           ║ 19               ║ 66694.82  ║ 1504                   ║
+║ Danish Wholesale Imports           ║ 36               ║ 129085.12 ║ 1401                   ║
+║ Saveley & Henriot, Co.             ║ 41               ║ 130305.35 ║ 1337                   ║
+║ Dragon Souveniers, Ltd.            ║ 43               ║ 156251.03 ║ 1621                   ║
+║ Muscle Machine Inc                 ║ 48               ║ 177913.95 ║ 1286                   ║
+║ Diecast Classics Inc.              ║ 31               ║ 104358.69 ║ 1216                   ║
+║ Technics Stores Inc.               ║ 34               ║ 104545.22 ║ 1165                   ║
+║ Handji Gifts& Co                   ║ 36               ║ 107746.75 ║ 1612                   ║
+║ Herkku Gifts                       ║ 29               ║ 97562.47  ║ 1504                   ║
+║ Daedalus Designs Imports           ║ 20               ║ 61781.70  ║ 1370                   ║
+║ La Corne D'abondance, Co.          ║ 23               ║ 86553.52  ║ 1337                   ║
+║ Cambridge Collectables Co.         ║ 11               ║ 32198.69  ║ 1188                   ║
+║ Gift Depot Inc.                    ║ 25               ║ 95424.63  ║ 1323                   ║
+║ Osaka Souveniers Co.               ║ 20               ║ 62361.22  ║ 1621                   ║
+║ Vitachrome Inc.                    ║ 25               ║ 72497.64  ║ 1286                   ║
+║ Toys of Finland, Co.               ║ 30               ║ 95546.46  ║ 1501                   ║
+║ AV Stores, Co.                     ║ 51               ║ 148410.09 ║ 1501                   ║
+║ Clover Collections, Co.            ║ 16               ║ 49898.27  ║ 1504                   ║
+║ Auto-Moto Classics Inc.            ║ 8                ║ 21554.26  ║ 1216                   ║
+║ UK Collectables, Ltd.              ║ 29               ║ 106610.72 ║ 1501                   ║
+║ Canadian Gift Exchange Network     ║ 22               ║ 70122.19  ║ 1323                   ║
+║ Online Mini Collectables           ║ 15               ║ 55577.26  ║ 1188                   ║
+║ Toys4GrownUps.com                  ║ 30               ║ 93803.30  ║ 1166                   ║
+║ Mini Caravy                        ║ 19               ║ 75859.32  ║ 1370                   ║
+║ King Kong Collectables, Co.        ║ 16               ║ 45480.79  ║ 1621                   ║
+║ Enaco Distributors                 ║ 23               ║ 68520.47  ║ 1702                   ║
+║ Boards & Toys Co.                  ║ 3                ║ 7918.60   ║ 1166                   ║
+║ Heintze Collectables               ║ 27               ║ 89909.80  ║ 1401                   ║
+║ Québec Home Shopping Network       ║ 22               ║ 68977.67  ║ 1286                   ║
+║ Collectable Mini Designs Co.       ║ 25               ║ 80375.24  ║ 1166                   ║
+║ giftsbymail.co.uk                  ║ 26               ║ 71783.75  ║ 1501                   ║
+║ Alpha Cognac                       ║ 20               ║ 60483.36  ║ 1370                   ║
+║ Amica Models & Co.                 ║ 26               ║ 82223.23  ║ 1401                   ║
+║ Lyon Souveniers                    ║ 20               ║ 67659.19  ║ 1337                   ║
+║ Auto Associés & Cie.               ║ 18               ║ 58876.41  ║ 1370                   ║
+║ Toms Spezialitäten, Ltd            ║ 26               ║ 89223.14  ║ 1504                   ║
+║ Royal Canadian Collectables, Ltd.  ║ 26               ║ 66812.00  ║ 1323                   ║
+║ Anna's Decorations, Ltd            ║ 46               ║ 137034.22 ║ 1611                   ║
+║ Rovelli Gifts                      ║ 48               ║ 127529.69 ║ 1401                   ║
+║ Souveniers And Things Co.          ║ 46               ║ 133907.12 ║ 1611                   ║
+║ Marta's Replicas Co.               ║ 27               ║ 90545.37  ║ 1216                   ║
+║ Vida Sport, Ltd                    ║ 31               ║ 108777.92 ║ 1702                   ║
+║ Norway Gifts By Mail, Co.          ║ 24               ║ 69059.04  ║ 1504                   ║
+║ Oulu Toy Supplies, Inc.            ║ 32               ║ 95706.15  ║ 1501                   ║
+║ Petit Auto                         ║ 25               ║ 70851.58  ║ 1401                   ║
+║ Mini Classics                      ║ 26               ║ 78432.16  ║ 1323                   ║
+║ Mini Creations Ltd.                ║ 35               ║ 101872.52 ║ 1188                   ║
+║ Corporate Gift Ideas Co.           ║ 41               ║ 132340.78 ║ 1165                   ║
+║ Down Under Souveniers, Inc         ║ 46               ║ 154622.08 ║ 1612                   ║
+║ Stylish Desk Decors, Co.           ║ 26               ║ 80556.73  ║ 1501                   ║
+║ Tekni Collectables Inc.            ║ 21               ║ 81806.55  ║ 1323                   ║
+║ Australian Gift Network, Co        ║ 15               ║ 55190.16  ║ 1611                   ║
+║ Suominen Souveniers                ║ 30               ║ 103896.74 ║ 1501                   ║
+║ Classic Gift Ideas, Inc            ║ 21               ║ 57939.34  ║ 1188                   ║
+║ CAF Imports                        ║ 13               ║ 46751.14  ║ 1702                   ║
+║ Men 'R' US Retailers, Ltd.         ║ 14               ║ 41506.19  ║ 1166                   ║
+║ Marseille Mini Autos               ║ 25               ║ 71547.53  ║ 1337                   ║
+║ Reims Collectables                 ║ 41               ║ 126983.19 ║ 1337                   ║
+║ GiftsForHim.com                    ║ 26               ║ 94431.76  ║ 1612                   ║
+║ Gifts4AllAges.com                  ║ 26               ║ 84340.32  ║ 1216                   ║
+║ Online Diecast Creations Co.       ║ 34               ║ 116449.29 ║ 1216                   ║
+║ Collectables For Less Inc.         ║ 24               ║ 73533.65  ║ 1188                   ║
+║ Royale Belge                       ║ 8                ║ 29217.18  ║ 1401                   ║
+║ Salzburg Collectables              ║ 40               ║ 137480.07 ║ 1401                   ║
+║ Cruz & Sons Co.                    ║ 26               ║ 87468.30  ║ 1621                   ║
+║ L'ordine Souveniers                ║ 39               ║ 125505.57 ║ 1401                   ║
+║ Tokyo Collectables, Ltd            ║ 32               ║ 105548.73 ║ 1621                   ║
+║ Auto Canal+ Petit                  ║ 27               ║ 86436.97  ║ 1337                   ║
+║ Extreme Desk Decorations, Ltd      ║ 29               ║ 90332.38  ║ 1612                   ║
+║ Bavarian Collectables Imports, Co. ║ 14               ║ 31310.09  ║ 1504                   ║
+║ Classic Legends Inc.               ║ 20               ║ 69214.33  ║ 1286                   ║
+║ Gift Ideas Corp.                   ║ 19               ║ 49967.78  ║ 1323                   ║
+║ Scandinavian Gift Ideas            ║ 38               ║ 120943.53 ║ 1504                   ║
+║ The Sharp Gifts Warehouse          ║ 40               ║ 143536.27 ║ 1165                   ║
+║ Mini Auto Werke                    ║ 15               ║ 51059.99  ║ 1401                   ║
+║ Super Scale Inc.                   ║ 17               ║ 70378.65  ║ 1286                   ║
+║ Microscale Inc.                    ║ 10               ║ 29230.43  ║ 1286                   ║
+║ Corrida Auto Replicas, Ltd         ║ 32               ║ 112440.09 ║ 1702                   ║
+║ FunGiftIdeas.com                   ║ 26               ║ 88627.49  ║ 1216                   ║
+║ Australian Collectables, Ltd       ║ 23               ║ 55866.02  ║ 1611                   ║
+║ Frau da Collezione                 ║ 8                ║ 25358.32  ║ 1401                   ║
+║ West Coast Collectables Co.        ║ 13               ║ 43748.72  ║ 1166                   ║
+║ Iberia Gift Imports, Corp.         ║ 15               ║ 50987.85  ║ 1702                   ║
+║ Motor Mint Distributors Inc.       ║ 23               ║ 77726.59  ║ 1323                   ║
+║ Signal Collectibles Ltd.           ║ 15               ║ 42570.37  ║ 1165                   ║
+║ Double Decker Gift Stores, Ltd     ║ 12               ║ 29586.15  ║ 1501                   ║
+║ Diecast Collectables               ║ 18               ║ 65541.74  ║ 1188                   ║
+║ Kelly's Gift Shop                  ║ 48               ║ 137460.79 ║ 1612                   ║
+╚════════════════════════════════════╩══════════════════╩═══════════╩════════════════════════╝
+98 rows in set
+Time: 0.138s
+
+# 2023-01-10 13:13:02.157942
+select customername, count(orderNumber) as number_of_orders, sum(quantityOrdered * priceEach) as amount, concat(firstname, " ", lastname) as emp_name
+from customers
+inner join orders using(`customerNumber`)
+inner join orderdetails using(`orderNumber`)
+inner join employees on customers.`salesRepEmployeeNumber` = employees.employeeNumber
+group by customerNumber;
+╔════════════════════════════════════╦══════════════════╦═══════════╦══════════════════╗
+║ customername                       ║ number_of_orders ║ amount    ║ emp_name         ║
+╠════════════════════════════════════╬══════════════════╬═══════════╬══════════════════╣
+║ Atelier graphique                  ║ 7                ║ 22314.36  ║ Gerard Hernandez ║
+║ Signal Gift Stores                 ║ 29               ║ 80180.98  ║ Leslie Thompson  ║
+║ Australian Collectors, Co.         ║ 55               ║ 180585.07 ║ Andy Fixter      ║
+║ La Rochelle Gifts                  ║ 53               ║ 158573.12 ║ Gerard Hernandez ║
+║ Baane Mini Imports                 ║ 32               ║ 104224.79 ║ Barry Jones      ║
+║ Mini Gifts Distributors Ltd.       ║ 180              ║ 591827.34 ║ Leslie Jennings  ║
+║ Blauer See Auto, Co.               ║ 22               ║ 75937.76  ║ Barry Jones      ║
+║ Mini Wheels Co.                    ║ 21               ║ 66710.56  ║ Leslie Jennings  ║
+║ Land of Toys Inc.                  ║ 49               ║ 149085.15 ║ George Vanauf    ║
+║ Euro+ Shopping Channel             ║ 259              ║ 820689.54 ║ Gerard Hernandez ║
+║ Volvo Model Replicas, Co           ║ 19               ║ 66694.82  ║ Barry Jones      ║
+║ Danish Wholesale Imports           ║ 36               ║ 129085.12 ║ Pamela Castillo  ║
+║ Saveley & Henriot, Co.             ║ 41               ║ 130305.35 ║ Loui Bondur      ║
+║ Dragon Souveniers, Ltd.            ║ 43               ║ 156251.03 ║ Mami Nishi       ║
+║ Muscle Machine Inc                 ║ 48               ║ 177913.95 ║ Foon Yue Tseng   ║
+║ Diecast Classics Inc.              ║ 31               ║ 104358.69 ║ Steve Patterson  ║
+║ Technics Stores Inc.               ║ 34               ║ 104545.22 ║ Leslie Jennings  ║
+║ Handji Gifts& Co                   ║ 36               ║ 107746.75 ║ Peter Marsh      ║
+║ Herkku Gifts                       ║ 29               ║ 97562.47  ║ Barry Jones      ║
+║ Daedalus Designs Imports           ║ 20               ║ 61781.70  ║ Gerard Hernandez ║
+║ La Corne D'abondance, Co.          ║ 23               ║ 86553.52  ║ Loui Bondur      ║
+║ Cambridge Collectables Co.         ║ 11               ║ 32198.69  ║ Julie Firrelli   ║
+║ Gift Depot Inc.                    ║ 25               ║ 95424.63  ║ George Vanauf    ║
+║ Osaka Souveniers Co.               ║ 20               ║ 62361.22  ║ Mami Nishi       ║
+║ Vitachrome Inc.                    ║ 25               ║ 72497.64  ║ Foon Yue Tseng   ║
+║ Toys of Finland, Co.               ║ 30               ║ 95546.46  ║ Larry Bott       ║
+║ AV Stores, Co.                     ║ 51               ║ 148410.09 ║ Larry Bott       ║
+║ Clover Collections, Co.            ║ 16               ║ 49898.27  ║ Barry Jones      ║
+║ Auto-Moto Classics Inc.            ║ 8                ║ 21554.26  ║ Steve Patterson  ║
+║ UK Collectables, Ltd.              ║ 29               ║ 106610.72 ║ Larry Bott       ║
+║ Canadian Gift Exchange Network     ║ 22               ║ 70122.19  ║ George Vanauf    ║
+║ Online Mini Collectables           ║ 15               ║ 55577.26  ║ Julie Firrelli   ║
+║ Toys4GrownUps.com                  ║ 30               ║ 93803.30  ║ Leslie Thompson  ║
+║ Mini Caravy                        ║ 19               ║ 75859.32  ║ Gerard Hernandez ║
+║ King Kong Collectables, Co.        ║ 16               ║ 45480.79  ║ Mami Nishi       ║
+║ Enaco Distributors                 ║ 23               ║ 68520.47  ║ Martin Gerard    ║
+║ Boards & Toys Co.                  ║ 3                ║ 7918.60   ║ Leslie Thompson  ║
+║ Heintze Collectables               ║ 27               ║ 89909.80  ║ Pamela Castillo  ║
+║ Québec Home Shopping Network       ║ 22               ║ 68977.67  ║ Foon Yue Tseng   ║
+║ Collectable Mini Designs Co.       ║ 25               ║ 80375.24  ║ Leslie Thompson  ║
+║ giftsbymail.co.uk                  ║ 26               ║ 71783.75  ║ Larry Bott       ║
+║ Alpha Cognac                       ║ 20               ║ 60483.36  ║ Gerard Hernandez ║
+║ Amica Models & Co.                 ║ 26               ║ 82223.23  ║ Pamela Castillo  ║
+║ Lyon Souveniers                    ║ 20               ║ 67659.19  ║ Loui Bondur      ║
+║ Auto Associés & Cie.               ║ 18               ║ 58876.41  ║ Gerard Hernandez ║
+║ Toms Spezialitäten, Ltd            ║ 26               ║ 89223.14  ║ Barry Jones      ║
+║ Royal Canadian Collectables, Ltd.  ║ 26               ║ 66812.00  ║ George Vanauf    ║
+║ Anna's Decorations, Ltd            ║ 46               ║ 137034.22 ║ Andy Fixter      ║
+║ Rovelli Gifts                      ║ 48               ║ 127529.69 ║ Pamela Castillo  ║
+║ Souveniers And Things Co.          ║ 46               ║ 133907.12 ║ Andy Fixter      ║
+║ Marta's Replicas Co.               ║ 27               ║ 90545.37  ║ Steve Patterson  ║
+║ Vida Sport, Ltd                    ║ 31               ║ 108777.92 ║ Martin Gerard    ║
+║ Norway Gifts By Mail, Co.          ║ 24               ║ 69059.04  ║ Barry Jones      ║
+║ Oulu Toy Supplies, Inc.            ║ 32               ║ 95706.15  ║ Larry Bott       ║
+║ Petit Auto                         ║ 25               ║ 70851.58  ║ Pamela Castillo  ║
+║ Mini Classics                      ║ 26               ║ 78432.16  ║ George Vanauf    ║
+║ Mini Creations Ltd.                ║ 35               ║ 101872.52 ║ Julie Firrelli   ║
+║ Corporate Gift Ideas Co.           ║ 41               ║ 132340.78 ║ Leslie Jennings  ║
+║ Down Under Souveniers, Inc         ║ 46               ║ 154622.08 ║ Peter Marsh      ║
+║ Stylish Desk Decors, Co.           ║ 26               ║ 80556.73  ║ Larry Bott       ║
+║ Tekni Collectables Inc.            ║ 21               ║ 81806.55  ║ George Vanauf    ║
+║ Australian Gift Network, Co        ║ 15               ║ 55190.16  ║ Andy Fixter      ║
+║ Suominen Souveniers                ║ 30               ║ 103896.74 ║ Larry Bott       ║
+║ Classic Gift Ideas, Inc            ║ 21               ║ 57939.34  ║ Julie Firrelli   ║
+║ CAF Imports                        ║ 13               ║ 46751.14  ║ Martin Gerard    ║
+║ Men 'R' US Retailers, Ltd.         ║ 14               ║ 41506.19  ║ Leslie Thompson  ║
+║ Marseille Mini Autos               ║ 25               ║ 71547.53  ║ Loui Bondur      ║
+║ Reims Collectables                 ║ 41               ║ 126983.19 ║ Loui Bondur      ║
+║ GiftsForHim.com                    ║ 26               ║ 94431.76  ║ Peter Marsh      ║
+║ Gifts4AllAges.com                  ║ 26               ║ 84340.32  ║ Steve Patterson  ║
+║ Online Diecast Creations Co.       ║ 34               ║ 116449.29 ║ Steve Patterson  ║
+║ Collectables For Less Inc.         ║ 24               ║ 73533.65  ║ Julie Firrelli   ║
+║ Royale Belge                       ║ 8                ║ 29217.18  ║ Pamela Castillo  ║
+║ Salzburg Collectables              ║ 40               ║ 137480.07 ║ Pamela Castillo  ║
+║ Cruz & Sons Co.                    ║ 26               ║ 87468.30  ║ Mami Nishi       ║
+║ L'ordine Souveniers                ║ 39               ║ 125505.57 ║ Pamela Castillo  ║
+║ Tokyo Collectables, Ltd            ║ 32               ║ 105548.73 ║ Mami Nishi       ║
+║ Auto Canal+ Petit                  ║ 27               ║ 86436.97  ║ Loui Bondur      ║
+║ Extreme Desk Decorations, Ltd      ║ 29               ║ 90332.38  ║ Peter Marsh      ║
+║ Bavarian Collectables Imports, Co. ║ 14               ║ 31310.09  ║ Barry Jones      ║
+║ Classic Legends Inc.               ║ 20               ║ 69214.33  ║ Foon Yue Tseng   ║
+║ Gift Ideas Corp.                   ║ 19               ║ 49967.78  ║ George Vanauf    ║
+║ Scandinavian Gift Ideas            ║ 38               ║ 120943.53 ║ Barry Jones      ║
+║ The Sharp Gifts Warehouse          ║ 40               ║ 143536.27 ║ Leslie Jennings  ║
+║ Mini Auto Werke                    ║ 15               ║ 51059.99  ║ Pamela Castillo  ║
+║ Super Scale Inc.                   ║ 17               ║ 70378.65  ║ Foon Yue Tseng   ║
+║ Microscale Inc.                    ║ 10               ║ 29230.43  ║ Foon Yue Tseng   ║
+║ Corrida Auto Replicas, Ltd         ║ 32               ║ 112440.09 ║ Martin Gerard    ║
+║ FunGiftIdeas.com                   ║ 26               ║ 88627.49  ║ Steve Patterson  ║
+║ Australian Collectables, Ltd       ║ 23               ║ 55866.02  ║ Andy Fixter      ║
+║ Frau da Collezione                 ║ 8                ║ 25358.32  ║ Pamela Castillo  ║
+║ West Coast Collectables Co.        ║ 13               ║ 43748.72  ║ Leslie Thompson  ║
+║ Iberia Gift Imports, Corp.         ║ 15               ║ 50987.85  ║ Martin Gerard    ║
+║ Motor Mint Distributors Inc.       ║ 23               ║ 77726.59  ║ George Vanauf    ║
+║ Signal Collectibles Ltd.           ║ 15               ║ 42570.37  ║ Leslie Jennings  ║
+║ Double Decker Gift Stores, Ltd     ║ 12               ║ 29586.15  ║ Larry Bott       ║
+║ Diecast Collectables               ║ 18               ║ 65541.74  ║ Julie Firrelli   ║
+║ Kelly's Gift Shop                  ║ 48               ║ 137460.79 ║ Peter Marsh      ║
+╚════════════════════════════════════╩══════════════════╩═══════════╩══════════════════╝
+98 rows in set
+Time: 0.143s
+
+# 2023-01-10 13:13:44.105382
+-- 18;
+Query OK, 0 rows affected
+Time: 0.000s
+
+# 2023-01-10 13:19:46.457029
+select city, `employeeNumber`, customerName from offices
+left join employees using(`officeCode`)
+left join customers on salesrepemployeenumber = employeeNumber;
+(1052, "Column 'city' in field list is ambiguous")
+
+# 2023-01-10 13:20:09.645222
+select o.city, `employeeNumber`, customerName from offices o
+left join employees using(`officeCode`)
+left join customers on salesrepemployeenumber = employeeNumber;
+╔═══════════════╦════════════════╦════════════════════════════════════╗
+║ city          ║ employeeNumber ║ customerName                       ║
+╠═══════════════╬════════════════╬════════════════════════════════════╣
+║ Paris         ║ 1370           ║ Atelier graphique                  ║
+║ San Francisco ║ 1166           ║ Signal Gift Stores                 ║
+║ Sydney        ║ 1611           ║ Australian Collectors, Co.         ║
+║ Paris         ║ 1370           ║ La Rochelle Gifts                  ║
+║ London        ║ 1504           ║ Baane Mini Imports                 ║
+║ San Francisco ║ 1165           ║ Mini Gifts Distributors Ltd.       ║
+║ London        ║ 1504           ║ Blauer See Auto, Co.               ║
+║ San Francisco ║ 1165           ║ Mini Wheels Co.                    ║
+║ NYC           ║ 1323           ║ Land of Toys Inc.                  ║
+║ Paris         ║ 1370           ║ Euro+ Shopping Channel             ║
+║ London        ║ 1504           ║ Volvo Model Replicas, Co           ║
+║ Paris         ║ 1401           ║ Danish Wholesale Imports           ║
+║ Paris         ║ 1337           ║ Saveley & Henriot, Co.             ║
+║ Tokyo         ║ 1621           ║ Dragon Souveniers, Ltd.            ║
+║ NYC           ║ 1286           ║ Muscle Machine Inc                 ║
+║ Boston        ║ 1216           ║ Diecast Classics Inc.              ║
+║ San Francisco ║ 1165           ║ Technics Stores Inc.               ║
+║ Sydney        ║ 1612           ║ Handji Gifts& Co                   ║
+║ London        ║ 1504           ║ Herkku Gifts                       ║
+║ NYC           ║ 1286           ║ American Souvenirs Inc             ║
+║ Paris         ║ 1370           ║ Daedalus Designs Imports           ║
+║ Paris         ║ 1337           ║ La Corne D'abondance, Co.          ║
+║ Boston        ║ 1188           ║ Cambridge Collectables Co.         ║
+║ NYC           ║ 1323           ║ Gift Depot Inc.                    ║
+║ Tokyo         ║ 1621           ║ Osaka Souveniers Co.               ║
+║ NYC           ║ 1286           ║ Vitachrome Inc.                    ║
+║ London        ║ 1501           ║ Toys of Finland, Co.               ║
+║ London        ║ 1501           ║ AV Stores, Co.                     ║
+║ London        ║ 1504           ║ Clover Collections, Co.            ║
+║ Boston        ║ 1216           ║ Auto-Moto Classics Inc.            ║
+║ London        ║ 1501           ║ UK Collectables, Ltd.              ║
+║ NYC           ║ 1323           ║ Canadian Gift Exchange Network     ║
+║ Boston        ║ 1188           ║ Online Mini Collectables           ║
+║ San Francisco ║ 1166           ║ Toys4GrownUps.com                  ║
+║ Paris         ║ 1370           ║ Mini Caravy                        ║
+║ Tokyo         ║ 1621           ║ King Kong Collectables, Co.        ║
+║ Paris         ║ 1702           ║ Enaco Distributors                 ║
+║ San Francisco ║ 1166           ║ Boards & Toys Co.                  ║
+║ Paris         ║ 1401           ║ Heintze Collectables               ║
+║ NYC           ║ 1286           ║ Québec Home Shopping Network       ║
+║ San Francisco ║ 1166           ║ Collectable Mini Designs Co.       ║
+║ London        ║ 1501           ║ giftsbymail.co.uk                  ║
+║ Paris         ║ 1370           ║ Alpha Cognac                       ║
+║ Paris         ║ 1401           ║ Amica Models & Co.                 ║
+║ Paris         ║ 1337           ║ Lyon Souveniers                    ║
+║ Paris         ║ 1370           ║ Auto Associés & Cie.               ║
+║ London        ║ 1504           ║ Toms Spezialitäten, Ltd            ║
+║ NYC           ║ 1323           ║ Royal Canadian Collectables, Ltd.  ║
+║ Sydney        ║ 1611           ║ Anna's Decorations, Ltd            ║
+║ Paris         ║ 1401           ║ Rovelli Gifts                      ║
+║ Sydney        ║ 1611           ║ Souveniers And Things Co.          ║
+║ Boston        ║ 1216           ║ Marta's Replicas Co.               ║
+║ Paris         ║ 1702           ║ Vida Sport, Ltd                    ║
+║ London        ║ 1504           ║ Norway Gifts By Mail, Co.          ║
+║ London        ║ 1501           ║ Oulu Toy Supplies, Inc.            ║
+║ Paris         ║ 1401           ║ Petit Auto                         ║
+║ NYC           ║ 1323           ║ Mini Classics                      ║
+║ Boston        ║ 1188           ║ Mini Creations Ltd.                ║
+║ San Francisco ║ 1165           ║ Corporate Gift Ideas Co.           ║
+║ Sydney        ║ 1612           ║ Down Under Souveniers, Inc         ║
+║ London        ║ 1501           ║ Stylish Desk Decors, Co.           ║
+║ NYC           ║ 1323           ║ Tekni Collectables Inc.            ║
+║ Sydney        ║ 1611           ║ Australian Gift Network, Co        ║
+║ London        ║ 1501           ║ Suominen Souveniers                ║
+║ Boston        ║ 1188           ║ Classic Gift Ideas, Inc            ║
+║ Paris         ║ 1702           ║ CAF Imports                        ║
+║ San Francisco ║ 1166           ║ Men 'R' US Retailers, Ltd.         ║
+║ Paris         ║ 1337           ║ Marseille Mini Autos               ║
+║ Paris         ║ 1337           ║ Reims Collectables                 ║
+║ Sydney        ║ 1612           ║ GiftsForHim.com                    ║
+║ Boston        ║ 1216           ║ Gifts4AllAges.com                  ║
+║ Boston        ║ 1216           ║ Online Diecast Creations Co.       ║
+║ Paris         ║ 1702           ║ Precious Collectables              ║
+║ Boston        ║ 1188           ║ Collectables For Less Inc.         ║
+║ Paris         ║ 1401           ║ Royale Belge                       ║
+║ Paris         ║ 1401           ║ Salzburg Collectables              ║
+║ Tokyo         ║ 1621           ║ Cruz & Sons Co.                    ║
+║ Paris         ║ 1401           ║ L'ordine Souveniers                ║
+║ Tokyo         ║ 1621           ║ Tokyo Collectables, Ltd            ║
+║ Paris         ║ 1337           ║ Auto Canal+ Petit                  ║
+║ Sydney        ║ 1612           ║ Extreme Desk Decorations, Ltd      ║
+║ London        ║ 1504           ║ Bavarian Collectables Imports, Co. ║
+║ NYC           ║ 1286           ║ Classic Legends Inc.               ║
+║ NYC           ║ 1323           ║ Gift Ideas Corp.                   ║
+║ London        ║ 1504           ║ Scandinavian Gift Ideas            ║
+║ San Francisco ║ 1165           ║ The Sharp Gifts Warehouse          ║
+║ Paris         ║ 1401           ║ Mini Auto Werke                    ║
+║ NYC           ║ 1286           ║ Super Scale Inc.                   ║
+║ NYC           ║ 1286           ║ Microscale Inc.                    ║
+║ Paris         ║ 1702           ║ Corrida Auto Replicas, Ltd         ║
+║ Boston        ║ 1216           ║ FunGiftIdeas.com                   ║
+║ Sydney        ║ 1611           ║ Australian Collectables, Ltd       ║
+║ Paris         ║ 1401           ║ Frau da Collezione                 ║
+║ San Francisco ║ 1166           ║ West Coast Collectables Co.        ║
+║ Paris         ║ 1702           ║ Iberia Gift Imports, Corp.         ║
+║ NYC           ║ 1323           ║ Motor Mint Distributors Inc.       ║
+║ San Francisco ║ 1165           ║ Signal Collectibles Ltd.           ║
+║ London        ║ 1501           ║ Double Decker Gift Stores, Ltd     ║
+║ Boston        ║ 1188           ║ Diecast Collectables               ║
+║ Sydney        ║ 1612           ║ Kelly's Gift Shop                  ║
+║ San Francisco ║ 1002           ║ <null>                             ║
+║ San Francisco ║ 1056           ║ <null>                             ║
+║ San Francisco ║ 1076           ║ <null>                             ║
+║ Sydney        ║ 1088           ║ <null>                             ║
+║ Paris         ║ 1102           ║ <null>                             ║
+║ San Francisco ║ 1143           ║ <null>                             ║
+║ Sydney        ║ 1619           ║ <null>                             ║
+║ Tokyo         ║ 1625           ║ <null>                             ║
+╚═══════════════╩════════════════╩════════════════════════════════════╝
+108 rows in set
+Time: 0.018s
+
+# 2023-01-10 13:24:42.039150
+select o.city, `employeeNumber`, customerName, amount from offices o
+left join employees using(`officeCode`)
+left join customers on salesrepemployeenumber = employeeNumber
+inner join (select customerNumber, sum(orderedQuantity * priceEach) as amount from orderdetails inner join orders using(orderNumber) group by customerNumber) as tmp on tmp.customerNumber = customers.customerNumber
+where customerName is not null;
+(1054, "Unknown column 'orderedQuantity' in 'field list'")
+
+# 2023-01-10 13:24:58.364825
+select o.city, `employeeNumber`, customerName, amount from offices o
+left join employees using(`officeCode`)
+left join customers on salesrepemployeenumber = employeeNumber
+inner join (select customerNumber, sum(quantityOrdered * priceEach) as amount from orderdetails inner join orders using(orderNumber) group by customerNumber) as tmp on tmp.customerNumber = customers.customerNumber
+where customerName is not null;
+╔═══════════════╦════════════════╦════════════════════════════════════╦═══════════╗
+║ city          ║ employeeNumber ║ customerName                       ║ amount    ║
+╠═══════════════╬════════════════╬════════════════════════════════════╬═══════════╣
+║ Paris         ║ 1370           ║ Atelier graphique                  ║ 22314.36  ║
+║ San Francisco ║ 1166           ║ Signal Gift Stores                 ║ 80180.98  ║
+║ Sydney        ║ 1611           ║ Australian Collectors, Co.         ║ 180585.07 ║
+║ Paris         ║ 1370           ║ La Rochelle Gifts                  ║ 158573.12 ║
+║ London        ║ 1504           ║ Baane Mini Imports                 ║ 104224.79 ║
+║ San Francisco ║ 1165           ║ Mini Gifts Distributors Ltd.       ║ 591827.34 ║
+║ London        ║ 1504           ║ Blauer See Auto, Co.               ║ 75937.76  ║
+║ San Francisco ║ 1165           ║ Mini Wheels Co.                    ║ 66710.56  ║
+║ NYC           ║ 1323           ║ Land of Toys Inc.                  ║ 149085.15 ║
+║ Paris         ║ 1370           ║ Euro+ Shopping Channel             ║ 820689.54 ║
+║ London        ║ 1504           ║ Volvo Model Replicas, Co           ║ 66694.82  ║
+║ Paris         ║ 1401           ║ Danish Wholesale Imports           ║ 129085.12 ║
+║ Paris         ║ 1337           ║ Saveley & Henriot, Co.             ║ 130305.35 ║
+║ Tokyo         ║ 1621           ║ Dragon Souveniers, Ltd.            ║ 156251.03 ║
+║ NYC           ║ 1286           ║ Muscle Machine Inc                 ║ 177913.95 ║
+║ Boston        ║ 1216           ║ Diecast Classics Inc.              ║ 104358.69 ║
+║ San Francisco ║ 1165           ║ Technics Stores Inc.               ║ 104545.22 ║
+║ Sydney        ║ 1612           ║ Handji Gifts& Co                   ║ 107746.75 ║
+║ London        ║ 1504           ║ Herkku Gifts                       ║ 97562.47  ║
+║ Paris         ║ 1370           ║ Daedalus Designs Imports           ║ 61781.70  ║
+║ Paris         ║ 1337           ║ La Corne D'abondance, Co.          ║ 86553.52  ║
+║ Boston        ║ 1188           ║ Cambridge Collectables Co.         ║ 32198.69  ║
+║ NYC           ║ 1323           ║ Gift Depot Inc.                    ║ 95424.63  ║
+║ Tokyo         ║ 1621           ║ Osaka Souveniers Co.               ║ 62361.22  ║
+║ NYC           ║ 1286           ║ Vitachrome Inc.                    ║ 72497.64  ║
+║ London        ║ 1501           ║ Toys of Finland, Co.               ║ 95546.46  ║
+║ London        ║ 1501           ║ AV Stores, Co.                     ║ 148410.09 ║
+║ London        ║ 1504           ║ Clover Collections, Co.            ║ 49898.27  ║
+║ Boston        ║ 1216           ║ Auto-Moto Classics Inc.            ║ 21554.26  ║
+║ London        ║ 1501           ║ UK Collectables, Ltd.              ║ 106610.72 ║
+║ NYC           ║ 1323           ║ Canadian Gift Exchange Network     ║ 70122.19  ║
+║ Boston        ║ 1188           ║ Online Mini Collectables           ║ 55577.26  ║
+║ San Francisco ║ 1166           ║ Toys4GrownUps.com                  ║ 93803.30  ║
+║ Paris         ║ 1370           ║ Mini Caravy                        ║ 75859.32  ║
+║ Tokyo         ║ 1621           ║ King Kong Collectables, Co.        ║ 45480.79  ║
+║ Paris         ║ 1702           ║ Enaco Distributors                 ║ 68520.47  ║
+║ San Francisco ║ 1166           ║ Boards & Toys Co.                  ║ 7918.60   ║
+║ Paris         ║ 1401           ║ Heintze Collectables               ║ 89909.80  ║
+║ NYC           ║ 1286           ║ Québec Home Shopping Network       ║ 68977.67  ║
+║ San Francisco ║ 1166           ║ Collectable Mini Designs Co.       ║ 80375.24  ║
+║ London        ║ 1501           ║ giftsbymail.co.uk                  ║ 71783.75  ║
+║ Paris         ║ 1370           ║ Alpha Cognac                       ║ 60483.36  ║
+║ Paris         ║ 1401           ║ Amica Models & Co.                 ║ 82223.23  ║
+║ Paris         ║ 1337           ║ Lyon Souveniers                    ║ 67659.19  ║
+║ Paris         ║ 1370           ║ Auto Associés & Cie.               ║ 58876.41  ║
+║ London        ║ 1504           ║ Toms Spezialitäten, Ltd            ║ 89223.14  ║
+║ NYC           ║ 1323           ║ Royal Canadian Collectables, Ltd.  ║ 66812.00  ║
+║ Sydney        ║ 1611           ║ Anna's Decorations, Ltd            ║ 137034.22 ║
+║ Paris         ║ 1401           ║ Rovelli Gifts                      ║ 127529.69 ║
+║ Sydney        ║ 1611           ║ Souveniers And Things Co.          ║ 133907.12 ║
+║ Boston        ║ 1216           ║ Marta's Replicas Co.               ║ 90545.37  ║
+║ Paris         ║ 1702           ║ Vida Sport, Ltd                    ║ 108777.92 ║
+║ London        ║ 1504           ║ Norway Gifts By Mail, Co.          ║ 69059.04  ║
+║ London        ║ 1501           ║ Oulu Toy Supplies, Inc.            ║ 95706.15  ║
+║ Paris         ║ 1401           ║ Petit Auto                         ║ 70851.58  ║
+║ NYC           ║ 1323           ║ Mini Classics                      ║ 78432.16  ║
+║ Boston        ║ 1188           ║ Mini Creations Ltd.                ║ 101872.52 ║
+║ San Francisco ║ 1165           ║ Corporate Gift Ideas Co.           ║ 132340.78 ║
+║ Sydney        ║ 1612           ║ Down Under Souveniers, Inc         ║ 154622.08 ║
+║ London        ║ 1501           ║ Stylish Desk Decors, Co.           ║ 80556.73  ║
+║ NYC           ║ 1323           ║ Tekni Collectables Inc.            ║ 81806.55  ║
+║ Sydney        ║ 1611           ║ Australian Gift Network, Co        ║ 55190.16  ║
+║ London        ║ 1501           ║ Suominen Souveniers                ║ 103896.74 ║
+║ Boston        ║ 1188           ║ Classic Gift Ideas, Inc            ║ 57939.34  ║
+║ Paris         ║ 1702           ║ CAF Imports                        ║ 46751.14  ║
+║ San Francisco ║ 1166           ║ Men 'R' US Retailers, Ltd.         ║ 41506.19  ║
+║ Paris         ║ 1337           ║ Marseille Mini Autos               ║ 71547.53  ║
+║ Paris         ║ 1337           ║ Reims Collectables                 ║ 126983.19 ║
+║ Sydney        ║ 1612           ║ GiftsForHim.com                    ║ 94431.76  ║
+║ Boston        ║ 1216           ║ Gifts4AllAges.com                  ║ 84340.32  ║
+║ Boston        ║ 1216           ║ Online Diecast Creations Co.       ║ 116449.29 ║
+║ Boston        ║ 1188           ║ Collectables For Less Inc.         ║ 73533.65  ║
+║ Paris         ║ 1401           ║ Royale Belge                       ║ 29217.18  ║
+║ Paris         ║ 1401           ║ Salzburg Collectables              ║ 137480.07 ║
+║ Tokyo         ║ 1621           ║ Cruz & Sons Co.                    ║ 87468.30  ║
+║ Paris         ║ 1401           ║ L'ordine Souveniers                ║ 125505.57 ║
+║ Tokyo         ║ 1621           ║ Tokyo Collectables, Ltd            ║ 105548.73 ║
+║ Paris         ║ 1337           ║ Auto Canal+ Petit                  ║ 86436.97  ║
+║ Sydney        ║ 1612           ║ Extreme Desk Decorations, Ltd      ║ 90332.38  ║
+║ London        ║ 1504           ║ Bavarian Collectables Imports, Co. ║ 31310.09  ║
+║ NYC           ║ 1286           ║ Classic Legends Inc.               ║ 69214.33  ║
+║ NYC           ║ 1323           ║ Gift Ideas Corp.                   ║ 49967.78  ║
+║ London        ║ 1504           ║ Scandinavian Gift Ideas            ║ 120943.53 ║
+║ San Francisco ║ 1165           ║ The Sharp Gifts Warehouse          ║ 143536.27 ║
+║ Paris         ║ 1401           ║ Mini Auto Werke                    ║ 51059.99  ║
+║ NYC           ║ 1286           ║ Super Scale Inc.                   ║ 70378.65  ║
+║ NYC           ║ 1286           ║ Microscale Inc.                    ║ 29230.43  ║
+║ Paris         ║ 1702           ║ Corrida Auto Replicas, Ltd         ║ 112440.09 ║
+║ Boston        ║ 1216           ║ FunGiftIdeas.com                   ║ 88627.49  ║
+║ Sydney        ║ 1611           ║ Australian Collectables, Ltd       ║ 55866.02  ║
+║ Paris         ║ 1401           ║ Frau da Collezione                 ║ 25358.32  ║
+║ San Francisco ║ 1166           ║ West Coast Collectables Co.        ║ 43748.72  ║
+║ Paris         ║ 1702           ║ Iberia Gift Imports, Corp.         ║ 50987.85  ║
+║ NYC           ║ 1323           ║ Motor Mint Distributors Inc.       ║ 77726.59  ║
+║ San Francisco ║ 1165           ║ Signal Collectibles Ltd.           ║ 42570.37  ║
+║ London        ║ 1501           ║ Double Decker Gift Stores, Ltd     ║ 29586.15  ║
+║ Boston        ║ 1188           ║ Diecast Collectables               ║ 65541.74  ║
+║ Sydney        ║ 1612           ║ Kelly's Gift Shop                  ║ 137460.79 ║
+╚═══════════════╩════════════════╩════════════════════════════════════╩═══════════╝
+98 rows in set
+Time: 0.023s
+
+# 2023-01-10 13:27:12.902640
+select o.city, `employeeNumber`, customerNumber, amount from offices o
+left join employees using(`officeCode`)
+left join customers on salesrepemployeenumber = employeeNumber
+inner join (select customerNumber, sum(quantityOrdered * priceEach) as amount from orderdetails inner join orders using(orderNumber) group by customerNumber) as tmp on tmp.customerNumber = customers.customerNumber
+where customerName is not null;
+(1052, "Column 'customerNumber' in field list is ambiguous")
+
+# 2023-01-10 13:27:36.061014
+select o.city, `employeeNumber`, customerNumber, amount from offices o
+left join employees using(`officeCode`)
+left join customers on salesrepemployeenumber = employeeNumber
+inner join (select customerNumber, customerNmber, sum(quantityOrdered * priceEach) as amount from orderdetails inner join orders using(orderNumber) group by customerNumber) as tmp on tmp.customerNumber = customers.customerNumber
+where customerName is not null;
+(1054, "Unknown column 'customerNmber' in 'field list'")
+
+# 2023-01-10 13:27:51.972361
+select o.city, `employeeNumber`, customerNumber, amount from offices o
+left join employees using(`officeCode`)
+left join customers on salesrepemployeenumber = employeeNumber
+inner join (select customerNumber, customerNumber, sum(quantityOrdered * priceEach) as amount from orderdetails inner join orders using(orderNumber) group by customerNumber) as tmp on tmp.customerNumber = customers.customerNumber
+where customerName is not null;
+(1060, "Duplicate column name 'customerNumber'")
+
+# 2023-01-10 13:28:05.765426
+select o.city, `employeeNumber`, tmp.customerNumber, amount from offices o
+left join employees using(`officeCode`)
+left join customers on salesrepemployeenumber = employeeNumber
+inner join (select customerNumber, sum(quantityOrdered * priceEach) as amount from orderdetails inner join orders using(orderNumber) group by customerNumber) as tmp on tmp.customerNumber = customers.customerNumber
+where customerName is not null;
+╔═══════════════╦════════════════╦════════════════╦═══════════╗
+║ city          ║ employeeNumber ║ customerNumber ║ amount    ║
+╠═══════════════╬════════════════╬════════════════╬═══════════╣
+║ Paris         ║ 1370           ║ 103            ║ 22314.36  ║
+║ San Francisco ║ 1166           ║ 112            ║ 80180.98  ║
+║ Sydney        ║ 1611           ║ 114            ║ 180585.07 ║
+║ Paris         ║ 1370           ║ 119            ║ 158573.12 ║
+║ London        ║ 1504           ║ 121            ║ 104224.79 ║
+║ San Francisco ║ 1165           ║ 124            ║ 591827.34 ║
+║ London        ║ 1504           ║ 128            ║ 75937.76  ║
+║ San Francisco ║ 1165           ║ 129            ║ 66710.56  ║
+║ NYC           ║ 1323           ║ 131            ║ 149085.15 ║
+║ Paris         ║ 1370           ║ 141            ║ 820689.54 ║
+║ London        ║ 1504           ║ 144            ║ 66694.82  ║
+║ Paris         ║ 1401           ║ 145            ║ 129085.12 ║
+║ Paris         ║ 1337           ║ 146            ║ 130305.35 ║
+║ Tokyo         ║ 1621           ║ 148            ║ 156251.03 ║
+║ NYC           ║ 1286           ║ 151            ║ 177913.95 ║
+║ Boston        ║ 1216           ║ 157            ║ 104358.69 ║
+║ San Francisco ║ 1165           ║ 161            ║ 104545.22 ║
+║ Sydney        ║ 1612           ║ 166            ║ 107746.75 ║
+║ London        ║ 1504           ║ 167            ║ 97562.47  ║
+║ Paris         ║ 1370           ║ 171            ║ 61781.70  ║
+║ Paris         ║ 1337           ║ 172            ║ 86553.52  ║
+║ Boston        ║ 1188           ║ 173            ║ 32198.69  ║
+║ NYC           ║ 1323           ║ 175            ║ 95424.63  ║
+║ Tokyo         ║ 1621           ║ 177            ║ 62361.22  ║
+║ NYC           ║ 1286           ║ 181            ║ 72497.64  ║
+║ London        ║ 1501           ║ 186            ║ 95546.46  ║
+║ London        ║ 1501           ║ 187            ║ 148410.09 ║
+║ London        ║ 1504           ║ 189            ║ 49898.27  ║
+║ Boston        ║ 1216           ║ 198            ║ 21554.26  ║
+║ London        ║ 1501           ║ 201            ║ 106610.72 ║
+║ NYC           ║ 1323           ║ 202            ║ 70122.19  ║
+║ Boston        ║ 1188           ║ 204            ║ 55577.26  ║
+║ San Francisco ║ 1166           ║ 205            ║ 93803.30  ║
+║ Paris         ║ 1370           ║ 209            ║ 75859.32  ║
+║ Tokyo         ║ 1621           ║ 211            ║ 45480.79  ║
+║ Paris         ║ 1702           ║ 216            ║ 68520.47  ║
+║ San Francisco ║ 1166           ║ 219            ║ 7918.60   ║
+║ Paris         ║ 1401           ║ 227            ║ 89909.80  ║
+║ NYC           ║ 1286           ║ 233            ║ 68977.67  ║
+║ San Francisco ║ 1166           ║ 239            ║ 80375.24  ║
+║ London        ║ 1501           ║ 240            ║ 71783.75  ║
+║ Paris         ║ 1370           ║ 242            ║ 60483.36  ║
+║ Paris         ║ 1401           ║ 249            ║ 82223.23  ║
+║ Paris         ║ 1337           ║ 250            ║ 67659.19  ║
+║ Paris         ║ 1370           ║ 256            ║ 58876.41  ║
+║ London        ║ 1504           ║ 259            ║ 89223.14  ║
+║ NYC           ║ 1323           ║ 260            ║ 66812.00  ║
+║ Sydney        ║ 1611           ║ 276            ║ 137034.22 ║
+║ Paris         ║ 1401           ║ 278            ║ 127529.69 ║
+║ Sydney        ║ 1611           ║ 282            ║ 133907.12 ║
+║ Boston        ║ 1216           ║ 286            ║ 90545.37  ║
+║ Paris         ║ 1702           ║ 298            ║ 108777.92 ║
+║ London        ║ 1504           ║ 299            ║ 69059.04  ║
+║ London        ║ 1501           ║ 311            ║ 95706.15  ║
+║ Paris         ║ 1401           ║ 314            ║ 70851.58  ║
+║ NYC           ║ 1323           ║ 319            ║ 78432.16  ║
+║ Boston        ║ 1188           ║ 320            ║ 101872.52 ║
+║ San Francisco ║ 1165           ║ 321            ║ 132340.78 ║
+║ Sydney        ║ 1612           ║ 323            ║ 154622.08 ║
+║ London        ║ 1501           ║ 324            ║ 80556.73  ║
+║ NYC           ║ 1323           ║ 328            ║ 81806.55  ║
+║ Sydney        ║ 1611           ║ 333            ║ 55190.16  ║
+║ London        ║ 1501           ║ 334            ║ 103896.74 ║
+║ Boston        ║ 1188           ║ 339            ║ 57939.34  ║
+║ Paris         ║ 1702           ║ 344            ║ 46751.14  ║
+║ San Francisco ║ 1166           ║ 347            ║ 41506.19  ║
+║ Paris         ║ 1337           ║ 350            ║ 71547.53  ║
+║ Paris         ║ 1337           ║ 353            ║ 126983.19 ║
+║ Sydney        ║ 1612           ║ 357            ║ 94431.76  ║
+║ Boston        ║ 1216           ║ 362            ║ 84340.32  ║
+║ Boston        ║ 1216           ║ 363            ║ 116449.29 ║
+║ Boston        ║ 1188           ║ 379            ║ 73533.65  ║
+║ Paris         ║ 1401           ║ 381            ║ 29217.18  ║
+║ Paris         ║ 1401           ║ 382            ║ 137480.07 ║
+║ Tokyo         ║ 1621           ║ 385            ║ 87468.30  ║
+║ Paris         ║ 1401           ║ 386            ║ 125505.57 ║
+║ Tokyo         ║ 1621           ║ 398            ║ 105548.73 ║
+║ Paris         ║ 1337           ║ 406            ║ 86436.97  ║
+║ Sydney        ║ 1612           ║ 412            ║ 90332.38  ║
+║ London        ║ 1504           ║ 415            ║ 31310.09  ║
+║ NYC           ║ 1286           ║ 424            ║ 69214.33  ║
+║ NYC           ║ 1323           ║ 447            ║ 49967.78  ║
+║ London        ║ 1504           ║ 448            ║ 120943.53 ║
+║ San Francisco ║ 1165           ║ 450            ║ 143536.27 ║
+║ Paris         ║ 1401           ║ 452            ║ 51059.99  ║
+║ NYC           ║ 1286           ║ 455            ║ 70378.65  ║
+║ NYC           ║ 1286           ║ 456            ║ 29230.43  ║
+║ Paris         ║ 1702           ║ 458            ║ 112440.09 ║
+║ Boston        ║ 1216           ║ 462            ║ 88627.49  ║
+║ Sydney        ║ 1611           ║ 471            ║ 55866.02  ║
+║ Paris         ║ 1401           ║ 473            ║ 25358.32  ║
+║ San Francisco ║ 1166           ║ 475            ║ 43748.72  ║
+║ Paris         ║ 1702           ║ 484            ║ 50987.85  ║
+║ NYC           ║ 1323           ║ 486            ║ 77726.59  ║
+║ San Francisco ║ 1165           ║ 487            ║ 42570.37  ║
+║ London        ║ 1501           ║ 489            ║ 29586.15  ║
+║ Boston        ║ 1188           ║ 495            ║ 65541.74  ║
+║ Sydney        ║ 1612           ║ 496            ║ 137460.79 ║
+╚═══════════════╩════════════════╩════════════════╩═══════════╝
+98 rows in set
+Time: 0.014s
